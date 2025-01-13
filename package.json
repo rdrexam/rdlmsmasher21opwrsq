@@ -1,15 +1,4 @@
 {
-  "name": "izzathcool786",
-  "version": "1.0.0",
-  "main": "ajov24.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "description": "",
   "dependencies": {
     "archiver": "^7.0.1",
     "mime-types": "^2.1.35",
