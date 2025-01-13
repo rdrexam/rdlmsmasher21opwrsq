@@ -1,1 +1,2648 @@
-const _0x208cf0=_0x3309;(function(_0xee9b25,_0x4f42b5){const _0x5d4bef=_0x3309,_0x4f1b3e=_0xee9b25();while(!![]){try{const _0x52df9c=-parseInt(_0x5d4bef(0xd9))/0x1+parseInt(_0x5d4bef(0x123))/0x2+-parseInt(_0x5d4bef(0x2ba))/0x3*(-parseInt(_0x5d4bef(0x18a))/0x4)+parseInt(_0x5d4bef(0x211))/0x5*(-parseInt(_0x5d4bef(0x243))/0x6)+-parseInt(_0x5d4bef(0xc5))/0x7+parseInt(_0x5d4bef(0x145))/0x8+parseInt(_0x5d4bef(0xe6))/0x9*(parseInt(_0x5d4bef(0x1f3))/0xa);if(_0x52df9c===_0x4f42b5)break;else _0x4f1b3e['push'](_0x4f1b3e['shift']());}catch(_0x20c23d){_0x4f1b3e['push'](_0x4f1b3e['shift']());}}}(_0x3fca,0x8db0e));const _0x20bef6=(function(){let _0x483c90=!![];return function(_0x2a00e1,_0xa6e354){const _0xc57e22=_0x483c90?function(){const _0x37b92d=_0x3309;if(_0xa6e354){const _0x50e3d0=_0xa6e354[_0x37b92d(0xe8)](_0x2a00e1,arguments);return _0xa6e354=null,_0x50e3d0;}}:function(){};return _0x483c90=![],_0xc57e22;};}()),_0x2c9593=_0x20bef6(this,function(){const _0x4a0cb7=_0x3309;return _0x2c9593['toString']()[_0x4a0cb7(0x20b)](_0x4a0cb7(0x132))[_0x4a0cb7(0x28c)]()[_0x4a0cb7(0x25b)](_0x2c9593)[_0x4a0cb7(0x20b)]('(((.+)+)+)+$');});_0x2c9593();const _0x346d16=(function(){let _0x1b9ea9=!![];return function(_0x21905f,_0xfdcb8f){const _0x4cb33a=_0x1b9ea9?function(){const _0x3c7d81=_0x3309;if(_0xfdcb8f){const _0x22ffa7=_0xfdcb8f[_0x3c7d81(0xe8)](_0x21905f,arguments);return _0xfdcb8f=null,_0x22ffa7;}}:function(){};return _0x1b9ea9=![],_0x4cb33a;};}()),_0x54af6e=_0x346d16(this,function(){const _0x48071a=_0x3309;let _0x57e857;try{const _0x9b3d88=Function(_0x48071a(0xed)+'{}.constructor(\x22return\x20this\x22)(\x20)'+');');_0x57e857=_0x9b3d88();}catch(_0x43137e){_0x57e857=window;}const _0x5a0c5f=_0x57e857[_0x48071a(0x239)]=_0x57e857[_0x48071a(0x239)]||{},_0xca5d3=['log','warn','info',_0x48071a(0x16e),_0x48071a(0x2bf),_0x48071a(0xe5),_0x48071a(0x1dc)];for(let _0x397dbb=0x0;_0x397dbb<_0xca5d3[_0x48071a(0x117)];_0x397dbb++){const _0x56fc3c=_0x346d16[_0x48071a(0x25b)][_0x48071a(0x17f)][_0x48071a(0x230)](_0x346d16),_0x48fcf3=_0xca5d3[_0x397dbb],_0x188ec9=_0x5a0c5f[_0x48fcf3]||_0x56fc3c;_0x56fc3c['__proto__']=_0x346d16[_0x48071a(0x230)](_0x346d16),_0x56fc3c['toString']=_0x188ec9[_0x48071a(0x28c)][_0x48071a(0x230)](_0x188ec9),_0x5a0c5f[_0x48fcf3]=_0x56fc3c;}});_0x54af6e();const qrcode=require(_0x208cf0(0x237)),{Client,LocalAuth,MessageMedia}=require('whatsapp-web.js'),OpenAI=require(_0x208cf0(0x1b8)),os=require('os'),fs=require('fs'),PDFDocument=require(_0x208cf0(0x15f)),sharp=require('sharp'),puppeteer=require(_0x208cf0(0xfc)),schedule=require(_0x208cf0(0x2c3)),archiver=require(_0x208cf0(0xf4)),unzipper=require('unzipper'),mime=require(_0x208cf0(0x14b)),{send}=require(_0x208cf0(0xd1)),path=require('path'),ADMIN_PASSWORD=_0x208cf0(0x22b),transferAccountDetails=_0x208cf0(0xe1);let botAdminContactDetails=_0x208cf0(0x290);const BotName=_0x208cf0(0x10b),mainDirName=_0x208cf0(0x15b),mainDir='./'+mainDirName;let login_ready_users=[],authorized_users=['94762057788',_0x208cf0(0x1bc)],current_bug_reporting=[],API_KEYS_DIC={},CURRENT_API_KEY={},API_KEYS_TEXT_FILES={'gpt4o-mini':mainDir+_0x208cf0(0xbe),'groq':mainDir+_0x208cf0(0xf3)},OUR_MODEL_NAMES=[_0x208cf0(0x220),'llama-3.2-90b-vision-preview'],BASE_URL_NAMES=['https://models.inference.ai.azure.com',_0x208cf0(0x270)],whisper_model_name=_0x208cf0(0x18b),ALL_USERS_LIST=[],ALL_USERS_LIST_with_user_name=[],upgradeUsersPendingToSendImages=[],upgradeUsersPendingToSendImagesTimings=[],adminHandlingReciptApproval={},upgrading_user_temp_admin={},upgrading_details_given_by_admin={},userUpgradingPrompts={},userIntiatedPlan={},user_payment_recieving_check={},admin_iniated_to_send_all_users={},admin_iniated_message={},ALL_CHAT_HISTORY={},adminInDeletingUser={},adminInAddingAPIKeys={},adminAddingAPIKeysType={},adminInSendingMessageToOneUser={},adminInSendingMessageToOneUserDetails={},users_who_asked_to_send_as_image={},isBotPaused=![],adminInIputingZIP={};const payment_receipt_details_storing_json_file_name=mainDir+_0x208cf0(0x14f),users_wait_list_at_training_period_json_file_name=mainDir+_0x208cf0(0x244),allUserChatsDir='./Files/chats',bug_reporter_text_path=mainDir+_0x208cf0(0x263),DEEP_INFRA_API_keys_text_file=_0x208cf0(0x1bd),AllUsers_text_file=mainDir+_0x208cf0(0x2a4),user_report_pdf_name=mainDir+_0x208cf0(0x276),ALL_USERS_LIST_with_user_name_txt_file=mainDir+_0x208cf0(0x28a);let user_chat_history={},activeMessages={};const UserManagerfilePath=mainDir+_0x208cf0(0x27a);!fs['existsSync'](mainDir)&&fs[_0x208cf0(0x2af)](mainDir,{'recursive':!![]});!fs[_0x208cf0(0x24a)](allUserChatsDir)&&fs[_0x208cf0(0x2af)](allUserChatsDir,{'recursive':!![]});function welcome_message(_0x4d6240){const _0x5e97b6=_0x208cf0,_0xc0157c=['🌟\x20Hi\x20'+_0x4d6240+_0x5e97b6(0x2d6)+BotName+'*,\x20your\x20AI\x20buddy\x20on\x20WhatsApp!\x20Let’s\x20make\x20life\x20smarter\x20and\x20more\x20exciting!\x20🚀'];return _0xc0157c[Math[_0x5e97b6(0x225)](Math[_0x5e97b6(0x1f9)]()*_0xc0157c[_0x5e97b6(0x117)])];}process['on'](_0x208cf0(0x28b),()=>{const _0x24708f=_0x208cf0;console[_0x24708f(0xc0)](_0x24708f(0x219)),schedule[_0x24708f(0x255)]()[_0x24708f(0x1be)](()=>{const _0x252fbf=_0x24708f;console[_0x252fbf(0xc0)](_0x252fbf(0x1f5)),process['exit'](0x0);});}),process['on']('SIGTERM',()=>{const _0x221826=_0x208cf0;console[_0x221826(0xc0)]('Gracefully\x20shutting\x20down...'),schedule['gracefulShutdown']()[_0x221826(0x1be)](()=>{const _0x444367=_0x221826;console[_0x444367(0xc0)](_0x444367(0x1f5)),process[_0x444367(0x214)](0x0);});});const API_KEYS_ID=Object[_0x208cf0(0x2a8)](API_KEYS_TEXT_FILES);API_KEYS_ID[_0x208cf0(0x257)](_0x588a11=>{const _0x1bc50b=_0x208cf0;try{!fs[_0x1bc50b(0x24a)](API_KEYS_TEXT_FILES[_0x588a11])&&fs['writeFileSync'](API_KEYS_TEXT_FILES[_0x588a11],'');const _0x3f264d=fs[_0x1bc50b(0x29d)](API_KEYS_TEXT_FILES[_0x588a11],_0x1bc50b(0x197));API_KEYS_DIC[_0x588a11]=_0x3f264d[_0x1bc50b(0xfb)]('\x0a')[_0x1bc50b(0x2c7)](_0x7f83ff=>_0x7f83ff['trim']()!==''),API_KEYS_DIC[_0x588a11][_0x1bc50b(0x117)]>0x0?(CURRENT_API_KEY[_0x588a11]=API_KEYS_DIC[_0x588a11][0x0],console['log'](API_KEYS_DIC[_0x588a11]['length']+_0x1bc50b(0x16a)+_0x588a11+_0x1bc50b(0x2be)+CURRENT_API_KEY[_0x588a11]+'..')):console[_0x1bc50b(0x295)](_0x1bc50b(0x28f)+_0x588a11+_0x1bc50b(0x2b7));}catch(_0x3a46ba){console[_0x1bc50b(0x16e)](_0x1bc50b(0x131)+_0x588a11+':',_0x3a46ba[_0x1bc50b(0x116)]);}});try{const ALL_USERS_LIST_STR=fs[_0x208cf0(0x29d)](AllUsers_text_file,_0x208cf0(0x197));ALL_USERS_LIST=ALL_USERS_LIST_STR[_0x208cf0(0xfb)]('\x0a')[_0x208cf0(0x2c7)](_0x4b56e0=>_0x4b56e0['trim']()!=='');ALL_USERS_LIST[_0x208cf0(0x117)]>0x0&&console[_0x208cf0(0xc0)](ALL_USERS_LIST[_0x208cf0(0x117)]+_0x208cf0(0x26e));const ALL_USERS_LIST_with_user_name_STR=fs[_0x208cf0(0x29d)](ALL_USERS_LIST_with_user_name_txt_file,'utf8');ALL_USERS_LIST_with_user_name=ALL_USERS_LIST_with_user_name_STR[_0x208cf0(0xfb)]('\x0a')[_0x208cf0(0x2c7)](_0xad5c4c=>_0xad5c4c[_0x208cf0(0x18e)]()!=='');}catch(_0x314ffe){try{fs['appendFileSync'](AllUsers_text_file,'',_0x208cf0(0x197)),console[_0x208cf0(0xc0)](_0x208cf0(0xd2));}catch(_0x3f4a8b){console[_0x208cf0(0x16e)](_0x208cf0(0xbb),_0x3f4a8b),process[_0x208cf0(0x214)](0x1);}}for(const user_id_temp of ALL_USERS_LIST){activeMessages[user_id_temp]=0x0;}function startup_runners(){const _0x19f8a6=_0x208cf0,_0x402a3b=Object[_0x19f8a6(0x2a8)](API_KEYS_TEXT_FILES);_0x402a3b[_0x19f8a6(0x257)](_0x27ad9=>{const _0x35ff8f=_0x19f8a6;try{!fs['existsSync'](API_KEYS_TEXT_FILES[_0x27ad9])&&fs['writeFileSync'](API_KEYS_TEXT_FILES[_0x27ad9],'');const _0xc19d41=fs['readFileSync'](API_KEYS_TEXT_FILES[_0x27ad9],'utf8');API_KEYS_DIC[_0x27ad9]=_0xc19d41[_0x35ff8f(0xfb)]('\x0a')[_0x35ff8f(0x2c7)](_0x2281ee=>_0x2281ee[_0x35ff8f(0x18e)]()!==''),API_KEYS_DIC[_0x27ad9][_0x35ff8f(0x117)]>0x0?(CURRENT_API_KEY[_0x27ad9]=API_KEYS_DIC[_0x27ad9][0x0],console['log'](API_KEYS_DIC[_0x27ad9][_0x35ff8f(0x117)]+'\x20keys\x20found\x20for\x20'+_0x27ad9+_0x35ff8f(0x2be)+CURRENT_API_KEY[_0x27ad9]+'..')):console['warn'](_0x35ff8f(0x28f)+_0x27ad9+_0x35ff8f(0x2b7));}catch(_0x8215b){console[_0x35ff8f(0x16e)](_0x35ff8f(0x131)+_0x27ad9+':',_0x8215b[_0x35ff8f(0x116)]);}});try{const _0x3952f6=fs['readFileSync'](AllUsers_text_file,'utf8');ALL_USERS_LIST=_0x3952f6[_0x19f8a6(0xfb)]('\x0a')[_0x19f8a6(0x2c7)](_0x51a916=>_0x51a916[_0x19f8a6(0x18e)]()!=='');ALL_USERS_LIST['length']>0x0&&console[_0x19f8a6(0xc0)](ALL_USERS_LIST[_0x19f8a6(0x117)]+_0x19f8a6(0x26e));const _0x1da2f7=fs[_0x19f8a6(0x29d)](ALL_USERS_LIST_with_user_name_txt_file,_0x19f8a6(0x197));ALL_USERS_LIST_with_user_name=_0x1da2f7[_0x19f8a6(0xfb)]('\x0a')[_0x19f8a6(0x2c7)](_0x38f34d=>_0x38f34d[_0x19f8a6(0x18e)]()!=='');}catch(_0x186919){try{fs[_0x19f8a6(0x164)](AllUsers_text_file,'',_0x19f8a6(0x197)),console[_0x19f8a6(0xc0)]('No\x20All\x20Users\x20text\x20file\x20found,\x20hence\x20created!');}catch(_0x3b0f6a){console[_0x19f8a6(0x16e)](_0x19f8a6(0xbb),_0x3b0f6a),process[_0x19f8a6(0x214)](0x1);}}for(const _0x3833dc of ALL_USERS_LIST){activeMessages[_0x3833dc]=0x0;}let _0x49f957=load_json_to_dic(payment_receipt_details_storing_json_file_name),_0x20f592=load_json_to_dic(users_wait_list_at_training_period_json_file_name);return user_manager=load_user_manager(),chatHistory=createLimitedList(),(user_manager,chatHistory,_0x49f957,_0x20f592);}function updateApiTxt(){const _0xcf95ef=_0x208cf0;try{API_KEYS_ID[_0xcf95ef(0x257)](_0x1d9c32=>{const _0x250990=_0xcf95ef,_0x57ffd9=API_KEYS_DIC[_0x1d9c32][_0x250990(0x1f8)]('\x0a');fs[_0x250990(0x18c)](API_KEYS_TEXT_FILES[_0x1d9c32],_0x57ffd9,_0x250990(0x197));}),console[_0xcf95ef(0xc0)](_0xcf95ef(0x2a2));}catch(_0x31cfcd){console[_0xcf95ef(0x16e)](_0xcf95ef(0x107),_0x31cfcd);}}function update_ALL_USERS_txt(){const _0x38cb04=_0x208cf0;try{const _0x4d9a9b=ALL_USERS_LIST[_0x38cb04(0x1f8)]('\x0a');fs[_0x38cb04(0x18c)](AllUsers_text_file,_0x4d9a9b,_0x38cb04(0x197)),console[_0x38cb04(0xc0)](_0x38cb04(0x168));}catch(_0x551c13){console[_0x38cb04(0x16e)](_0x38cb04(0x11c),_0x551c13);}}function update_ALL_USERS_LIST_with_user_name_txt(){const _0x1a2a7b=_0x208cf0;try{const _0x2f1a92=ALL_USERS_LIST_with_user_name[_0x1a2a7b(0x1f8)]('\x0a');fs[_0x1a2a7b(0x18c)](ALL_USERS_LIST_with_user_name_txt_file,_0x2f1a92,_0x1a2a7b(0x197));}catch(_0x29e421){}}PLANS={'free-plan':{'plan_name':_0x208cf0(0x26b),'messages':0xa,'chats':0x32,'image_analysis':0x5,'price_LKR':'Free','price_USD':_0x208cf0(0x124),'duration':0x16d,'easy_duration':_0x208cf0(0xcf),'is_paid':![],'premiuim':![]},'week-plus':{'plan_name':_0x208cf0(0x163),'messages':0x32,'chats':0x64,'image_analysis':0x14,'price_LKR':_0x208cf0(0x264),'price_USD':'1','duration':0x7,'easy_duration':_0x208cf0(0x16d),'is_paid':!![],'premiuim':![]},'month-plus':{'plan_name':'Month\x20Plus\x20Plan','messages':0x32,'chats':0x64,'image_analysis':0x14,'price_LKR':_0x208cf0(0xec),'price_USD':'3.5','duration':0x1e,'easy_duration':_0x208cf0(0x287),'is_paid':!![],'premiuim':![]},'week-premium':{'plan_name':_0x208cf0(0x2ca),'messages':0xc8,'chats':0x3e8,'image_analysis':0x64,'price_LKR':_0x208cf0(0x285),'price_USD':'3','duration':0x7,'easy_duration':'1\x20Week','is_paid':!![],'premiuim':!![]},'month-premium':{'plan_name':_0x208cf0(0x1cd),'messages':0xc8,'chats':0x3e8,'image_analysis':0x64,'price_LKR':_0x208cf0(0x1cc),'price_USD':'10','duration':0x1e,'easy_duration':_0x208cf0(0x287),'is_paid':!![],'premiuim':!![]}};function give_currency_type(_0x42b768){const _0x5f27c9=_0x208cf0;return _0x42b768['startsWith']('94')?'LKR':_0x5f27c9(0x1a9);}function is_local_user(_0x5ce99e){const _0xd2f43b=_0x208cf0;return _0x5ce99e[_0xd2f43b(0x277)]('94')?!![]:![];}function upgrading_limit_reaching_text(_0x42040d){const _0x30233d=_0x208cf0,_0x172a48=_0x30233d(0x292)+give_currency_type(_0x42040d)+'\x20'+(is_local_user(_0x42040d)?''+PLANS[_0x30233d(0x2c6)][_0x30233d(0x2a1)]:''+PLANS[_0x30233d(0x2c6)]['price_USD'])+_0x30233d(0x138);return _0x172a48;}function isPlanExpired(){const _0x36bfc6=_0x208cf0,_0x2aa265=new Date(getDateTime());for(const _0x36dda4 in user_manager){const _0x52e291=user_manager[_0x36dda4];if(!_0x52e291||_0x52e291[_0x36bfc6(0x1fc)]===_0x36bfc6(0x22c)||!_0x52e291['activation_date'])continue;const _0x2c35c6=new Date(_0x52e291[_0x36bfc6(0x106)]),_0x1c9912=PLANS[_0x52e291[_0x36bfc6(0x1fc)]]?.['duration']||0x0,_0x119c0a=new Date(_0x2c35c6);_0x119c0a[_0x36bfc6(0x17d)](_0x2c35c6[_0x36bfc6(0x21d)]()+_0x1c9912);const _0x4382fb=_0x119c0a-_0x2aa265;_0x4382fb<=0x0&&(send_message(_0x36dda4,_0x36bfc6(0x20d)),user_manager[_0x36dda4]['user_plan']=_0x36bfc6(0x22c),user_manager[_0x36dda4]['messages']=0x0,user_manager[_0x36dda4][_0x36bfc6(0xd7)]=0x0,user_manager[_0x36dda4]['image_analysis']=0x0,user_manager[_0x36dda4][_0x36bfc6(0x106)]=getDateTime(),user_manager[_0x36dda4]['notified_one_day_prior']=![],user_manager[_0x36dda4]['notified_one_hour_prior']=![],save_user_manager(user_manager));}}function _0x3309(_0x475c06,_0x4c76bf){const _0x5922ac=_0x3fca();return _0x3309=function(_0x54af6e,_0x346d16){_0x54af6e=_0x54af6e-0xb8;let _0x54a4eb=_0x5922ac[_0x54af6e];return _0x54a4eb;},_0x3309(_0x475c06,_0x4c76bf);}function notifyBeforeExpiry(){const _0x1263ef=_0x208cf0,_0x2d1e16=new Date(getDateTime());for(const _0x205175 in user_manager){const _0x2980be=user_manager[_0x205175];if(!_0x2980be||_0x2980be[_0x1263ef(0x1fc)]==='free-plan'||!_0x2980be[_0x1263ef(0x106)])continue;const _0x14f984=new Date(_0x2980be['activation_date']),_0x301f38=PLANS[_0x2980be[_0x1263ef(0x1fc)]]?.[_0x1263ef(0x1b1)]||0x0,_0x2c26a5=new Date(_0x14f984);_0x2c26a5['setDate'](_0x14f984[_0x1263ef(0x21d)]()+_0x301f38);const _0x5911b1=_0x2c26a5-_0x2d1e16;_0x5911b1>0x0&&_0x5911b1<=0x18*0x3c*0x3c*0x3e8&&!_0x2980be[_0x1263ef(0x247)]&&(send_message(_0x205175,_0x1263ef(0xbd)),user_manager[_0x205175]['notified_one_day_prior']=!![]),_0x5911b1>0x0&&_0x5911b1<=0x3c*0x3c*0x3e8&&!_0x2980be['notified_one_hour_prior']&&(send_message(_0x205175,_0x1263ef(0x11f)),user_manager[_0x205175][_0x1263ef(0x253)]=!![]),_0x5911b1<=0x0&&(user_manager[_0x205175][_0x1263ef(0x247)]=![],user_manager[_0x205175][_0x1263ef(0x253)]=![]);}save_user_manager(user_manager);}schedule[_0x208cf0(0xcc)](_0x208cf0(0x26a),()=>{save_user_manager(user_manager),isPlanExpired(),notifyBeforeExpiry(),saveAllChatsToFile(ALL_CHAT_HISTORY),save_user_manager(user_manager);}),schedule[_0x208cf0(0xcc)](_0x208cf0(0x1f0),()=>{check_for_pending_receipts();}),schedule[_0x208cf0(0xcc)](_0x208cf0(0x299),()=>{const _0x250d8a=_0x208cf0;resetDailyLimits(_0x250d8a(0xdd)),save_user_manager(user_manager);});function check_for_pending_receipts(){const _0x58b51d=_0x208cf0,_0x49db3e=Object[_0x58b51d(0x2a8)](payment_recipt_sent_by_users);_0x49db3e['length']!==0x0&&sendToAllAdmins('⚠️\x20You\x20have\x20'+_0x49db3e[_0x58b51d(0x117)]+_0x58b51d(0x29c));}function save_user_manager(_0x3b7836){const _0x160459=_0x208cf0;try{fs[_0x160459(0x18c)](UserManagerfilePath,JSON[_0x160459(0x1d5)](_0x3b7836,null,0x2),_0x160459(0x197));}catch(_0x23f428){console[_0x160459(0x16e)]('Error\x20saving\x20user\x20manager:',_0x23f428);}}function load_user_manager(){const _0x1c3c06=_0x208cf0;try{if(fs[_0x1c3c06(0x24a)](UserManagerfilePath)){const _0x5709e6=fs['readFileSync'](UserManagerfilePath,_0x1c3c06(0x197));return console[_0x1c3c06(0xc0)]('User\x20manager\x20loaded\x20successfully!'),JSON[_0x1c3c06(0x23b)](_0x5709e6);}else return console[_0x1c3c06(0xc0)]('No\x20saved\x20user\x20manager\x20found.\x20Returning\x20an\x20empty\x20object.'),{};}catch(_0x52d8cf){return console[_0x1c3c06(0x16e)]('No\x20datas\x20found\x20in\x20user\x20manager',_0x52d8cf),{};}}function save_dic_to_json(_0x2b254e,_0x4355c4){const _0x61b6db=_0x208cf0;try{fs['writeFileSync'](_0x4355c4,JSON[_0x61b6db(0x1d5)](_0x2b254e,null,0x2),'utf8'),console['log'](_0x2b254e+_0x61b6db(0x21b)+_0x4355c4+_0x61b6db(0x1e8));}catch(_0x30df9c){console[_0x61b6db(0x16e)]('Error\x20saving\x20'+_0x2b254e+_0x61b6db(0x2b1)+_0x4355c4+':',_0x30df9c);}}function load_json_to_dic(_0x2fa900){const _0x54f5d5=_0x208cf0;try{if(fs[_0x54f5d5(0x24a)](_0x2fa900)){const _0x1b2841=fs[_0x54f5d5(0x29d)](_0x2fa900,_0x54f5d5(0x197));return console['log'](_0x54f5d5(0x1d0)+_0x2fa900+_0x54f5d5(0x1e8)),JSON[_0x54f5d5(0x23b)](_0x1b2841);}else return console['log'](_0x54f5d5(0x161)+_0x2fa900+_0x54f5d5(0xfe)),{};}catch(_0x382f50){return console[_0x54f5d5(0x16e)](_0x54f5d5(0x29f)+_0x2fa900+':\x20',_0x382f50),{};}}function resetDailyLimits(_0x2fc2f0){const _0x1acc0f=_0x208cf0;try{for(const _0x8eb5ca in user_manager){const _0x506abe=user_manager[_0x8eb5ca];_0x506abe&&(_0x506abe['messages']=0x0,_0x506abe[_0x1acc0f(0xd7)]=0x0,_0x506abe[_0x1acc0f(0x288)]=0x0);}save_user_manager(user_manager),_0x2fc2f0===_0x1acc0f(0xdd)?sendToAllAdmins(_0x1acc0f(0x207)+getDateTime()):sendToAllAdmins('Daily\x20limits\x20reseted\x20manually\x20by\x20the\x20Admin\x20'+_0x2fc2f0+_0x1acc0f(0x1f1)+getDateTime());}catch(_0x2cf922){console['error'](_0x1acc0f(0x2a5),_0x2cf922);}}function createPDFPage(_0x28f19a,_0x41b150,_0x5d9ce4,_0x1a8009,_0x3a661b){const _0xbedcfb=_0x208cf0;_0x28f19a[_0xbedcfb(0x182)](_0xbedcfb(0x26c))[_0xbedcfb(0x213)](0x10),_0x28f19a[_0xbedcfb(0x2bd)](_0xbedcfb(0x1c6),_0x1a8009/0x2-0x46,0x19);const _0x1f35f3=new Date()[_0xbedcfb(0x1c2)]()[_0xbedcfb(0x2d4)]('T','\x20')[_0xbedcfb(0x1d4)](0x0,0x13);_0x28f19a[_0xbedcfb(0x182)](_0xbedcfb(0x28d))[_0xbedcfb(0x213)](0x8),_0x28f19a[_0xbedcfb(0x2bd)](_0xbedcfb(0x16c)+getDateTime(),_0x1a8009-0xa5,0xa),_0x28f19a['font'](_0xbedcfb(0x28d))[_0xbedcfb(0x213)](0x8),_0x28f19a[_0xbedcfb(0x2bd)](_0xbedcfb(0x20e)+_0x5d9ce4,_0x1a8009-0x23a,_0x3a661b-0x30f);const _0x4cac0d=[_0xbedcfb(0x136),_0xbedcfb(0x289),_0xbedcfb(0x174),_0xbedcfb(0x179),_0xbedcfb(0x27c),'Chats',_0xbedcfb(0x2d0),_0xbedcfb(0x29a)],_0x5344d9=[-0x19,0x19,0x69,0xb4,0xf5,0x127,0x163,0x1d1];_0x28f19a['font'](_0xbedcfb(0x26c))['fontSize'](0xb);let _0x43a139=0x40;_0x4cac0d[_0xbedcfb(0x257)]((_0x2be9aa,_0x521a53)=>{const _0x39390b=_0xbedcfb;_0x28f19a[_0x39390b(0x2bd)](_0x2be9aa,_0x5344d9[_0x521a53],_0x43a139,{'width':0x78,'align':_0x39390b(0x1d6)});}),_0x28f19a['font'](_0xbedcfb(0x28d))['fontSize'](0xa),_0x43a139+=0x17;const _0x5dae9a=0x11,_0x14b004=0x1+(_0x5d9ce4-0x1)*0x28;let _0x4fc484=_0x14b004;for(let _0x59ca33=(_0x5d9ce4-0x1)*0x28;_0x59ca33<Math['min'](_0x5d9ce4*0x28,Object[_0xbedcfb(0x2a8)](_0x41b150)[_0xbedcfb(0x117)]);_0x59ca33++){const _0x5f15d5=Object[_0xbedcfb(0x2a8)](_0x41b150)[_0x59ca33],_0x200083=_0x41b150[_0x5f15d5];_0x4fc484%0x2===0x1&&_0x28f19a[_0xbedcfb(0x129)](0x14,_0x43a139-0x4,_0x1a8009-0x28,_0x5dae9a)[_0xbedcfb(0x2ad)](_0xbedcfb(0x265))[_0xbedcfb(0x1e0)](_0xbedcfb(0xdf));_0x200083['user_plan']!=='free-plan'&&_0x28f19a[_0xbedcfb(0x129)](0x14,_0x43a139-0x4,_0x1a8009-0x28,_0x5dae9a)['fill']('#F1EACE')[_0xbedcfb(0x1e0)](_0xbedcfb(0xdf));let _0x516414=_0x200083[_0xbedcfb(0xcd)];_0x200083[_0xbedcfb(0xcd)][_0xbedcfb(0x117)]>0xf&&(_0x516414=_0x200083[_0xbedcfb(0xcd)][_0xbedcfb(0x1d4)](0x0,0xf)+'..');const _0x364fec=[String(_0x4fc484),_0x5f15d5,_0x516414,_0x200083['user_plan'],String(_0x200083[_0xbedcfb(0xc6)]),String(_0x200083[_0xbedcfb(0xd7)]),String(_0x200083['image_analysis']),String(_0x200083['activation_date'])];_0x364fec[_0xbedcfb(0x257)]((_0x578beb,_0x243cc3)=>{const _0x43e1cd=_0xbedcfb;_0x28f19a[_0x43e1cd(0x2bd)](_0x578beb,_0x5344d9[_0x243cc3],_0x43a139,{'width':0x78,'align':'center'});}),_0x43a139+=_0x5dae9a,_0x4fc484+=0x1;}_0x28f19a[_0xbedcfb(0x1e0)](_0xbedcfb(0xdf));}function createPDF(_0x55e48c){const _0x399650=_0x208cf0,_0x4c45e5=user_report_pdf_name,_0x357672=new PDFDocument({'size':_0x399650(0xce),'margin':0x1e}),_0x247317=fs[_0x399650(0xc8)](_0x4c45e5);_0x357672['pipe'](_0x247317);const _0x124100=0x264,_0x535a08=0x318,_0x21ba1f=0x28,_0x435568=Math['ceil'](Object[_0x399650(0x2a8)](_0x55e48c)[_0x399650(0x117)]/_0x21ba1f);for(let _0x5a9c9c=0x1;_0x5a9c9c<=_0x435568;_0x5a9c9c++){createPDFPage(_0x357672,_0x55e48c,_0x5a9c9c,_0x124100,_0x535a08),_0x5a9c9c<_0x435568&&_0x357672['addPage']();}_0x357672[_0x399650(0x1b5)]();}let payment_recipt_sent_by_users=load_json_to_dic(payment_receipt_details_storing_json_file_name),users_wait_list_at_training_period=load_json_to_dic(users_wait_list_at_training_period_json_file_name),user_manager=load_user_manager();function update_user_manager_dictionary(_0x2a285f,_0x34fd18){user_manager[_0x2a285f]={'user_name':_0x34fd18,'user_plan':'free-plan','model':0x0,'activation_date':getDateTime(),'messages':0x0,'chats':0x0,'image_analysis':0x0,'notified_one_day_prior':![],'notified_one_hour_prior':![]},save_user_manager(user_manager);}let chatHistory=createLimitedList();const client=new Client({'authStrategy':new LocalAuth(),'puppeteer':{'args':[_0x208cf0(0x15c),'--disable-setuid-sandbox']}});client['on']('qr',_0x4a2d7d=>{const _0x31ca74=_0x208cf0;qrcode[_0x31ca74(0x275)](_0x4a2d7d,{'small':!![]});}),client['on']('ready',()=>{console['log'](BotName+'\x20is\x20ready!');}),client['on']('message',async _0x2801cd=>{const _0x46ffa4=_0x208cf0,_0x141ecc=_0x2801cd['from']['split']('@')[0x0];try{const _0x5f0dac=await handle_message(_0x2801cd);if(_0x5f0dac)await _0x2801cd['reply'](_0x5f0dac);else{if(_0x5f0dac===''){}else console[_0x46ffa4(0x295)](_0x46ffa4(0x11d)),await _0x2801cd[_0x46ffa4(0x14a)]('Sorry,\x20I\x20couldn\x27t\x20process\x20your\x20request.\x20Please\x20try\x20again\x20later.\x20If\x20the\x20issue\x20persists,\x20feel\x20free\x20to\x20report\x20it.');}}catch(_0x4ebac4){console['error'](_0x46ffa4(0x284),_0x4ebac4),await _0x2801cd[_0x46ffa4(0x14a)](_0x46ffa4(0x2d1));}activeMessages[_0x141ecc]-=0x1;}),client[_0x208cf0(0x171)]();async function sleep(_0x39edc1){return new Promise(_0x3294f8=>setTimeout(_0x3294f8,_0x39edc1*0x3e8));}function encodeImageToBase64_original(_0x4d480b){const _0xa76696=_0x208cf0,_0x52e542=fs[_0xa76696(0x29d)](_0x4d480b);return _0x52e542[_0xa76696(0x28c)]('base64');}async function encodeImageToBase64(_0xba6d57,_0x12df8a=0x1f4,_0x52636b=0x1f4,_0x311d5b=0x46){const _0x49a160=_0x208cf0;try{const _0x555502=await sharp(_0xba6d57)[_0x49a160(0x2c9)]({'width':_0x12df8a,'height':_0x52636b,'fit':'inside'})[_0x49a160(0x21f)]({'quality':_0x311d5b})[_0x49a160(0xe9)]();let _0x4f17ff=_0x555502[_0x49a160(0x28c)](_0x49a160(0x137));const _0x40787e=_0x4f17ff[_0x49a160(0x117)]%0x4;return _0x40787e>0x0&&(_0x4f17ff+='='[_0x49a160(0x2d5)](0x4-_0x40787e)),_0x4f17ff;}catch(_0x470671){sendToAllAdmins(_0x49a160(0x109)+getDateTime()+_0x49a160(0xc4)+_0x470671);}}async function check_for_voice_messages(_0x4d3f46,_0x39ed78,_0x520756,_0x404b3e){const _0x401904=_0x208cf0;if(_0x404b3e[_0x401904(0xe7)]&&_0x404b3e[_0x401904(0x1bb)]===_0x401904(0x2bb))try{const _0x2bfa5e=await _0x404b3e['downloadMedia'](),_0x1e7964=mainDir+'/voices/'+_0x4d3f46+_0x401904(0x19f)+_0x404b3e['id']['id']+'.'+_0x2bfa5e[_0x401904(0x24c)][_0x401904(0xfb)]('/')[0x1]['split'](';')[0x0];let _0x54a44f=_0x404b3e['body']?.['trim']();const _0x66d827=mainDir+_0x401904(0x154)+_0x4d3f46+_0x401904(0x2b6);!fs['existsSync'](_0x66d827)&&fs['mkdirSync'](_0x66d827,{'recursive':!![]});const _0x32db12=Buffer[_0x401904(0x1fe)](_0x2bfa5e[_0x401904(0x1ab)],'base64');return fs[_0x401904(0x18c)](_0x1e7964,_0x32db12),await getAudioText(_0x1e7964);}catch(_0x445e9a){sendToAllAdmins(_0x401904(0x14c)+getDateTime()+_0x401904(0x21e)+_0x4d3f46+_0x401904(0x241)+_0x445e9a);}else return'NONE';}async function check_for_any_files(_0x445e96,_0x12e31f,_0x33c3e9,_0x2f37eb){const _0x31ca9f=_0x208cf0;if(_0x2f37eb[_0x31ca9f(0xe7)]&&_0x2f37eb['type']==='document')try{if(_0x2f37eb['_data'][_0x31ca9f(0xf7)][_0x31ca9f(0x1b2)]('.zip')&&adminInIputingZIP[_0x445e96]==='1')return await handleZipSavingAndExtracting(_0x445e96,_0x2f37eb);const _0x40f229=await _0x2f37eb[_0x31ca9f(0x1c9)](),_0x4d768a=mainDir+_0x31ca9f(0x165)+_0x445e96+'_files/'+_0x2f37eb['id']['id']+'_'+_0x2f37eb['_data'][_0x31ca9f(0xf7)];console[_0x31ca9f(0xc0)](_0x31ca9f(0x192)+_0x2f37eb['hasMedia']+_0x31ca9f(0x22a)+_0x2f37eb[_0x31ca9f(0x1bb)]+_0x31ca9f(0x2a9)+_0x2f37eb[_0x31ca9f(0xf7)]);const _0x56b0d9=mainDir+_0x31ca9f(0x165)+_0x445e96+_0x31ca9f(0x110);!fs[_0x31ca9f(0x24a)](_0x56b0d9)&&fs[_0x31ca9f(0x2af)](_0x56b0d9,{'recursive':!![]});const _0x51578d=Buffer[_0x31ca9f(0x1fe)](_0x40f229['data'],'base64');return fs['writeFileSync'](_0x4d768a,_0x51578d),_0x31ca9f(0x1f7);}catch(_0x254500){return sendToAllAdmins(_0x31ca9f(0x20a)+getDateTime()+_0x31ca9f(0x21e)+_0x445e96+_0x31ca9f(0x297)+_0x254500),_0x31ca9f(0x1f7);}else return _0x31ca9f(0x1e3);}async function check_for_images(_0x1f3353,_0x354d59,_0x3b1cca,_0x1a7a69){const _0x5a7747=_0x208cf0;if(_0x1a7a69[_0x5a7747(0xe7)]&&_0x1a7a69[_0x5a7747(0x1bb)]===_0x5a7747(0x283))try{if(upgradeUsersPendingToSendImages[_0x5a7747(0x296)](_0x1f3353)){const _0x59f9f6=await _0x1a7a69[_0x5a7747(0x1c9)](),_0x4f8ad0=mainDir+_0x5a7747(0x282)+_0x1f3353+'_images_receipt/'+_0x1a7a69['id']['id']+'.'+_0x59f9f6[_0x5a7747(0x24c)]['split']('/')[0x1];let _0x2a7988=_0x1a7a69['body']?.[_0x5a7747(0x18e)]();const _0xee234c=mainDir+_0x5a7747(0x282)+_0x1f3353+_0x5a7747(0x2a6);!fs['existsSync'](_0xee234c)&&fs[_0x5a7747(0x2af)](_0xee234c,{'recursive':!![]});await sleep(0.5),fs[_0x5a7747(0x18c)](_0x4f8ad0,_0x59f9f6[_0x5a7747(0x1ab)],'base64'),console[_0x5a7747(0xc0)]('Media\x20sent\x20by\x20'+_0x1f3353+_0x5a7747(0x21b)+_0x4f8ad0),await sleep(0.5),send_message(_0x1f3353,_0x5a7747(0x2c2)),payment_recipt_sent_by_users[_0x1f3353]={},payment_recipt_sent_by_users[_0x1f3353][_0x5a7747(0x193)]=userIntiatedPlan[_0x1f3353],payment_recipt_sent_by_users[_0x1f3353][_0x5a7747(0x2c4)]=_0x4f8ad0,payment_recipt_sent_by_users[_0x1f3353][_0x5a7747(0xc7)]=getDateTime(),upgradeUsersPendingToSendImages=upgradeUsersPendingToSendImages[_0x5a7747(0x2c7)](_0x51db76=>_0x51db76!==_0x1f3353),upgradeUsersPendingToSendImagesTimings=upgradeUsersPendingToSendImagesTimings['filter'](_0x293b3e=>_0x293b3e!==_0x1f3353),save_dic_to_json(payment_recipt_sent_by_users,payment_receipt_details_storing_json_file_name);for(const _0x3a8370 of authorized_users){await sleep(0x1),send_image(_0x3a8370,_0x4f8ad0,_0x5a7747(0x1a4)+_0x1f3353+_0x5a7747(0x149)+PLANS[userIntiatedPlan[_0x1f3353]][_0x5a7747(0x1b0)]+_0x5a7747(0x196)+give_currency_type(_0x1f3353)+'\x20'+PLANS[userIntiatedPlan[_0x1f3353]][is_local_user(_0x1f3353)?_0x5a7747(0x2a1):_0x5a7747(0x190)]+_0x5a7747(0x231)+getDateTime()+_0x5a7747(0xe3)),delete userIntiatedPlan[_0x1f3353];}return _0x5a7747(0x22d);}else{if(current_bug_reporting['includes'](_0x1f3353)){const _0x1a546c=await _0x1a7a69['downloadMedia'](),_0x127485=mainDir+_0x5a7747(0x282)+_0x1f3353+_0x5a7747(0x16f)+_0x1a7a69['id']['id']+'.'+_0x1a546c[_0x5a7747(0x24c)][_0x5a7747(0xfb)]('/')[0x1];let _0x572f25=_0x1a7a69[_0x5a7747(0x1ff)]?.[_0x5a7747(0x18e)]();const _0x5a4abc=mainDir+_0x5a7747(0x282)+_0x1f3353+_0x5a7747(0xe4);!fs['existsSync'](_0x5a4abc)&&fs['mkdirSync'](_0x5a4abc,{'recursive':!![]});await sleep(0.5),fs[_0x5a7747(0x18c)](_0x127485,_0x1a546c[_0x5a7747(0x1ab)],_0x5a7747(0x137)),console[_0x5a7747(0xc0)](_0x5a7747(0x14d)+_0x1f3353+_0x5a7747(0x21b)+_0x127485);for(const _0x2dac8d of authorized_users){await sleep(0.5),_0x572f25?send_image(_0x2dac8d,_0x127485,_0x5a7747(0x2d7)+_0x1f3353+'\x20('+_0x354d59+_0x5a7747(0x1a6)+_0x572f25+_0x5a7747(0x258)+getDateTime()+_0x5a7747(0x1fa)):send_image(_0x2dac8d,_0x127485,_0x5a7747(0x2d7)+_0x1f3353+'\x20('+_0x354d59+_0x5a7747(0x189)+getDateTime()+_0x5a7747(0x1fa));}return!_0x572f25?_0x5a7747(0x273):_0x572f25;}else{let _0x3d198a=PLANS[user_manager[_0x1f3353][_0x5a7747(0x1fc)]],_0x5606cf=user_manager[_0x1f3353];if(_0x5606cf[_0x5a7747(0x288)]>=_0x3d198a[_0x5a7747(0x288)])return send_message(_0x1f3353,_0x5a7747(0x198)),await sleep(0x1),send_message(_0x1f3353,upgrading_limit_reaching_text(_0x1f3353)),_0x5a7747(0x105);const _0x43a4d4=await _0x1a7a69[_0x5a7747(0x1c9)](),_0x3a0036=mainDir+_0x5a7747(0x282)+_0x1f3353+'_images/'+_0x1a7a69['id']['id']+'.'+_0x43a4d4['mimetype']['split']('/')[0x1];let _0x575141=_0x1a7a69[_0x5a7747(0x1ff)]?.[_0x5a7747(0x18e)]();const _0x5cd2fb=mainDir+_0x5a7747(0x282)+_0x1f3353+_0x5a7747(0x1ca);!fs[_0x5a7747(0x24a)](_0x5cd2fb)&&fs[_0x5a7747(0x2af)](_0x5cd2fb,{'recursive':!![]});await sleep(0.5),fs['writeFileSync'](_0x3a0036,_0x43a4d4['data'],_0x5a7747(0x137)),console[_0x5a7747(0xc0)](_0x5a7747(0x14d)+_0x1f3353+_0x5a7747(0x21b)+_0x3a0036),await sleep(0.5);!user_chat_history[_0x1f3353]&&(user_chat_history[_0x1f3353]=[]);send_message(_0x1f3353,_0x5a7747(0x12f));!_0x575141&&(_0x575141='Whats\x20here?');const _0xd4525=await encodeImageToBase64(_0x3a0036);await sleep(0.5);const _0x5de280='data:image/jpeg;base64,'+_0xd4525;return user_chat_history[_0x1f3353][_0x5a7747(0x19b)]({'role':_0x5a7747(0x191),'content':[{'type':_0x5a7747(0x2bd),'text':_0x575141},{'type':_0x5a7747(0x156),'image_url':{'url':_0x5de280,'detail':'low'}}]}),user_manager[_0x1f3353][_0x5a7747(0x288)]+=0x1,await sleep(0.5),'IMAGEANALYSIS_PROGRAM';}}}catch(_0xb82ae9){return console[_0x5a7747(0x16e)](_0x5a7747(0xda),_0xb82ae9),send_message(_0x1f3353,_0x5a7747(0x128)),_0x5a7747(0x105);}else return _0x5a7747(0x1e3);}async function handle_message(_0x3c5273){const _0x5e61a3=_0x208cf0;try{let _0x53e002=_0x3c5273['body']?.['trim']();const _0x28ceab=_0x3c5273['from'][_0x5e61a3(0xfb)]('@')[0x0],_0x3cebde=await client[_0x5e61a3(0x1a8)](_0x3c5273[_0x5e61a3(0x1fe)]),_0x3a8307=_0x3cebde[_0x5e61a3(0x24e)]||_0x5e61a3(0x266);let _0x231a3c=_0x5e61a3(0x203);if(isBotPaused){if(authorized_users[_0x5e61a3(0x296)](_0x28ceab))send_message(_0x28ceab,_0x5e61a3(0x2c8)),await sleep(0x1);else return _0x5e61a3(0x27d);}!ALL_USERS_LIST['includes'](_0x28ceab)&&(ALL_USERS_LIST['push'](_0x28ceab),activeMessages[_0x28ceab]=0x0,ALL_USERS_LIST_with_user_name['push'](_0x28ceab+_0x5e61a3(0x25d)+_0x3a8307),update_ALL_USERS_txt(),update_ALL_USERS_LIST_with_user_name_txt(),update_user_manager_dictionary(_0x28ceab,_0x3a8307),send_message(_0x28ceab,welcome_message(_0x3a8307)),await sleep(1.5),send_message(_0x28ceab,'👉\x20Type\x20COMMANDS\x20or\x20C\x20to\x20discover\x20all\x20the\x20cool\x20things\x20I\x20can\x20do.\x20Let’s\x20get\x20started!\x20🚀'));if(users_who_asked_to_send_as_image[_0x28ceab]){if([_0x5e61a3(0x256),_0x5e61a3(0x14e),_0x5e61a3(0x19d),'y','ye']['includes'](_0x53e002[_0x5e61a3(0x1e1)]()))try{const _0x578c75=mainDir+_0x5e61a3(0x1d1)+_0x28ceab+_0x5e61a3(0x205)+users_who_asked_to_send_as_image[_0x28ceab][_0x5e61a3(0x1d4)](0x0,0xa)+'.html',_0x36dc98=mainDir+_0x5e61a3(0x1d1)+_0x28ceab+_0x5e61a3(0x2ce);!fs[_0x5e61a3(0x24a)](_0x36dc98)&&fs['mkdirSync'](_0x36dc98,{'recursive':!![]});let _0x4fc25c=generateHtmlFromLatex(users_who_asked_to_send_as_image[_0x28ceab],_0x578c75);await sleep(0.5);if(_0x4fc25c==='ERROR')return'Oops!\x20An\x20error\x20occurred\x20while\x20generating\x20your\x20file.\x20Please\x20try\x20again\x20later.';return await send_file(_0x28ceab,_0x578c75),'';}catch(_0xeec741){return console['error']('Error\x20processing\x20file:',_0xeec741),'😞\x20Oops!\x20An\x20error\x20occurred\x20while\x20generating\x20your\x20file.\x20Please\x20try\x20again\x20later.';}finally{delete users_who_asked_to_send_as_image[_0x28ceab];}else delete users_who_asked_to_send_as_image[_0x28ceab];}if(_0x3c5273[_0x5e61a3(0xfd)])try{if(authorized_users[_0x5e61a3(0x296)](_0x28ceab)){const _0x1a0cfd=await _0x3c5273[_0x5e61a3(0xff)]();_0x231a3c=_0x1a0cfd['body'];if(_0x231a3c['startsWith']('⚠️\x20Proof\x20of\x20payment\x20sent\x20by')){const _0x4a73fd=_0x231a3c[_0x5e61a3(0xfb)]('\x0a')[0x1];if(payment_recipt_sent_by_users[_0x4a73fd]){let _0x312004='🎉\x20*User\x20Promotion\x20Details*\x20🎉\x0a\x0aUser:\x20'+_0x4a73fd+_0x5e61a3(0x121)+payment_recipt_sent_by_users[_0x4a73fd][_0x5e61a3(0x193)]+'*\x0aPrice:\x20*'+give_currency_type(_0x28ceab)+'\x20'+PLANS[payment_recipt_sent_by_users[_0x4a73fd][_0x5e61a3(0x193)]][is_local_user(_0x28ceab)?_0x5e61a3(0x2a1):_0x5e61a3(0x190)]+'*\x0aSent\x20On:\x20'+payment_recipt_sent_by_users[_0x4a73fd][_0x5e61a3(0xc7)];return send_message(_0x28ceab,_0x312004+_0x5e61a3(0x12c)+user_manager[_0x4a73fd][_0x5e61a3(0x1fc)]),await sleep(0.5),adminHandlingReciptApproval[_0x28ceab]='11',!upgrading_details_given_by_admin[_0x28ceab]&&(upgrading_details_given_by_admin[_0x28ceab]=[]),upgrading_details_given_by_admin[_0x28ceab]['push'](_0x4a73fd),upgrading_details_given_by_admin[_0x28ceab][_0x5e61a3(0x19b)](payment_recipt_sent_by_users[_0x4a73fd][_0x5e61a3(0x193)]),_0x5e61a3(0x134);}else return'⚠️\x20This\x20receipt\x20has\x20already\x20been\x20handled!';}else{if(_0x231a3c[_0x5e61a3(0x277)](_0x5e61a3(0x268)))try{let _0x4dc65c=_0x231a3c[_0x5e61a3(0x1a1)](_0x5e61a3(0x238))+_0x5e61a3(0x238)['length']+0x2,_0x3523bb=_0x231a3c[_0x5e61a3(0x1d4)](_0x4dc65c,_0x4dc65c+0xb);console[_0x5e61a3(0xc0)](_0x5e61a3(0x104)+_0x3523bb+'\x27');if([_0x5e61a3(0x256),_0x5e61a3(0x14e),'yup','y','ye']['includes'](_0x53e002[_0x5e61a3(0x1e1)]()))return sendBugReportAppreciation(_0x3523bb),_0x5e61a3(0xd5)+_0x3523bb+_0x5e61a3(0x23f);}catch(_0x4becab){return console[_0x5e61a3(0xc0)](_0x5e61a3(0x1d7)+_0x4becab),_0x5e61a3(0xbc)+_0x4becab;}}}}catch(_0xdf2cf7){return console['log'](_0x5e61a3(0x221)),'';}let _0x76583a=await check_for_voice_messages(_0x28ceab,_0x3a8307,_0x53e002,_0x3c5273),_0x37d75c=await check_for_any_files(_0x28ceab,_0x3a8307,_0x53e002,_0x3c5273);if(_0x37d75c!==_0x5e61a3(0x1e3))return _0x37d75c;if(_0x76583a===_0x5e61a3(0x1e3)){}else{if(_0x76583a==='ERROR')return'';else _0x53e002=_0x76583a;}let _0x1ad0fc=await check_for_images(_0x28ceab,_0x3a8307,_0x53e002,_0x3c5273);if(_0x1ad0fc===_0x5e61a3(0x22d))return'';else{if(_0x1ad0fc==='ERROR')return'';else{if(_0x1ad0fc==='NONE'){}else _0x53e002=_0x1ad0fc;}}chatHistory[_0x5e61a3(0x2a0)]([getDateTime(),_0x28ceab,_0x53e002]);if(adminInDeletingUser[_0x28ceab])return _0x53e002[_0x5e61a3(0x117)]===0xb&&_0x53e002[_0x5e61a3(0x277)]('94')?ALL_USERS_LIST['includes'](_0x53e002)?(ALL_USERS_LIST=ALL_USERS_LIST['filter'](_0x2a8c42=>_0x2a8c42!==_0x53e002),delete adminInDeletingUser[_0x28ceab],_0x53e002+_0x5e61a3(0xf5)):(delete adminInDeletingUser[_0x28ceab],_0x5e61a3(0x271)):(delete adminInDeletingUser[_0x28ceab],_0x5e61a3(0x227));if(adminInSendingMessageToOneUser[_0x28ceab]){if(adminInSendingMessageToOneUser[_0x28ceab]==='1')return ALL_USERS_LIST[_0x5e61a3(0x296)](_0x53e002)?(adminInSendingMessageToOneUser[_0x28ceab]='11',adminInSendingMessageToOneUserDetails[_0x28ceab]=[],adminInSendingMessageToOneUserDetails[_0x28ceab]['push'](_0x53e002),_0x5e61a3(0x172)):(delete adminInSendingMessageToOneUser[_0x28ceab],'⚠️\x20User\x20number\x20'+_0x53e002+_0x5e61a3(0x1ba));else{if(adminInSendingMessageToOneUser[_0x28ceab]==='11')return _0x53e002?(await sleep(0.5),adminInSendingMessageToOneUserDetails[_0x28ceab][_0x5e61a3(0x19b)](_0x53e002),send_message(_0x28ceab,'Message\x20to\x20be\x20sent👇\x0a\x0a'+_0x53e002),await sleep(0.5),adminInSendingMessageToOneUser[_0x28ceab]=_0x5e61a3(0x17c),_0x5e61a3(0x228)+adminInSendingMessageToOneUserDetails[_0x28ceab][0x0]+'\x20(y/n)?'):'⚠️\x20I\x20received\x20an\x20empty\x20message\x0aPlease\x20type\x20in\x20the\x20message\x20again!';else{if(adminInSendingMessageToOneUser[_0x28ceab]===_0x5e61a3(0x17c)){if(_0x53e002['toLowerCase']()===_0x5e61a3(0x256)||_0x53e002['toLowerCase']()==='y')try{await sleep(0.5),send_message(adminInSendingMessageToOneUserDetails[_0x28ceab][0x0],adminInSendingMessageToOneUserDetails[_0x28ceab][0x1]),await sleep(0x1),send_message(_0x28ceab,_0x5e61a3(0x202));}catch(_0xc3a4fc){await sleep(0x1),sendToAllAdmins('❌\x20An\x20error\x20occured\x20while\x20the\x20admin\x20'+_0x28ceab+_0x5e61a3(0x28e)+adminInSendingMessageToOneUserDetails[_0x28ceab][0x0]+'!');}return delete adminInSendingMessageToOneUser[_0x28ceab],delete adminInSendingMessageToOneUserDetails[_0x28ceab],'';}}}}if(adminInAddingAPIKeys[_0x28ceab]){if(_0x53e002['toLowerCase']()===_0x5e61a3(0x15d))return delete adminInAddingAPIKeys[_0x28ceab],_0x5e61a3(0xde);if(adminInAddingAPIKeys[_0x28ceab]==='1'){if(Number[_0x5e61a3(0x169)](Number(_0x53e002))){if(Number(_0x53e002)<=API_KEYS_ID[_0x5e61a3(0x117)]&&Number(_0x53e002)>0x0){let _0x250b76=Number(_0x53e002)-0x1;return adminInAddingAPIKeys[_0x28ceab]='11',adminAddingAPIKeysType[_0x28ceab]=API_KEYS_ID[_0x250b76],_0x5e61a3(0xca);}}}else{if(adminInAddingAPIKeys[_0x28ceab]==='11')return _0x53e002[_0x5e61a3(0x117)]>0xf?API_KEYS_DIC[adminAddingAPIKeysType[_0x28ceab]][_0x5e61a3(0x296)](_0x53e002)?(delete adminInAddingAPIKeys[_0x28ceab],'⚠️\x20API\x20key\x20already\x20exists!'):(delete adminInAddingAPIKeys[_0x28ceab],API_KEYS_DIC[adminAddingAPIKeysType[_0x28ceab]][_0x5e61a3(0x19b)](_0x53e002),CURRENT_API_KEY[adminAddingAPIKeysType[_0x28ceab]]=_0x53e002,updateApiTxt(),_0x5e61a3(0x181)):_0x5e61a3(0x1f4);}}if(activeMessages[_0x28ceab]>0x0)return activeMessages[_0x28ceab]+=0x1,sendToAllAdmins('🚨\x20'+_0x28ceab+_0x5e61a3(0x1ea)),'⏳\x20Please\x20wait\x20until\x20the\x20previous\x20response\x20is\x20completed.';else activeMessages[_0x28ceab]+=0x1;if(!_0x53e002)return sendToAllAdmins(_0x5e61a3(0x1ee)+_0x28ceab+_0x5e61a3(0x25e)),'';if(adminHandlingReciptApproval[_0x28ceab]){const _0x3d2faf=Object[_0x5e61a3(0x2a8)](payment_recipt_sent_by_users);if(adminHandlingReciptApproval[_0x28ceab]==='1'){if(Number[_0x5e61a3(0x169)](Number(_0x53e002))){if(Number(_0x53e002)<=_0x3d2faf['length']&&Number(_0x53e002)>0x0){let _0x261007=Number(_0x53e002)-0x1,_0x393c94=_0x5e61a3(0x2c0)+_0x3d2faf[_0x261007]+'\x0a📋\x20*Plan:*\x20'+payment_recipt_sent_by_users[_0x3d2faf[_0x261007]][_0x5e61a3(0x193)]+_0x5e61a3(0x2a3)+give_currency_type(_0x28ceab)+'\x20'+PLANS[payment_recipt_sent_by_users[_0x3d2faf[_0x261007]][_0x5e61a3(0x193)]][is_local_user(_0x28ceab)?'price_LKR':'price_USD']+'\x0a📅\x20*Sent\x20on:*\x20'+payment_recipt_sent_by_users[_0x3d2faf[_0x261007]][_0x5e61a3(0xc7)];return send_image(_0x28ceab,payment_recipt_sent_by_users[_0x3d2faf[_0x261007]][_0x5e61a3(0x2c4)],_0x393c94),await sleep(0.5),send_message(_0x28ceab,_0x5e61a3(0x1a2)+user_manager[_0x3d2faf[_0x261007]][_0x5e61a3(0x1fc)]),await sleep(0.5),adminHandlingReciptApproval[_0x28ceab]='11',!upgrading_details_given_by_admin[_0x28ceab]&&(upgrading_details_given_by_admin[_0x28ceab]=[]),upgrading_details_given_by_admin[_0x28ceab][_0x5e61a3(0x19b)](_0x3d2faf[_0x261007]),upgrading_details_given_by_admin[_0x28ceab]['push'](payment_recipt_sent_by_users[_0x3d2faf[_0x261007]][_0x5e61a3(0x193)]),_0x5e61a3(0x134);}else delete adminHandlingReciptApproval[_0x28ceab];}else delete adminHandlingReciptApproval[_0x28ceab];}else{if(adminHandlingReciptApproval[_0x28ceab]==='11'){if(_0x53e002['toLowerCase']()===_0x5e61a3(0x256)||_0x53e002[_0x5e61a3(0x1e1)]()==='y'){let _0x483526=upgrading_details_given_by_admin[_0x28ceab][0x0],_0x4b9539=upgrading_details_given_by_admin[_0x28ceab][0x1];return upgradingThePlan(_0x4b9539,_0x483526),delete upgrading_user_temp_admin[_0x28ceab],delete upgrading_details_given_by_admin[_0x28ceab],delete payment_recipt_sent_by_users[_0x483526],delete adminHandlingReciptApproval[_0x28ceab],save_dic_to_json(payment_recipt_sent_by_users,payment_receipt_details_storing_json_file_name),'✅\x20User\x20'+_0x483526+'\x20has\x20been\x20successfully\x20upgraded\x20to\x20*'+PLANS[_0x4b9539]['plan_name']+_0x5e61a3(0x147);}else{if(_0x53e002['toLowerCase']()==='no'||_0x53e002[_0x5e61a3(0x1e1)]()==='n'){let _0x2fe249=upgrading_details_given_by_admin[_0x28ceab][0x0],_0x44cb1e=_0x5e61a3(0x1ac)+botAdminContactDetails+_0x5e61a3(0x1c5);return delete upgrading_user_temp_admin[_0x28ceab],delete upgrading_details_given_by_admin[_0x28ceab],delete payment_recipt_sent_by_users[_0x2fe249],delete adminHandlingReciptApproval[_0x28ceab],send_message(_0x2fe249,_0x44cb1e),save_dic_to_json(payment_recipt_sent_by_users,payment_receipt_details_storing_json_file_name),_0x5e61a3(0x242)+_0x2fe249+_0x5e61a3(0xdb);}else delete adminHandlingReciptApproval[_0x28ceab];}}}}if(admin_iniated_to_send_all_users[_0x28ceab]){if(admin_iniated_to_send_all_users[_0x28ceab]==='1'){admin_iniated_to_send_all_users[_0x28ceab]='11',admin_iniated_message[_0x28ceab]=_0x53e002;let _0x22c1d5='📢\x20*_SEND\x20MESSAGE\x20TO\x20ALL\x20USERS_*\x0a\x0aUsers\x20count:\x20'+ALL_USERS_LIST['length']+'\x0a\x0a';return _0x22c1d5+=_0x5e61a3(0x1b3)+admin_iniated_message[_0x28ceab]+'\x0a\x0aAre\x20you\x20sure\x20you\x20want\x20to\x20send\x20this\x20message\x20to\x20all\x20users?\x20(y/n)\x0a(Note:\x20This\x20could\x20take\x20up\x20to\x20'+ALL_USERS_LIST[_0x5e61a3(0x117)]*0.5+_0x5e61a3(0x10a),_0x22c1d5;}else{if(admin_iniated_to_send_all_users[_0x28ceab]==='11'){delete admin_iniated_to_send_all_users[_0x28ceab];if(_0x53e002['toLowerCase']()==='yes'||_0x53e002[_0x5e61a3(0x1e1)]()==='y'){send_message(_0x28ceab,_0x5e61a3(0xb8));let _0x545786=send_a_message_to_all_users(_0x28ceab,admin_iniated_message[_0x28ceab]);return delete admin_iniated_message[_0x28ceab],_0x545786;}else return delete admin_iniated_message[_0x28ceab],_0x5e61a3(0x187);}}}if(userUpgradingPrompts[_0x28ceab]){if(userUpgradingPrompts[_0x28ceab]==='1'){if([_0x5e61a3(0x256),_0x5e61a3(0x14e),_0x5e61a3(0x19d),'y','ye'][_0x5e61a3(0x296)](_0x53e002[_0x5e61a3(0x1e1)]())){if(users_wait_list_at_training_period[_0x28ceab])return'You’ve\x20already\x20joined\x20the\x20waitlist!!\x0aOnce\x20we\x20officially\x20launch,\x20you’ll\x20receive\x20exclusive\x20bonus\x20offers.\x20Stay\x20tuned!\x20😊';return users_wait_list_at_training_period[_0x28ceab]=[_0x3a8307,getDateTime()],delete userUpgradingPrompts[_0x28ceab],save_dic_to_json(users_wait_list_at_training_period,users_wait_list_at_training_period_json_file_name),sendToAllAdmins(_0x5e61a3(0x13c)+_0x28ceab+'\x20have\x20joined\x20the\x20waitlist\x20🎉\x0aWaitlist\x20users\x20count:\x20*'+Object[_0x5e61a3(0x2a8)](users_wait_list_at_training_period)[_0x5e61a3(0x117)]+'*'),_0x5e61a3(0x11a);}if(PLANS[_0x53e002]){userIntiatedPlan[_0x28ceab]=_0x53e002,userUpgradingPrompts[_0x28ceab]='11';let _0x431bea='You\x20Choosed:\x20\x0a\x20*'+PLANS[_0x53e002][_0x5e61a3(0x1b0)]+_0x5e61a3(0x229)+PLANS[_0x53e002][_0x5e61a3(0xc6)]+_0x5e61a3(0x261)+PLANS[_0x53e002][_0x5e61a3(0xd7)]+_0x5e61a3(0x100)+PLANS[_0x53e002][_0x5e61a3(0x288)]+'\x20Image\x20Analyses\x0a\x20·\x20🏷️\x20Price:\x20'+give_currency_type(_0x28ceab)+'\x20'+PLANS[_0x53e002][is_local_user(_0x28ceab)?_0x5e61a3(0x2a1):'price_USD']+_0x5e61a3(0x21a)+PLANS[_0x53e002][_0x5e61a3(0x1cb)];return send_message(_0x28ceab,_0x431bea),await sleep(0x1),_0x5e61a3(0x2a7);}else{if(['1','2','3','4'][_0x5e61a3(0x296)](_0x53e002)){const _0x1d2f37=Object[_0x5e61a3(0x2a8)](PLANS);let _0x42987e=_0x1d2f37[parseInt(_0x53e002)];userIntiatedPlan[_0x28ceab]=_0x42987e,userUpgradingPrompts[_0x28ceab]='11';let _0x5f2127='You\x20Choosed:\x20\x0a\x20*'+PLANS[_0x42987e]['plan_name']+_0x5e61a3(0x118)+PLANS[_0x42987e][_0x5e61a3(0xc6)]+'\x20Messages\x0a\x20·\x20💻\x20'+PLANS[_0x42987e][_0x5e61a3(0xd7)]+_0x5e61a3(0x100)+PLANS[_0x42987e]['image_analysis']+_0x5e61a3(0x184)+give_currency_type(_0x28ceab)+'\x20'+PLANS[_0x42987e][is_local_user(_0x28ceab)?_0x5e61a3(0x2a1):_0x5e61a3(0x190)]+_0x5e61a3(0x21a)+PLANS[_0x42987e][_0x5e61a3(0x1cb)];return send_message(_0x28ceab,_0x5f2127),await sleep(0x1),'✅\x20*Do\x20you\x20want\x20to\x20proceed\x20with\x20this\x20plan?*\x20\x20\x0aReply\x20with\x20*YES*\x20or\x20*NO*\x20(y/n)';}else delete userUpgradingPrompts[_0x28ceab];}}else{if(userUpgradingPrompts[_0x28ceab]==='11')return delete userUpgradingPrompts[_0x28ceab],_0x53e002['toLowerCase']()===_0x5e61a3(0x256)||_0x53e002[_0x5e61a3(0x1e1)]()==='y'?(user_payment_recieving_check[_0x28ceab]=!![],upgradeUsersPendingToSendImages[_0x5e61a3(0x19b)](_0x28ceab),upgradeUsersPendingToSendImagesTimings[_0x5e61a3(0x19b)](getDateTime()),sendToAllAdmins(_0x5e61a3(0x140)+_0x28ceab+_0x5e61a3(0x2c5)+_0x3a8307+_0x5e61a3(0x1df)+PLANS[userIntiatedPlan[_0x28ceab]]['plan_name']+_0x5e61a3(0x130)),_0x5e61a3(0x2cb)+PLANS[userIntiatedPlan[_0x28ceab]][_0x5e61a3(0x1b0)]+_0x5e61a3(0x272)+transferAccountDetails+'\x0aAmount:\x20'+give_currency_type(_0x28ceab)+'\x20'+PLANS[userIntiatedPlan[_0x28ceab]][is_local_user(_0x28ceab)?_0x5e61a3(0x2a1):'price_USD']+'\x0a\x0a💳\x20Please\x20send\x20your\x20payment\x20proof\x20as\x20an\x20image\x20to\x20proceed.'):_0x5e61a3(0x294);}}if(upgrading_user_temp_admin[_0x28ceab]){if(_0x53e002['toLowerCase']()==='cancel')return delete upgrading_user_temp_admin[_0x28ceab],console[_0x5e61a3(0xc0)]('Cancelling\x20promoting...'),_0x5e61a3(0x2ab);if(upgrading_user_temp_admin[_0x28ceab]==='1'){if(_0x53e002['length']===0xb&&_0x53e002[_0x5e61a3(0x277)]('94')){upgrading_details_given_by_admin[_0x28ceab]=[],upgrading_details_given_by_admin[_0x28ceab][_0x5e61a3(0x19b)](_0x53e002),upgrading_user_temp_admin[_0x28ceab]='11';let _0x8ea2f6=_0x5e61a3(0x127);return send_message(_0x28ceab,'👤\x20*User\x20found\x20with\x20the\x20following\x20existing\x20plans:*\x20\x0a'+await send_usage(_0x53e002,'USER')),Object['keys'](PLANS)['forEach']((_0x24522d,_0x8dce50)=>{const _0x456cb9=_0x5e61a3;_0x8ea2f6+=_0x8dce50+0x1+'.\x20'+PLANS[_0x24522d][_0x456cb9(0x1b0)]+'\x0a';}),await sleep(0.5),_0x8ea2f6;}else return _0x5e61a3(0x17a);}else{if(upgrading_user_temp_admin[_0x28ceab]==='11'){if(PLANS[_0x53e002]){upgrading_details_given_by_admin[_0x28ceab][_0x5e61a3(0x19b)](_0x53e002);let _0x315037='🔹\x20*User\x20Number*:\x20'+upgrading_details_given_by_admin[_0x28ceab][0x0]+'\x0a';return _0x315037+='🔹\x20*Plan\x20to\x20be\x20Upgraded*:\x20'+upgrading_details_given_by_admin[_0x28ceab][0x1]+'\x0a',_0x315037+=_0x5e61a3(0xdc)+give_currency_type(_0x28ceab)+'\x20'+PLANS[upgrading_details_given_by_admin[_0x28ceab][0x1]][is_local_user(_0x28ceab)?_0x5e61a3(0x2a1):_0x5e61a3(0x190)]+'\x0a',_0x315037+=_0x5e61a3(0x210),upgrading_user_temp_admin[_0x28ceab]=_0x5e61a3(0x17c),_0x315037;}else{if(['1','2','3','4','5'][_0x5e61a3(0x296)](_0x53e002)){const _0x506a10=Object['keys'](PLANS);let _0x4be89c=_0x506a10[parseInt(_0x53e002)-0x1];upgrading_details_given_by_admin[_0x28ceab][_0x5e61a3(0x19b)](_0x4be89c);let _0x386767=_0x5e61a3(0x1ce)+upgrading_details_given_by_admin[_0x28ceab][0x0]+'\x0a';return _0x386767+=_0x5e61a3(0x245)+upgrading_details_given_by_admin[_0x28ceab][0x1]+'\x0a',_0x386767+='🔹\x20*Price*:\x20'+give_currency_type(_0x28ceab)+'\x20'+PLANS[upgrading_details_given_by_admin[_0x28ceab][0x1]][is_local_user(_0x28ceab)?_0x5e61a3(0x2a1):_0x5e61a3(0x190)]+'\x0a',_0x386767+=_0x5e61a3(0x210),upgrading_user_temp_admin[_0x28ceab]='111',_0x386767;}else return _0x5e61a3(0x11e);}}else{if(upgrading_user_temp_admin[_0x28ceab]===_0x5e61a3(0x17c))try{if(_0x53e002[_0x5e61a3(0x1e1)]()===_0x5e61a3(0x256)||_0x53e002[_0x5e61a3(0x1e1)]()==='y'){let _0x151e94=upgrading_details_given_by_admin[_0x28ceab][0x0],_0x217c72=upgrading_details_given_by_admin[_0x28ceab][0x1];if(!user_manager[_0x151e94])throw new Error(_0x5e61a3(0x216)+_0x151e94+_0x5e61a3(0xd6));return upgradingThePlan(_0x217c72,_0x151e94),delete upgrading_user_temp_admin[_0x28ceab],delete upgrading_details_given_by_admin[_0x28ceab],_0x5e61a3(0x13c)+_0x151e94+_0x5e61a3(0xfa)+PLANS[_0x217c72]['plan_name']+_0x5e61a3(0xd0);}else return delete upgrading_user_temp_admin[_0x28ceab],_0x5e61a3(0x186);}catch(_0x437361){return console[_0x5e61a3(0x16e)](_0x5e61a3(0x10f),_0x437361[_0x5e61a3(0x116)]),_0x5e61a3(0x251)+_0x437361[_0x5e61a3(0x116)];}}}}if(login_ready_users[_0x5e61a3(0x296)](_0x28ceab))return _0x53e002===ADMIN_PASSWORD?(authorized_users['push'](_0x28ceab),login_ready_users=login_ready_users[_0x5e61a3(0x2c7)](_0x3b7b72=>_0x3b7b72!==_0x28ceab),_0x5e61a3(0xea)):(login_ready_users=login_ready_users[_0x5e61a3(0x2c7)](_0x4cd911=>_0x4cd911!==_0x28ceab),_0x5e61a3(0x27e));if(current_bug_reporting[_0x5e61a3(0x296)](_0x28ceab)){const _0x5c7240=new Date()[_0x5e61a3(0x1ec)](_0x5e61a3(0xd3),{'timeZone':_0x5e61a3(0x29e)}),_0x5f4aeb=_0x5c7240+'\x20-\x20'+_0x28ceab+':\x0a'+_0x53e002+'\x0a\x0a';try{return await appendBugReport(bug_reporter_text_path,_0x5f4aeb),current_bug_reporting=current_bug_reporting[_0x5e61a3(0x2c7)](_0x268494=>_0x268494!==_0x28ceab),!_0x3c5273['hasMedia']&&sendToAllAdmins(_0x5e61a3(0x2d7)+_0x28ceab+'\x20('+_0x3a8307+_0x5e61a3(0x1a6)+_0x53e002+_0x5e61a3(0x258)+getDateTime()+_0x5e61a3(0x1fa)),_0x5e61a3(0x23d)+_0x3a8307+_0x5e61a3(0x133)+BotName+_0x5e61a3(0x1c4);}catch(_0x5d90bc){return console[_0x5e61a3(0x16e)](_0x5e61a3(0x142),_0x5d90bc),sendToAllAdmins('🚨\x20*Error\x20Alert!*\x20User\x20'+_0x28ceab+_0x5e61a3(0x24f)),'❌\x20Oops!\x20Something\x20went\x20wrong\x20while\x20saving\x20your\x20bug\x20report.\x20😔\x20Please\x20try\x20again\x20later\x20or\x20contact\x20support\x20if\x20the\x20issue\x20persists.';}}let _0x1e925d='✨\x20*'+BotName+_0x5e61a3(0x2d3);const _0x5c9f1f={'START':()=>_0x5e61a3(0x212),'COMMANDS':()=>_0x1e925d,'C':()=>_0x1e925d,'c':()=>_0x1e925d,'HELP':()=>_0x5e61a3(0x13f),'LOGIN':()=>handleLogin(_0x28ceab),'LOGOUT':()=>handleLogout(_0x28ceab),'NEWCHAT':()=>handleNewChat(_0x28ceab),'N':()=>handleNewChat(_0x28ceab),'n':()=>handleNewChat(_0x28ceab),'BUGREPORT':()=>handleBugReport(_0x28ceab),'B':()=>handleBugReport(_0x28ceab),'b':()=>handleBugReport(_0x28ceab),'ADMINCOMMANDS':()=>handleAdminCommands(_0x28ceab),'REMAININGAPIS':()=>handleREMAININGAPIS(_0x28ceab),'SENDBUGREPORT':()=>handleSEND_BUGREPORT(_0x28ceab,_0x3c5273),'USAGE':()=>send_usage(_0x28ceab,_0x3a8307),'U':()=>send_usage(_0x28ceab,_0x3a8307),'u':()=>send_usage(_0x28ceab,_0x3a8307),'CM':()=>change_model(_0x28ceab),'Cm':()=>change_model(_0x28ceab),'cM':()=>change_model(_0x28ceab),'cm':()=>change_model(_0x28ceab),'STATS':()=>send_chat_history_to_admin(_0x28ceab),'USERS':()=>sendAllUsersListToAdmin(_0x28ceab),'USERREPORT':()=>sendUserReportToAdmin(_0x28ceab,_0x3c5273),'PROMOTEUSER':()=>promoteUserByAdmin(_0x28ceab),'UPGRADE':()=>handleUserUpgrade(_0x28ceab),'UP':()=>handleUserUpgrade(_0x28ceab),'Up':()=>handleUserUpgrade(_0x28ceab),'uP':()=>handleUserUpgrade(_0x28ceab),'up':()=>handleUserUpgrade(_0x28ceab),'PLANS':()=>handlePlanDetails(_0x28ceab),'P':()=>handlePlanDetails(_0x28ceab),'p':()=>handlePlanDetails(_0x28ceab),'PENDINGUPGRADINGUSERS':()=>handlePENDINGUPGRADINGUSERS(_0x28ceab),'UPLOAD':()=>handleFILESUPLOAD(_0x28ceab),'ADMINLIST':()=>sendAdminsListToAdmin(_0x28ceab),'SENDTOALLUSERS':()=>handleSENDTOALLUSERS(_0x28ceab),'RECEIPTSTOREFER':()=>handleRECEIPTSTOREFER(_0x28ceab),'INPUTZIP':()=>handleINPUTZIP(_0x28ceab),'ADDAPI':()=>handleNewADDAPI(_0x28ceab),'WAITLIST':()=>handleWAITLIST(_0x28ceab),'SEETINGS':()=>handleSETTINGS(_0x28ceab,_0x3a8307),'S':()=>handleSETTINGS(_0x28ceab,_0x3a8307),'s':()=>handleSETTINGS(_0x28ceab,_0x3a8307),'DELETEUSER':()=>handleDELETEUSER(_0x28ceab,_0x3a8307),'SENDTOUSER':()=>handleSENDTOUSER(_0x28ceab),'RESETDAILYLIMITSMANUALLY':()=>handleRESETDAILYLIMITSMANUALLY(_0x28ceab),'PAUSEBOT':()=>handlePAUSEBOT(_0x28ceab),'STARTBOT':()=>handleSTARTBOT(_0x28ceab),'SERVERSTATS':()=>handleSERVERSTATS(_0x28ceab)};if(_0x5c9f1f[_0x53e002])return _0x5c9f1f[_0x53e002]();let _0x7c6156=PLANS[user_manager[_0x28ceab][_0x5e61a3(0x1fc)]],_0x49bfeb=user_manager[_0x28ceab];if(_0x49bfeb[_0x5e61a3(0x1dd)]===0x0){if(_0x49bfeb[_0x5e61a3(0xc6)]>=_0x7c6156[_0x5e61a3(0xc6)]){save_user_manager(user_manager);if(_0x49bfeb[_0x5e61a3(0xd7)]<_0x7c6156[_0x5e61a3(0xd7)])send_message(_0x28ceab,'You\x20have\x20reached\x20your\x20limits\x20for\x204o-model!\x0aYou\x20will\x20be\x20getting\x20responses\x20from\x20our\x20next\x20Llama\x20model...'),_0x49bfeb['model']=0x1,await sleep(0.5),_0x49bfeb[_0x5e61a3(0x1fc)]===_0x5e61a3(0x22c)&&(await sleep(0.5),send_message(_0x28ceab,upgrading_limit_reaching_text(_0x28ceab))),_0x53e002!==_0x5e61a3(0x108)&&(_0x49bfeb['chats']+=0x1),await sleep(0.5);else return'⚠️\x20All\x20your\x20plans\x20have\x20been\x20used\x20up!\x20😕\x0aIf\x20you\x27d\x20like\x20to\x20continue\x20enjoying\x20our\x20services,\x20simply\x20send\x20*UPGRADE*\x20or\x20*Up*\x20to\x20explore\x20new\x20plan\x20options.\x20🚀';}else _0x53e002!==_0x5e61a3(0x108)&&(_0x49bfeb[_0x5e61a3(0xc6)]+=0x1);}else{if(_0x49bfeb['model']===0x1){if(_0x49bfeb['chats']>=_0x7c6156[_0x5e61a3(0xd7)]){save_user_manager(user_manager);if(_0x49bfeb['messages']<_0x7c6156['messages'])send_message(_0x28ceab,_0x5e61a3(0x25a)),_0x49bfeb[_0x5e61a3(0x1dd)]=0x0,await sleep(0.5),_0x53e002!==_0x5e61a3(0x108)&&(_0x49bfeb['messages']+=0x1);else return'⚠️\x20All\x20your\x20plans\x20have\x20been\x20used\x20up!\x20😕\x0aIf\x20you\x27d\x20like\x20to\x20continue\x20enjoying\x20our\x20services,\x20simply\x20send\x20*UPGRADE*\x20or\x20*Up*\x20to\x20explore\x20new\x20plan\x20options.\x20🚀';}else _0x53e002!==_0x5e61a3(0x108)&&(_0x49bfeb[_0x5e61a3(0xd7)]+=0x1);}}let _0xc222e7=await generate_response(_0x28ceab,_0x53e002);return containsLatex(_0xc222e7)?(send_message(_0x28ceab,_0xc222e7),await sleep(1.5),send_message(_0x28ceab,_0x5e61a3(0x260)),users_who_asked_to_send_as_image[_0x28ceab]=_0xc222e7,''):_0xc222e7;}catch(_0x17e47f){return console[_0x5e61a3(0x16e)](_0x5e61a3(0x15e),_0x17e47f),sendToAllAdmins('🚨\x20*Error\x20Alert!*\x20An\x20issue\x20occurred\x20in\x20the\x20\x22handle\x20message\x22\x20function\x20while\x20user\x20'+user_id+'\x20('+user_name+_0x5e61a3(0x13d)),'An\x20unexpected\x20error\x20occurred.\x20Please\x20try\x20again\x20later.\x20😔\x0aIf\x20you\x27d\x20like\x20to\x20report\x20this\x20issue,\x20send\x20*BUGREPORT*\x20or\x20*B*\x20and\x20we\x27ll\x20look\x20into\x20it!';}}async function getAudioText(_0x1e1547){const _0x32c668=_0x208cf0;try{const _0x44648c=new OpenAI({'baseURL':BASE_URL_NAMES[0x1],'apiKey':CURRENT_API_KEY[API_KEYS_ID[0x1]]}),_0x15b163=await _0x44648c['audio'][_0x32c668(0x25f)][_0x32c668(0x1a0)]({'file':fs[_0x32c668(0x1f6)](_0x1e1547),'model':whisper_model_name});return _0x32c668(0x249)+_0x15b163[_0x32c668(0x2bd)];}catch(_0x300bfd){if(_0x300bfd[_0x32c668(0x116)][_0x32c668(0x296)](_0x32c668(0x11b))||_0x300bfd[_0x32c668(0x116)][_0x32c668(0x296)](_0x32c668(0xee))||_0x300bfd['message'][_0x32c668(0x296)](_0x32c668(0x1d2))){if(API_KEYS_DIC[API_KEYS_ID[0x1]]['includes'](CURRENT_API_KEY[API_KEYS_ID[0x1]])){const _0x1d0de0=API_KEYS_DIC[API_KEYS_ID[0x1]]['indexOf'](CURRENT_API_KEY[API_KEYS_ID[0x1]]);API_KEYS_DIC[API_KEYS_ID[0x1]]['splice'](_0x1d0de0,0x1);}return API_KEYS_DIC[API_KEYS_ID[0x1]][_0x32c668(0x117)]>0x0?(CURRENT_API_KEY[API_KEYS_ID[0x1]]=API_KEYS_DIC[API_KEYS_ID[0x1]][0x0],console['log'](_0x32c668(0x27b)+API_KEYS_DIC[API_KEYS_ID[0x1]][_0x32c668(0x117)]),sendToAllAdmins('Rotating\x20to\x20the\x20next\x20API\x20key.\x20Remaining\x20keys:\x20'+API_KEYS_DIC[API_KEYS_ID[0x1]][_0x32c668(0x117)]+_0x32c668(0x10e)+_0x300bfd[_0x32c668(0x116)]),await getAudioText(_0x1e1547)):(sendToAllAdmins(_0x32c668(0x152)+user_id+_0x32c668(0xeb)+_0x300bfd['message']),send_message(user_id,'Error\x20in\x20Audio\x20analyzing,\x20Please\x20try\x20again\x20later.😔\x0aIf\x20you\x27d\x20like\x20to\x20report\x20this\x20issue,\x20send\x20*BUGREPORT*\x20or\x20*B*\x20and\x20we\x27ll\x20look\x20into\x20it!'),'ERROR');}else console[_0x32c668(0x16e)]('Error\x20in\x20generate_response:',_0x300bfd);return sendToAllAdmins('🚨\x20*Error\x20Alert!*\x20🚨\x20\x0aThe\x20user\x20'+user_id+_0x32c668(0x232)+_0x300bfd),send_message(user_id,_0x32c668(0x215)),_0x32c668(0x105);}}function generateHtmlFromLatex(_0x408030,_0x875101){const _0x31dc9b=_0x208cf0;try{const _0x514f5e=_0x408030[_0x31dc9b(0x2d4)](/(#{1,6})\s*(.+)/g,(_0x4cdec6,_0x4ba039,_0x202d90)=>{const _0x2e93c0=_0x31dc9b,_0x329ec6=_0x4ba039['length'];return'<h'+_0x329ec6+'>'+_0x202d90+_0x2e93c0(0x278)+_0x329ec6+'>';})[_0x31dc9b(0x2d4)](/\*\*(.+?)\*\*/g,_0x31dc9b(0x139))[_0x31dc9b(0x2d4)](/\n\n/g,_0x31dc9b(0x1d8)),_0x25f93f=_0x31dc9b(0x234)+_0x514f5e+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22footer\x22>Powered\x20by\x20AJO\x20AI</div>\x0a\x20\x20\x20\x20\x20\x20<script>\x0a\x20\x20\x20\x20\x20\x20\x20\x20document.addEventListener(\x22DOMContentLoaded\x22,\x20function\x20()\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20renderMathInElement(document.body,\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20delimiters:\x20[\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20{\x20left:\x20\x22\x5c\x5c(\x22,\x20right:\x20\x22\x5c\x5c)\x22,\x20display:\x20false\x20},\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20{\x20left:\x20\x22\x5c\x5c[\x22,\x20right:\x20\x22\x5c\x5c]\x22,\x20display:\x20true\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20]\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20});\x0a\x20\x20\x20\x20\x20\x20\x20\x20});\x0a\x20\x20\x20\x20\x20\x20</script>\x0a\x20\x20\x20\x20</body>\x0a\x20\x20\x20\x20</html>\x0a\x20\x20\x20\x20';return fs['writeFileSync'](_0x875101,_0x25f93f),console[_0x31dc9b(0xc0)](_0x31dc9b(0xc3)+_0x875101+'\x27\x20has\x20been\x20created.'),'DONE';}catch(_0x2e9e94){return console[_0x31dc9b(0x16e)]('An\x20error\x20occurred:',_0x2e9e94[_0x31dc9b(0x116)]),'ERROR';}}function containsLatex(_0x425f1e){const _0x28bc6f=_0x208cf0,_0x577be5=/\\(begin|end|[a-zA-Z]+\*?)|\\[()[\]]|\\[a-zA-Z]+/;return _0x577be5[_0x28bc6f(0x281)](_0x425f1e);}function sendBugReportAppreciation(_0x157d9e){const _0x29594f=_0x208cf0;user_manager[_0x157d9e]?(user_manager[_0x157d9e][_0x29594f(0xc6)]-=0x5,save_user_manager(user_manager),send_message(_0x157d9e,_0x29594f(0x19a))):(sendToAllAdmins(_0x29594f(0x1af)+_0x157d9e+'\x20not\x20found\x20in\x20user_manager\x20while\x20Trying\x20to\x20give\x20appreciations\x20for\x20bug\x20reporting!'),console[_0x29594f(0x16e)](_0x29594f(0x141)+_0x157d9e+_0x29594f(0x122)));}function handleSETTINGS(_0x32b594,_0x54cf56){let _0x21ae73='Currently\x20under\x20developing,\x20you\x27ll\x20receive\x20it\x20soon\x20via\x20next\x20updates!';return _0x21ae73+='',_0x21ae73;}function upgradingThePlan(_0x350835,_0x26d16e){const _0x41e83f=_0x208cf0;user_manager[_0x26d16e][_0x41e83f(0x1fc)]=_0x350835,user_manager[_0x26d16e]['activation_date']=getDateTime(),user_manager[_0x26d16e][_0x41e83f(0xc6)]=0x0,user_manager[_0x26d16e]['chats']=0x0,user_manager[_0x26d16e][_0x41e83f(0x288)]=0x0,send_message(_0x26d16e,_0x41e83f(0x2b8)+PLANS[_0x350835][_0x41e83f(0x1b0)]+_0x41e83f(0x2d2)),save_user_manager(user_manager);}async function handlePlanDetails(_0x5e4ce0){const _0x3a0622=_0x208cf0;let _0x377f4d=_0x3a0622(0x1d3)+BotName+_0x3a0622(0x18f);return Object[_0x3a0622(0x2a8)](PLANS)['forEach']((_0x16e38f,_0x539b52)=>{const _0x55cc5e=_0x3a0622;_0x377f4d+='*'+PLANS[_0x16e38f][_0x55cc5e(0x1b0)]+_0x55cc5e(0x226)+PLANS[_0x16e38f][_0x55cc5e(0xc6)]+_0x55cc5e(0x13b)+PLANS[_0x16e38f][_0x55cc5e(0xd7)]+_0x55cc5e(0x157)+PLANS[_0x16e38f]['image_analysis']+'\x20Image\x20Analyses\x20per\x20Day\x0a\x20·\x20🏷️\x20Price:\x20'+give_currency_type(_0x5e4ce0)+'\x20'+PLANS[_0x16e38f][is_local_user(_0x5e4ce0)?_0x55cc5e(0x2a1):_0x55cc5e(0x190)]+_0x55cc5e(0x21a)+PLANS[_0x16e38f]['easy_duration']+'\x0a\x0a';}),_0x377f4d+=_0x3a0622(0xc9),send_message(_0x5e4ce0,_0x377f4d),await sleep(0x2),_0x3a0622(0x167);}async function handleUserUpgrade(_0x42d085){const _0x38e42e=_0x208cf0;send_message(_0x42d085,'🎉\x20We’re\x20currently\x20in\x20the\x20testing\x20phase,\x20and\x20our\x20model\x20will\x20be\x20finalized\x20and\x20officially\x20released\x20on\x20*4th\x20February*.\x20\x0aWe\x20truly\x20appreciate\x20your\x20interest\x20in\x20upgrading\x20your\x20plan!\x20😊\x20Would\x20you\x20like\x20to\x20join\x20the\x20*Waitlist*\x20to\x20be\x20among\x20the\x20first\x20to\x20claim\x20our\x20biggest\x20launch\x20offer?\x20🚀'),userUpgradingPrompts[_0x42d085]='1';return'';let _0x51c126='';return Object[_0x38e42e(0x2a8)](PLANS)[_0x38e42e(0x257)]((_0x3b3be6,_0x553b2b)=>{const _0x345606=_0x38e42e;_0x553b2b!==0x0&&(_0x51c126+=_0x553b2b+'.\x20'+PLANS[_0x3b3be6][_0x345606(0x1b0)]+'\x20('+give_currency_type(_0x42d085)+'\x20'+PLANS[_0x3b3be6][is_local_user(_0x42d085)?_0x345606(0x2a1):_0x345606(0x190)]+')\x0a');}),send_message(_0x42d085,_0x38e42e(0x23c)),await sleep(0.5),send_message(_0x42d085,_0x38e42e(0x19c)+PLANS[user_manager[_0x42d085][_0x38e42e(0x1fc)]][_0x38e42e(0x1b0)]+'*\x20\x20\x0a\x0a📋\x20*Choose\x20a\x20Plan\x20to\x20Upgrade:*\x20\x20\x0a'+_0x51c126+'\x20\x20\x0a💬\x20Just\x20reply\x20with\x20the\x20*number*\x20of\x20the\x20plan\x20you\x27d\x20like\x20to\x20choose.'),'';}async function change_model(_0x3cc43e){const _0x15a11d=_0x208cf0;return user_manager[_0x3cc43e][_0x15a11d(0x1dd)]===0x0?(user_manager[_0x3cc43e][_0x15a11d(0x1dd)]=0x1,save_user_manager(user_manager),_0x15a11d(0x29b)):(user_manager[_0x3cc43e][_0x15a11d(0x1dd)]=0x0,save_user_manager(user_manager),_0x15a11d(0x233));}async function send_usage(_0x2248e7,_0x5cc3ca){const _0x3468af=_0x208cf0;save_user_manager(user_manager),isPlanExpired(),notifyBeforeExpiry();let _0x2bf91f=user_manager[_0x2248e7];!_0x2bf91f&&(update_user_manager_dictionary(_0x2248e7,_0x5cc3ca),await sleep(0x1));let _0x182ae0=_0x2bf91f[_0x3468af(0x1dd)]===0x0?'4o-model':_0x3468af(0x246),_0xcd072e=PLANS[_0x2bf91f[_0x3468af(0x1fc)]],_0x13c6e4=_0x3468af(0x1de)+_0x5cc3ca+'*\x20\x20\x0aNumber:\x20*'+_0x2248e7+_0x3468af(0x1a3)+PLANS[_0x2bf91f[_0x3468af(0x1fc)]]['plan_name']+'*\x20\x20\x0aModel\x20in\x20Use:\x20*'+_0x182ae0+_0x3468af(0x1ae)+_0x2bf91f[_0x3468af(0xc6)]+_0x3468af(0x1ad)+_0xcd072e[_0x3468af(0xc6)]+_0x3468af(0x112)+_0x2bf91f['chats']+_0x3468af(0x1ad)+_0xcd072e['chats']+_0x3468af(0x102)+_0x2bf91f[_0x3468af(0x288)]+_0x3468af(0x1ad)+_0xcd072e[_0x3468af(0x288)]+_0x3468af(0x162);if(_0x2bf91f['user_plan']!=='free-plan'){const _0x3f586c=new Date(_0x2bf91f['activation_date']),_0x5569cd=_0xcd072e['duration'],_0x31d8b5=new Date(_0x3f586c);_0x31d8b5['setDate'](_0x3f586c[_0x3468af(0x21d)]()+_0x5569cd);const _0x2fff6b=new Date(getDateTime()),_0xe77caa=_0x31d8b5-_0x2fff6b;if(_0xe77caa>0x0){const _0x17f726=Math[_0x3468af(0x225)](_0xe77caa/(0x3e8*0x3c*0x3c*0x18)),_0x4b2f7b=Math[_0x3468af(0x225)](_0xe77caa%(0x3e8*0x3c*0x3c*0x18)/(0x3e8*0x3c*0x3c)),_0x5d2c12=Math[_0x3468af(0x225)](_0xe77caa%(0x3e8*0x3c*0x3c)/(0x3e8*0x3c));_0x13c6e4+=_0x3468af(0x24d)+_0x17f726+_0x3468af(0x2cc)+_0x4b2f7b+_0x3468af(0x274)+_0x5d2c12+'\x20Minute(s)';}else _0x13c6e4+=_0x3468af(0x1fd);}return _0x13c6e4;}function handleDELETEUSER(_0x1c015f,_0x55c5ed){const _0x18ad7e=_0x208cf0;return authorized_users[_0x18ad7e(0x296)](_0x1c015f)?(adminInDeletingUser[_0x1c015f]='1','Enter\x20the\x20number\x20you\x20want\x20to\x20delete:'):'🚫\x20You\x27re\x20not\x20an\x20admin.\x20Please\x20LOGIN\x20and\x20try\x20again!';}function handleRESETDAILYLIMITSMANUALLY(_0x3659cb){const _0x589560=_0x208cf0;return authorized_users[_0x589560(0x296)](_0x3659cb)?(resetDailyLimits(_0x3659cb),''):_0x589560(0xef);}function handleINPUTZIP(_0x435b00){const _0x1c1b5e=_0x208cf0;return authorized_users[_0x1c1b5e(0x296)](_0x435b00)?(adminInIputingZIP[_0x435b00]='1',_0x1c1b5e(0x20f)):_0x1c1b5e(0xef);}async function handleZipSavingAndExtracting(_0x3ed6e4,_0x96a7cd){const _0x2ef81c=_0x208cf0;try{delete adminInIputingZIP[_0x3ed6e4];const _0x2cf2b9=await _0x96a7cd['downloadMedia'](),_0x185911=_0x2ef81c(0xd4),_0x2d1c84=Buffer[_0x2ef81c(0x1fe)](_0x2cf2b9[_0x2ef81c(0x1ab)],_0x2ef81c(0x137));return fs[_0x2ef81c(0x18c)](_0x185911,_0x2d1c84),send_message(_0x3ed6e4,'ZIP\x20File\x20saved\x20successfully!\x0aExtracting...'),deleteFolder('Files'),await sleep(0x1),extractZip(_0x185911),await sleep(0x5),(user_manager,chatHistory,payment_recipt_sent_by_users,users_wait_list_at_training_period=startup_runners()),await sleep(0x1),'✅\x20All\x20fixed!\x20\x0a'+ALL_USERS_LIST[_0x2ef81c(0x117)]+_0x2ef81c(0xe2);}catch(_0x6d9f19){return sendToAllAdmins(_0x2ef81c(0x17b)+getDateTime()+_0x2ef81c(0x2c1)+_0x3ed6e4+'\x20was\x20sending\x20a\x20the\x20files.zip.\x20Please\x20investigate.\x0a\x0a*Error\x20Message:*\x20'+_0x6d9f19),_0x2ef81c(0x2b0);}}function extractZip(_0x41bf77){const _0x2f6959=_0x208cf0,_0x510ab8=process[_0x2f6959(0x2aa)]();fs[_0x2f6959(0x1f6)](_0x41bf77)['pipe'](unzipper[_0x2f6959(0x240)]({'path':_0x510ab8}))['on']('close',()=>console['log'](_0x2f6959(0x224)+_0x41bf77+'\x27\x20to\x20\x27'+_0x510ab8+'\x27'))['on'](_0x2f6959(0x16e),_0x515b86=>console[_0x2f6959(0x16e)](_0x2f6959(0x200)+_0x515b86[_0x2f6959(0x116)]));}function deleteFolder(_0x1dddad){const _0x190aa8=_0x208cf0;fs[_0x190aa8(0x24a)](_0x1dddad)?(fs[_0x190aa8(0xe0)](_0x1dddad)['forEach'](_0x1a4eb2=>{const _0x16f3d0=_0x190aa8,_0x49f406=path[_0x16f3d0(0x1f8)](_0x1dddad,_0x1a4eb2);fs[_0x16f3d0(0x26d)](_0x49f406)[_0x16f3d0(0x146)]()?deleteFolder(_0x49f406):fs[_0x16f3d0(0x153)](_0x49f406);}),fs[_0x190aa8(0x166)](_0x1dddad),console[_0x190aa8(0xc0)](_0x190aa8(0x1fb)+_0x1dddad+_0x190aa8(0x208))):console['log'](_0x190aa8(0x1fb)+_0x1dddad+_0x190aa8(0x103));}async function zipFolder(_0x4dcd76,_0x3fc098){const _0x2f43c4=_0x208cf0,_0x1bbaf0=fs[_0x2f43c4(0xc8)](_0x3fc098),_0x542ee7=archiver(_0x2f43c4(0xf8),{'zlib':{'level':0x9}});_0x1bbaf0['on'](_0x2f43c4(0xf1),()=>{const _0x4eda6d=_0x2f43c4;console[_0x4eda6d(0xc0)](_0x4eda6d(0x23a)+_0x3fc098+',\x20'+_0x542ee7[_0x4eda6d(0x17e)]()+_0x4eda6d(0x280));}),_0x542ee7['on'](_0x2f43c4(0x16e),_0x5527fa=>{throw _0x5527fa;}),_0x542ee7[_0x2f43c4(0x1c0)](_0x1bbaf0),_0x542ee7[_0x2f43c4(0x2ac)](_0x4dcd76,!![]),_0x542ee7[_0x2f43c4(0x2ae)]();}async function send_file(_0x42f69b,_0x474997){const _0x5c1fc9=_0x208cf0;try{if(!fs[_0x5c1fc9(0x24a)](_0x474997)){console[_0x5c1fc9(0x16e)](_0x5c1fc9(0x13e),_0x474997);return;}const _0x488907=MessageMedia[_0x5c1fc9(0x177)](_0x474997);await client[_0x5c1fc9(0x10c)](_0x42f69b+'@s.whatsapp.net',_0x488907);}catch(_0x583da6){sendToAllAdmins(_0x5c1fc9(0x1cf)+_0x474997+'_\x20to\x20'+_0x42f69b+_0x5c1fc9(0x1e2)+_0x583da6[_0x5c1fc9(0x116)]),send_message(_0x42f69b,'❌\x20Oops!\x20An\x20Error\x20occured\x20while\x20sending\x20the\x20file!.\x20Please\x20try\x20again\x20in\x20a\x20moment!\x20😔');}}async function handleFILESUPLOAD(_0x5ea173){const _0xf9fe46=_0x208cf0;if(authorized_users[_0xf9fe46(0x296)](_0x5ea173)){send_message(_0x5ea173,'⏳\x20Please\x20wait,\x20I\x27m\x20generating\x20the\x20Files\x20ZIP!'),await sleep(0x1);let _0x631293=mainDirName+_0xf9fe46(0xc1);return await zipFolder(mainDirName,_0x631293),await sleep(0x1),send_file(_0x5ea173,_0x631293),sendToAllAdmins(_0xf9fe46(0x1c7)+_0x5ea173+'\x20has\x20requested\x20the\x20Files\x20ZIP'),_0xf9fe46(0x1d9);}else return'🚫\x20You\x27re\x20not\x20an\x20admin.\x20Please\x20LOGIN\x20and\x20try\x20again!';}function handleSENDTOUSER(_0x1acf82){const _0xf532f8=_0x208cf0;return authorized_users[_0xf532f8(0x296)](_0x1acf82)?(adminInSendingMessageToOneUser[_0x1acf82]='1',_0xf532f8(0x1b9)):_0xf532f8(0xef);}function handlePAUSEBOT(_0x4b8b3b){const _0x27cec1=_0x208cf0;return authorized_users[_0x27cec1(0x296)](_0x4b8b3b)?isBotPaused===![]?(isBotPaused=!![],_0x27cec1(0x20c)):_0x27cec1(0x150):_0x27cec1(0xef);}function handleSTARTBOT(_0x1d93f6){const _0x4c2f=_0x208cf0;return authorized_users[_0x4c2f(0x296)](_0x1d93f6)?isBotPaused===!![]?(isBotPaused=![],_0x4c2f(0x183)):'▶️\x20Bot\x20is\x20already\x20running!\x0aSend\x20*PAUSEBOT*\x20to\x20pause\x20the\x20Bot!':'🚫\x20You\x27re\x20not\x20an\x20admin.\x20Please\x20LOGIN\x20and\x20try\x20again!';}function createLimitedList(_0x589ae2=0x32){const _0xad0e54=[];return{'append'(_0x30c666){const _0x57b6ba=_0x3309;if(Array[_0x57b6ba(0x1aa)](_0x30c666[0x0]))for(const _0x2706cf of _0x30c666){_0xad0e54[_0x57b6ba(0x117)]>=_0x589ae2&&_0xad0e54[_0x57b6ba(0x1b6)](),_0xad0e54[_0x57b6ba(0x19b)](_0x2706cf);}else _0xad0e54[_0x57b6ba(0x117)]>=_0x589ae2&&_0xad0e54['shift'](),_0xad0e54[_0x57b6ba(0x19b)](_0x30c666);},'read'(){return[..._0xad0e54];}};}function getDateTime(){const _0x14ac6e=_0x208cf0,_0x5eb0e1=new Date(),_0x223cb9={'timeZone':'Asia/Colombo','year':_0x14ac6e(0x180),'month':_0x14ac6e(0x119),'day':_0x14ac6e(0x119),'hour':'2-digit','minute':_0x14ac6e(0x119),'second':_0x14ac6e(0x119),'hour12':!![]},_0x39a077=new Intl[(_0x14ac6e(0x160))]('en-US',_0x223cb9),_0x5a77d8=_0x39a077['formatToParts'](_0x5eb0e1);let _0x472ae3={'year':'','month':'','day':'','hour':'','minute':'','second':'','period':''};return _0x5a77d8[_0x14ac6e(0x257)](({type:_0x3717df,value:_0x4ed717})=>{const _0x23a2a1=_0x14ac6e;switch(_0x3717df){case _0x23a2a1(0x1a7):_0x472ae3[_0x23a2a1(0x1a7)]=_0x4ed717;break;case'month':_0x472ae3[_0x23a2a1(0x1c1)]=_0x4ed717;break;case _0x23a2a1(0x120):_0x472ae3[_0x23a2a1(0x120)]=_0x4ed717;break;case _0x23a2a1(0x222):_0x472ae3[_0x23a2a1(0x222)]=_0x4ed717;break;case _0x23a2a1(0x175):_0x472ae3[_0x23a2a1(0x175)]=_0x4ed717;break;case _0x23a2a1(0x248):_0x472ae3[_0x23a2a1(0x248)]=_0x4ed717;break;case _0x23a2a1(0x2b2):_0x472ae3[_0x23a2a1(0x204)]=_0x4ed717;break;default:break;}}),_0x472ae3[_0x14ac6e(0x1a7)]+'-'+_0x472ae3['month']+'-'+_0x472ae3['day']+'\x20'+_0x472ae3[_0x14ac6e(0x222)]+':'+_0x472ae3['minute']+':'+_0x472ae3[_0x14ac6e(0x248)]+'\x20'+_0x472ae3['period'];}async function send_chat_history_to_admin(_0x3d547c){const _0x4c825b=_0x208cf0;if(authorized_users[_0x4c825b(0x296)](_0x3d547c)){let _0x32a85d=_0x4c825b(0x1bf),_0x3c1217=chatHistory[_0x4c825b(0x158)](),_0xf44323=_0x3c1217[_0x4c825b(0x117)];for(let _0x87af0=0x0;_0x87af0<_0xf44323;_0x87af0++){const _0x384a63=_0x3c1217[_0x87af0];if(_0x384a63&&_0x384a63[_0x4c825b(0x117)]>=0x3){let _0x8fce47=_0x384a63[0x2][_0x4c825b(0x2d4)](/\n/g,'\x20');_0x8fce47['length']>0x14&&(_0x8fce47=_0x8fce47[_0x4c825b(0x223)](0x0,0x14)+_0x4c825b(0x115)),_0x32a85d+=_0x87af0+0x1+'.\x20'+_0x384a63[0x0]+',\x20'+_0x384a63[0x1]+_0x4c825b(0x1c3)+_0x8fce47+'\x0a';}}return _0x32a85d;}else return'🚫\x20You\x27re\x20not\x20an\x20admin.\x20Please\x20LOGIN\x20and\x20try\x20again!';}async function handlePENDINGUPGRADINGUSERS(_0x54620f){const _0x3074b5=_0x208cf0;if(authorized_users['includes'](_0x54620f)){if(upgradeUsersPendingToSendImages['length']===0x0)return _0x3074b5(0x126);let _0x35f420=_0x3074b5(0x1e9);for(let _0x279c49=0x0;_0x279c49<upgradeUsersPendingToSendImages[_0x3074b5(0x117)];_0x279c49++){_0x35f420+=_0x279c49+0x1+')\x20'+upgradeUsersPendingToSendImages[_0x279c49]+'\x20('+upgradeUsersPendingToSendImagesTimings[_0x279c49]+')\x0a';}return _0x35f420;}else return'🚫\x20You\x27re\x20not\x20an\x20admin.\x20Please\x20LOGIN\x20and\x20try\x20again!';}async function sendToAllAdmins(_0x247b6c){const _0x51db7a=_0x208cf0;_0x247b6c+=_0x51db7a(0x15a);for(const _0xceabd of authorized_users){send_message(_0xceabd,_0x247b6c),await sleep(0x1);}}async function sendUserReportToAdmin(_0xf275d1,_0x5f5398){const _0x4c318e=_0x208cf0;if(authorized_users[_0x4c318e(0x296)](_0xf275d1)){save_user_manager(user_manager),send_message(_0xf275d1,_0x4c318e(0x291)),createPDF(user_manager),await sleep(0x1),createPDF(user_manager),await sleep(0x1);const _0x3b1603=new MessageMedia(_0x4c318e(0x1b7),fs[_0x4c318e(0x29d)](user_report_pdf_name)['toString'](_0x4c318e(0x137)),path[_0x4c318e(0x252)](user_report_pdf_name));try{return await client[_0x4c318e(0x10c)](_0x5f5398[_0x4c318e(0x1fe)],_0x3b1603),console['log']('User\x20report\x20sent\x20to\x20ADMIN\x20-\x20'+_0xf275d1+_0x4c318e(0x1e8)),'';}catch(_0x21207d){return console[_0x4c318e(0x16e)](_0x4c318e(0x1ed)+_0xf275d1+':',_0x21207d),_0x4c318e(0x188);}}else return _0x4c318e(0xef);}async function sendAllUsersListToAdmin(_0x324d82){const _0x4d8f05=_0x208cf0;if(authorized_users['includes'](_0x324d82)){let _0x30b4e2=_0x4d8f05(0x199);for(let _0x5bde80=0x0;_0x5bde80<ALL_USERS_LIST_with_user_name['length'];_0x5bde80++){_0x30b4e2+=_0x5bde80+0x1+'.\x20'+ALL_USERS_LIST_with_user_name[_0x5bde80]+'\x0a';}return _0x30b4e2;}else return'🚫\x20You\x27re\x20not\x20an\x20admin.\x20Please\x20LOGIN\x20and\x20try\x20again!';}async function handleWAITLIST(_0x48058f){const _0x3fcb5c=_0x208cf0;if(authorized_users[_0x3fcb5c(0x296)](_0x48058f)){let _0x12dbdb=_0x3fcb5c(0x1e5);const _0x1834a6=Object['keys'](users_wait_list_at_training_period);if(_0x1834a6[_0x3fcb5c(0x117)]===0x0)return _0x3fcb5c(0x236);for(let _0xfd2a0e=0x0;_0xfd2a0e<_0x1834a6[_0x3fcb5c(0x117)];_0xfd2a0e++){let _0x356bdf=users_wait_list_at_training_period[_0x1834a6[_0xfd2a0e]][0x0],_0x2ece20=users_wait_list_at_training_period[_0x1834a6[_0xfd2a0e]][0x1];_0x12dbdb+=_0xfd2a0e+0x1+'.\x20'+_0x356bdf+'\x20('+_0x1834a6[_0xfd2a0e]+')\x0aIniated\x20at:\x20'+_0x2ece20+'\x0a';}return _0x12dbdb;}else return'🚫\x20You\x27re\x20not\x20an\x20admin.\x20Please\x20LOGIN\x20and\x20try\x20again!';}function getFolderSize(_0x1fce9a){const _0x350163=_0x208cf0;let _0x138edc=0x0;const _0x237491=fs[_0x350163(0xe0)](_0x1fce9a);return _0x237491[_0x350163(0x257)](_0x1d78b2=>{const _0x10d037=_0x350163,_0x49ffb5=path[_0x10d037(0x1f8)](_0x1fce9a,_0x1d78b2),_0x36d2c9=fs[_0x10d037(0x2cd)](_0x49ffb5);if(_0x36d2c9[_0x10d037(0x1e4)]())_0x138edc+=_0x36d2c9[_0x10d037(0xcb)];else _0x36d2c9[_0x10d037(0x146)]()&&(_0x138edc+=getFolderSize(_0x49ffb5));}),_0x138edc;}function getCpuUsage(){const _0x33cd13=_0x208cf0,_0xd17535=os['cpus']();let _0x3fd701=0x0,_0x436c73=0x0;_0xd17535[_0x33cd13(0x257)](_0x5e69c6=>{const _0x57c8f0=_0x33cd13;for(type in _0x5e69c6[_0x57c8f0(0x176)]){_0x436c73+=_0x5e69c6[_0x57c8f0(0x176)][type];}_0x3fd701+=_0x5e69c6[_0x57c8f0(0x176)][_0x57c8f0(0x1e6)];});const _0x580bb1=_0x3fd701/_0xd17535['length'],_0x42cafd=_0x436c73/_0xd17535[_0x33cd13(0x117)];return((0x1-_0x580bb1/_0x42cafd)*0x64)['toFixed'](0x2);}function getServerStats(){const _0xc99e89=_0x208cf0,_0x40abd2=os['totalmem'](),_0x46061c=os['freemem'](),_0xb88583=_0x40abd2-_0x46061c,_0x485c67=(_0xb88583/_0x40abd2*0x64)[_0xc99e89(0x22e)](0x2),_0xd8183b=_0xc99e89(0x21c),_0x432c55=getFolderSize(_0xd8183b)/(0x400*0x400),_0x22950c=getCpuUsage();return{'memoryUsage':(_0xb88583/(0x400*0x400))[_0xc99e89(0x22e)](0x2)+_0xc99e89(0x101)+_0x485c67+'%)','folderSize':_0x432c55[_0xc99e89(0x22e)](0x2)+_0xc99e89(0xd8),'cpuUsage':_0x22950c+'%'};}function handleSERVERSTATS(_0x46bcc8){const _0x24e7e4=_0x208cf0;if(authorized_users[_0x24e7e4(0x296)](_0x46bcc8)){const _0x242350=getServerStats();return _0x24e7e4(0x1e7)+_0x242350[_0x24e7e4(0x2b4)]+_0x24e7e4(0x269)+_0x242350[_0x24e7e4(0xf6)]+'\x0a💻\x20*CPU\x20Usage*:\x20'+_0x242350[_0x24e7e4(0x24b)];}else return _0x24e7e4(0xef);}async function sendAdminsListToAdmin(_0x50995f){const _0x24a89e=_0x208cf0;if(authorized_users['includes'](_0x50995f)){let _0x1f9bd1=_0x24a89e(0x1da);for(let _0x429ed6=0x0;_0x429ed6<authorized_users[_0x24a89e(0x117)];_0x429ed6++){_0x1f9bd1+=_0x429ed6+0x1+'.\x20'+authorized_users[_0x429ed6]+'\x0a';}return _0x1f9bd1;}else return _0x24a89e(0xef);}async function handleSENDTOALLUSERS(_0xa2b926){const _0x4be4f6=_0x208cf0;return authorized_users['includes'](_0xa2b926)?(admin_iniated_to_send_all_users[_0xa2b926]='1',_0x4be4f6(0x27f)):_0x4be4f6(0xef);}async function send_a_message_to_all_users(_0x55c9f4,_0x34b2f4){const _0x235213=_0x208cf0;try{if(authorized_users[_0x235213(0x296)](_0x55c9f4)){for(const _0x4160b2 of ALL_USERS_LIST){try{await send_message(_0x4160b2,_0x34b2f4);}catch(_0x450770){send_message(_0x55c9f4,_0x235213(0x209)+_0x4160b2+':\x20'+_0x450770[_0x235213(0x116)]),console[_0x235213(0x16e)]('Failed\x20to\x20send\x20message\x20to\x20user\x20'+_0x4160b2+':',_0x450770['message']);}await sleep(0.5);}return _0x235213(0x114);}else return _0x235213(0xef);}catch(_0xeb8cfd){return console['error'](_0x235213(0xc2),_0xeb8cfd['message']),_0x235213(0x170);}}async function handleNewADDAPI(_0x52cedc){const _0xdc8c6d=_0x208cf0;if(authorized_users[_0xdc8c6d(0x296)](_0x52cedc)){let _0x151f4d=_0xdc8c6d(0x12a);return Object['keys'](API_KEYS_TEXT_FILES)[_0xdc8c6d(0x257)]((_0x9a4fea,_0x342793)=>{_0x151f4d+=_0x342793+0x1+'.\x20'+_0x9a4fea+'\x0a';}),_0x151f4d+=_0xdc8c6d(0x217),adminInAddingAPIKeys[_0x52cedc]='1',_0x151f4d;}else return _0xdc8c6d(0xf0);}async function handleREMAININGAPIS(_0x213bc5,_0x232549){const _0x23af5d=_0x208cf0;if(authorized_users['includes'](_0x213bc5)){let _0x19289c=_0x23af5d(0x155);return console[_0x23af5d(0xc0)](API_KEYS_ID),API_KEYS_ID['forEach'](_0x49025f=>{const _0x10f1af=_0x23af5d;_0x19289c+='*'+_0x49025f+_0x10f1af(0x148)+API_KEYS_DIC[_0x49025f][_0x10f1af(0x117)]+'\x20keys\x20are\x20remaining\x0a';}),_0x19289c[_0x23af5d(0x1d4)](0x0,-0x1);}else return _0x23af5d(0xf0);}async function handleSEND_BUGREPORT(_0x5f5aaa,_0x1a2c89){const _0x32258d=_0x208cf0;if(authorized_users[_0x32258d(0x296)](_0x5f5aaa)){const _0x1fdc98=new MessageMedia(_0x32258d(0x2b5),fs['readFileSync'](bug_reporter_text_path)[_0x32258d(0x28c)](_0x32258d(0x137)),path[_0x32258d(0x252)](bug_reporter_text_path));try{return await client[_0x32258d(0x10c)](_0x1a2c89[_0x32258d(0x1fe)],_0x1fdc98),console['log']('Log\x20file\x20sent\x20to\x20ADMIN\x20-\x20'+_0x5f5aaa+'\x20successfully!'),'';}catch(_0x36bbbf){return console[_0x32258d(0x16e)](_0x32258d(0x113),_0x36bbbf),_0x32258d(0x188);}}else return'You\x20are\x20not\x20an\x20admin.\x20LOGIN\x20and\x20try.';}async function handleRECEIPTSTOREFER(_0x349758){const _0x5a9749=_0x208cf0;if(authorized_users['includes'](_0x349758)){let _0x3658c2='*🧾\x20_Users\x27\x20Receipt\x20Details:_*\x0a\x0a';const _0x573181=Object['keys'](payment_recipt_sent_by_users);if(_0x573181[_0x5a9749(0x117)]===0x0)return _0x5a9749(0xbf);for(let _0x561308=0x0;_0x561308<_0x573181[_0x5a9749(0x117)];_0x561308++){_0x3658c2+=_0x561308+0x1+'.\x20*Sent\x20On:*\x20'+payment_recipt_sent_by_users[_0x573181[_0x561308]][_0x5a9749(0xc7)]+'\x0a',_0x3658c2+=_0x5a9749(0x250)+_0x573181[_0x561308]+_0x5a9749(0x279)+payment_recipt_sent_by_users[_0x573181[_0x561308]][_0x5a9749(0x193)]+'\x0a\x0a';}return adminHandlingReciptApproval[_0x349758]='1',_0x3658c2[_0x5a9749(0x1d4)](0x0,-0x2);}else return'You\x20are\x20not\x20an\x20admin.\x20LOGIN\x20and\x20try.';}async function handleAdminCommands(_0x2ea89a){const _0x36d2d6=_0x208cf0;if(authorized_users['includes'](_0x2ea89a)){const _0x20b764=_0x36d2d6(0xba);return _0x20b764;}else return _0x36d2d6(0xf0);}async function promoteUserByAdmin(_0xfabf3b){const _0x22f471=_0x208cf0;return authorized_users[_0x22f471(0x296)](_0xfabf3b)?(upgrading_user_temp_admin[_0xfabf3b]='1',send_message(_0xfabf3b,'You\x20can\x20send\x20\x27cancel\x27\x20at\x20any\x20time\x20to\x20stop\x20the\x20upgrade\x20process.'),'📲\x20Please\x20enter\x20the\x20phone\x20number\x20of\x20the\x20user\x20you\x20want\x20to\x20upgrade.'):_0x22f471(0xf0);}async function scrapePage(_0x48e2da){const _0x46cbac=_0x208cf0,_0x5cbee3=await puppeteer[_0x46cbac(0x201)]({'args':[_0x46cbac(0x15c),_0x46cbac(0x25c),_0x46cbac(0x194),'--disable-gpu'],'headless':!![]}),_0x21d159=await _0x5cbee3[_0x46cbac(0x12b)]();await _0x21d159[_0x46cbac(0x23e)](_0x48e2da);const _0x118e12=await _0x21d159[_0x46cbac(0x18d)](()=>{return document['body']['innerText'];});return await _0x5cbee3[_0x46cbac(0xf1)](),_0x118e12['slice'](0xc8,0x9c4);}function checkMessageContent(_0x21841d){const _0x12d7d=_0x208cf0;return!user_chat_history[_0x21841d][_0x12d7d(0x218)](_0x8b2c5a=>Array[_0x12d7d(0x1aa)](_0x8b2c5a['content'])&&_0x8b2c5a['content'][_0x12d7d(0x218)](_0x3c699e=>typeof _0x3c699e===_0x12d7d(0xb9)));}async function generate_response(_0x10b4e8,_0xfcb8da){const _0x5aa0a4=_0x208cf0;try{!user_chat_history[_0x10b4e8]&&(user_chat_history[_0x10b4e8]=[]);_0xfcb8da!=='IMAGEANALYSIS_PROGRAM'&&user_chat_history[_0x10b4e8][_0x5aa0a4(0x19b)]({'role':_0x5aa0a4(0x191),'content':_0xfcb8da});const _0x3b7d5f=new OpenAI({'baseURL':BASE_URL_NAMES[user_manager[_0x10b4e8][_0x5aa0a4(0x1dd)]],'apiKey':CURRENT_API_KEY[API_KEYS_ID[user_manager[_0x10b4e8]['model']]]}),_0x493b1a=user_chat_history[_0x10b4e8][_0x5aa0a4(0x1d4)](-0x7);checkMessageContent(_0x10b4e8)&&(_0x493b1a['unshift']({'role':'system','content':_0x5aa0a4(0x267)+BotName+_0x5aa0a4(0x135)}),_0x493b1a[_0x5aa0a4(0x235)]({'role':'system','content':'You\x27re\x20a\x20friendly\x20assitant'}),_0x493b1a[_0x5aa0a4(0x235)]({'role':_0x5aa0a4(0xf9),'content':'Current\x20Date:\x20'+getDateTime()+'.If\x20I\x20ask\x20about\x20something\x20related\x20to\x20*current*\x20or\x20*real-time*\x20or\x20*if\x20you\x20dont\x20know\x20current\x20details\x20about\x20the\x20topic*\x20or\x20*do\x20you\x20think\x20its\x20need\x20to\x20be\x20searched\x20to\x20provide\x20better\x20results\x20user\x20expects*,\x20and\x20if\x20it\x20requires\x20searching,\x20ONLY\x20THEN\x20respond\x20with\x20this\x20format:\x20\x27https://www.google.com/search?q=..\x27.\x20Don\x27t\x20provide\x20any\x20additional\x20when\x20there\x27s\x20need\x20a\x20google\x20search.\x20I\x20will\x20then\x20provide\x20the\x20results\x20for\x20you\x20to\x20summarize\x20or\x20process\x20further.'}));const _0x1362dd=await _0x3b7d5f[_0x5aa0a4(0xf2)]['completions'][_0x5aa0a4(0x1a0)]({'messages':_0x493b1a,'model':OUR_MODEL_NAMES[user_manager[_0x10b4e8][_0x5aa0a4(0x1dd)]]});let _0x462f8f=_0x1362dd[_0x5aa0a4(0x262)][0x0][_0x5aa0a4(0x116)][_0x5aa0a4(0x151)]||_0x5aa0a4(0x13a);const _0x1c503a={'promptTokens':_0x1362dd['usage'][_0x5aa0a4(0x144)],'completionTokens':_0x1362dd[_0x5aa0a4(0x2bc)]['completion_tokens']};console[_0x5aa0a4(0xc0)](_0x10b4e8,'=>',_0xfcb8da[_0x5aa0a4(0x1d4)](0x0,0x14)[_0x5aa0a4(0x2d4)](/\n/g,'\x20')+_0x5aa0a4(0x115),_0x5aa0a4(0x178),_0x1c503a[_0x5aa0a4(0x195)],_0x1c503a[_0x5aa0a4(0x19e)]);const _0x3f2d61=_0x462f8f['match'](/(https:\/\/www\.google\.com\/[^\s]+)/g)?.[0x0];if(_0x3f2d61){await send_message(_0x10b4e8,'🌐\x20Searching\x20on\x20Web...');try{const _0x16fb66=await scrapePage(_0x3f2d61),_0x48ed10=sanitizeContent(_0x16fb66);_0x48ed10?_0x462f8f=await generate_response(_0x10b4e8,_0x5aa0a4(0x10d)+_0x48ed10):_0x462f8f=_0x5aa0a4(0x26f);}catch(_0x253b4e){console[_0x5aa0a4(0x16e)](_0x5aa0a4(0x1eb),_0x253b4e),_0x462f8f='Unable\x20to\x20fetch\x20real-time\x20data.\x20Please\x20try\x20again\x20later.';}}return user_chat_history[_0x10b4e8][_0x5aa0a4(0x19b)]({'role':_0x5aa0a4(0x16b),'content':_0x462f8f}),!ALL_CHAT_HISTORY[_0x10b4e8]&&(ALL_CHAT_HISTORY[_0x10b4e8]=[]),ALL_CHAT_HISTORY[_0x10b4e8][_0x5aa0a4(0x19b)]('('+getDateTime()+_0x5aa0a4(0x1c8)+_0xfcb8da+'\x0a\x0a'),ALL_CHAT_HISTORY[_0x10b4e8][_0x5aa0a4(0x19b)]('('+getDateTime()+_0x5aa0a4(0x259)+_0x462f8f+'\x0a\x0a'),_0x462f8f;}catch(_0x1448b3){if(_0x1448b3[_0x5aa0a4(0x116)][_0x5aa0a4(0x296)](_0x5aa0a4(0x11b))||_0x1448b3['message'][_0x5aa0a4(0x296)]('401')||_0x1448b3[_0x5aa0a4(0x116)][_0x5aa0a4(0x296)]('429')){if(API_KEYS_DIC[API_KEYS_ID[user_manager[_0x10b4e8]['model']]][_0x5aa0a4(0x296)](CURRENT_API_KEY[API_KEYS_ID[user_manager[_0x10b4e8][_0x5aa0a4(0x1dd)]]])){const _0x2a7a52=API_KEYS_DIC[API_KEYS_ID[user_manager[_0x10b4e8]['model']]][_0x5aa0a4(0x1a1)](CURRENT_API_KEY[API_KEYS_ID[user_manager[_0x10b4e8][_0x5aa0a4(0x1dd)]]]);API_KEYS_DIC[API_KEYS_ID[user_manager[_0x10b4e8][_0x5aa0a4(0x1dd)]]][_0x5aa0a4(0x254)](_0x2a7a52,0x1);}return API_KEYS_DIC[API_KEYS_ID[user_manager[_0x10b4e8][_0x5aa0a4(0x1dd)]]]['length']>0x0?(CURRENT_API_KEY[API_KEYS_ID[user_manager[_0x10b4e8]['model']]]=API_KEYS_DIC[API_KEYS_ID[user_manager[_0x10b4e8]['model']]][0x0],console[_0x5aa0a4(0xc0)](_0x5aa0a4(0x27b)+API_KEYS_DIC[API_KEYS_ID[user_manager[_0x10b4e8]['model']]][_0x5aa0a4(0x117)]),sendToAllAdmins('Rotating\x20to\x20the\x20next\x20API\x20key.\x20Remaining\x20keys:\x20'+API_KEYS_DIC[API_KEYS_ID[user_manager[_0x10b4e8][_0x5aa0a4(0x1dd)]]][_0x5aa0a4(0x117)]+'\x0a\x0a*Caught\x20Error:*\x20'+_0x1448b3[_0x5aa0a4(0x116)]),await generate_response(_0x10b4e8,_0xfcb8da)):(sendToAllAdmins(_0x5aa0a4(0x152)+_0x10b4e8+_0x5aa0a4(0xeb)+_0x1448b3[_0x5aa0a4(0x116)]),_0x5aa0a4(0x206));}else{if(_0x1448b3[_0x5aa0a4(0x116)][_0x5aa0a4(0x296)](_0x5aa0a4(0x159)))return user_manager[_0x10b4e8]['image_analysis']-=0x1,_0x5aa0a4(0x2b9);else console[_0x5aa0a4(0x16e)](_0x5aa0a4(0x2cf),_0x1448b3);}return sendToAllAdmins(_0x5aa0a4(0x1ef)+_0x10b4e8+_0x5aa0a4(0x125)+_0x1448b3),_0x5aa0a4(0x1db);}}function saveAllChatsToFile(_0x589665){const _0x46d8dc=_0x208cf0;for(const _0x3e926a in _0x589665){const _0x9bf391=allUserChatsDir+'/'+_0x3e926a+'_chats.txt',_0x2550e1=_0x589665[_0x3e926a][_0x46d8dc(0x1f8)]('');fs[_0x46d8dc(0x1b4)](_0x9bf391,_0x2550e1,_0x4db7df=>{const _0x16f9c5=_0x46d8dc;_0x4db7df?console[_0x16f9c5(0x16e)]('Failed\x20to\x20save\x20chat\x20for\x20'+_0x3e926a+':',_0x4db7df):delete _0x589665[_0x3e926a];});}}function sanitizeContent(_0x27eb96){const _0x2a8d5b=_0x208cf0;if(typeof _0x27eb96!=='string'||!_0x27eb96[_0x2a8d5b(0x18e)]())return null;return _0x27eb96[_0x2a8d5b(0x2d4)](/[^a-zA-Z0-9 .,!?]/g,'')[_0x2a8d5b(0x18e)]()['slice'](0x0,0x7d0);}async function send_message(_0x41848d,_0x487c82){const _0x2fe89c=_0x208cf0;try{await client[_0x2fe89c(0x10c)](_0x41848d+_0x2fe89c(0x143),_0x487c82);}catch(_0x4942bb){console[_0x2fe89c(0x16e)]('Error\x20sending\x20message\x20to\x20'+_0x41848d+':',_0x4942bb);}}async function send_image(_0x249055,_0x24d189,_0x3905d0=''){const _0x45a28a=_0x208cf0;try{if(!fs[_0x45a28a(0x24a)](_0x24d189))throw new Error(_0x45a28a(0x293)+_0x24d189);const _0x294079=mime['lookup'](_0x24d189);if(!_0x294079||!_0x294079['c'](_0x45a28a(0x12e)))throw new Error(_0x45a28a(0x173)+_0x24d189);const _0x28eb6d=fs['readFileSync'](_0x24d189)[_0x45a28a(0x28c)](_0x45a28a(0x137)),_0x4828e0=new MessageMedia(_0x294079,_0x28eb6d,path['basename'](_0x24d189));'',await client['sendMessage'](_0x249055+_0x45a28a(0x143),_0x4828e0,{'caption':_0x3905d0});}catch(_0x2fa967){console[_0x45a28a(0x16e)](_0x45a28a(0x298)+_0x249055+':',_0x2fa967);}}async function appendBugReport(_0x3860a7,_0x5649fe){const _0x109055=_0x208cf0;try{fs[_0x109055(0x164)](_0x3860a7,_0x5649fe,_0x109055(0x197));}catch(_0x383613){console[_0x109055(0x16e)](_0x109055(0x1f2),_0x383613);throw _0x383613;}}function handleLogin(_0x4ea994){const _0x38cb6b=_0x208cf0;return authorized_users['includes'](_0x4ea994)?_0x38cb6b(0x286):(login_ready_users['push'](_0x4ea994),_0x38cb6b(0x1a5));}function handleLogout(_0x225231){const _0x1de8ec=_0x208cf0;return authorized_users['includes'](_0x225231)?(authorized_users=authorized_users[_0x1de8ec(0x2c7)](_0x2a29e9=>_0x2a29e9!==_0x225231),_0x1de8ec(0x111)):_0x1de8ec(0x185);}function _0x3fca(){const _0x43de8e=['\x27\x20has\x20been\x20deleted.','❌\x20Failed\x20to\x20send\x20message\x20to\x20user\x20','🚨\x20*Error\x20Alert!*\x20🚨\x0aAn\x20error\x20occurred\x20in\x20the\x20function\x20_check_for_any_files_\x20on\x20','search','⏸️\x20Bot\x20paused\x20successfully!\x20All\x20Users\x20are\x20on\x20pause,\x20*except\x20Admins*!','🚨\x20Your\x20plan\x20has\x20expired!\x20You’ve\x20been\x20downgraded\x20to\x20the\x20Free\x20Plan.\x20Upgrade\x20again\x20to\x20continue\x20enjoying\x20premium\x20features.','Page\x20','Please\x20send\x20me\x20the\x20Files\x20ZIP...','\x0aAre\x20you\x20sure\x20you\x20want\x20to\x20upgrade?\x20(y/n)','443045jSBdPR','Hello,\x20How\x20can\x20I\x20help\x20you\x20today?\x0aSend\x20COMMANDS\x20or\x20HELP\x20to\x20get\x20all\x20commands\x20you\x20can\x20try!','fontSize','exit','Error\x20in\x20Audio\x20analyzing,\x20Please\x20try\x20again\x20later.😔\x0aIf\x20you\x27d\x20like\x20to\x20report\x20this\x20issue,\x20send\x20*BUGREPORT*\x20or\x20*B*\x20and\x20we\x27ll\x20look\x20into\x20it!','User\x20with\x20ID\x20','Enter\x20the\x20number...','some','Gracefully\x20shutting\x20down...','\x0a\x20·\x20🕒\x20Duration:\x20','\x20saved\x20to\x20','./Files','getDate','\x20while\x20the\x20user\x20','jpeg','gpt-4o-mini','An\x20Error\x20Occured\x20with\x20Quoted\x20Message','hour','substring','Extraction\x20complete:\x20\x27','floor','*\x0a\x20·\x20💬\x20','❌\x20Invalid\x20Number!','Are\x20you\x20sure\x20to\x20send\x20this\x20to\x20the\x20user\x20','\x20✨*\x0a\x0a\x20·\x20💬\x20',',\x20Type:\x20','078616','free-plan','RECEIPT','toFixed','🧹\x20Clearing\x20old\x20chats\x20and\x20starting\x20a\x20new\x20chat...','bind','*\x0aSent\x20On:\x20','\x20encountered\x20an\x20issue\x20analyzing\x20Audio.\x20Please\x20investigate.\x0a*Error\x20Message:*\x20','Model\x20changed!\x20🔄\x0aNow\x20using\x20*4o\x20Model*\x20🌟...','\x0a\x20\x20\x20\x20<!DOCTYPE\x20html>\x0a\x20\x20\x20\x20<html\x20lang=\x22en\x22>\x0a\x20\x20\x20\x20<head>\x0a\x20\x20\x20\x20\x20\x20<meta\x20charset=\x22UTF-8\x22>\x0a\x20\x20\x20\x20\x20\x20<meta\x20name=\x22viewport\x22\x20content=\x22width=device-width,\x20initial-scale=1.0\x22>\x0a\x20\x20\x20\x20\x20\x20<title>AJO\x20AI\x20LaTeX\x20Viewer</title>\x0a\x20\x20\x20\x20\x20\x20<link\x20rel=\x22stylesheet\x22\x20href=\x22https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css\x22>\x0a\x20\x20\x20\x20\x20\x20<script\x20src=\x22https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js\x22></script>\x0a\x20\x20\x20\x20\x20\x20<script\x20src=\x22https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js\x22></script>\x0a\x20\x20\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20ui-sans-serif,\x20-apple-system,\x20system-ui,\x20\x27Segoe\x20UI\x27,\x20\x27Helvetica\x27,\x20\x27Apple\x20Color\x20Emoji\x27,\x20\x27Arial\x27,\x20sans-serif,\x20\x27Segoe\x20UI\x20Emoji\x27,\x20\x27Segoe\x20UI\x20Symbol\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20line-height:\x201.6;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#333;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.container\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20max-width:\x20800px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#ddd;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#f9f9f9;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x200\x202px\x204px\x20rgba(0,\x200,\x200,\x200.1);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20h1\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#0056b3;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20h2,\x20h3,\x20h4,\x20h5,\x20h6\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#333;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.processed-content\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#ccc;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x204px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#fff;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20pre\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#f4f4f4;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-left:\x204px\x20solid\x20#0056b3;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20overflow-x:\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20strong\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#1f4f79;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.footer\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x2030px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x200.9em;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#777;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20</style>\x0a\x20\x20\x20\x20</head>\x0a\x20\x20\x20\x20<body>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22container\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<h1>AJO\x20AI\x20LaTeX\x20Viewer</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22processed-content\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','unshift','⚠️\x20No\x20users\x20have\x20joined\x20waitlist\x20yet!','qrcode-terminal','Reported\x20By:','console','Zip\x20file\x20created:\x20','parse','Thank\x20you\x20for\x20choosing\x20to\x20upgrade\x20🎉','✅\x20Thank\x20you\x20for\x20your\x20bug\x20report,\x20','goto','\x20has\x20been\x20awarded\x20*5\x20additional\x20messages*\x20with\x20the\x204o\x20model\x20for\x20their\x20bug\x20report!\x20🙌','Extract','\x20using\x20it\x20for\x20analysing\x20audio\x20message.\x20Please\x20Inversitgate\x0a\x0a*Error\x20Message:*\x20','❌\x20*Receipt\x20was\x20rejected!*\x0aThe\x20user\x20','66NXHRDH','/User\x20WaitList.json','🔹\x20*Plan\x20to\x20be\x20Upgraded*:\x20','llama-model','notified_one_day_prior','second','User\x27s\x20Transcribed\x20Audio:\x20','existsSync','cpuUsage','mimetype','\x0aRemaining\x20Time:\x20','pushname','\x20faced\x20an\x20issue\x20while\x20submitting\x20a\x20bug\x20report.','\x20\x20\x20*User:*\x20','An\x20error\x20occurred:\x20','basename','notified_one_hour_prior','splice','gracefulShutdown','yes','forEach','\x0a📅\x20*Reported\x20On:*\x20',')>>>\x20Assistant:\x20','You\x20have\x20reached\x20your\x20limits\x20for\x20Llama\x20model!\x0aYou\x20will\x20be\x20getting\x20responses\x20from\x20our\x20next\x20Llama\x20model...','constructor','--disable-setuid-sandbox','\x20-\x20','\x20received\x20an\x20empty\x20message\x20error!','translations','🔬\x20Equations\x20detected!\x0aNeed\x20as\x20image?','\x20Messages\x0a\x20·\x20💻\x20','choices','/bug_reports.txt','299','#DDDDDD','Unknown\x20User','Your\x20name\x20is\x20','🚨\x20*Bug\x20Report\x20Alert!*\x20🚨','\x0a📂\x20*Files\x20Directory\x20Size*:\x20','*/5\x20*\x20*\x20*\x20*','Free\x20Plan','Helvetica-Bold','lstatSync','\x20pre\x20users\x20found.','Unable\x20to\x20process\x20real-time\x20data.\x20Please\x20try\x20again\x20later.','https://api.groq.com/openai/v1','⚠️\x20Above\x20user\x20not\x20found!','*\x20has\x20been\x20received.\x0aPlease\x20transfer\x20the\x20payment\x20to\x20the\x20follwing\x20account.\x0a\x0a','Image\x20Report','\x20Hour(s)\x20','generate','/User\x20Report.pdf','startsWith','</h','\x0a\x20\x20\x20*Plan:*\x20','/user_manager.json','Rotating\x20to\x20the\x20next\x20API\x20key.\x20Remaining\x20keys:\x20','Messages','🛠️\x20Bot\x20is\x20currently\x20under\x20maintenance.\x20Please\x20try\x20again\x20in\x20a\x20few\x20seconds.\x20T\x20hank\x20you\x20for\x20your\x20patience!','Wrong\x20password!','Please\x20type\x20in\x20the\x20message\x20you\x20want\x20to\x20send...','\x20total\x20bytes','test','/images/','image','Error\x20with\x20DeepInfra\x20or\x20WhatsApp\x20API:','899','🔑\x20You\x20are\x20already\x20authenticated\x20as\x20an\x20admin!\x20\x0aSend\x20\x27ADMINCOMMANDS\x27\x20to\x20view\x20all\x20admin\x20commands.','1\x20Month','image_analysis','Number','/all_user_with_name.txt','SIGINT','toString','Helvetica','\x20tried\x20to\x20send\x20message\x20to\x20the\x20user\x20','No\x20API\x20keys\x20found\x20for\x20','ajoaibot@gmail.com','⏳\x20Please\x20wait,\x20I\x27m\x20generating!','\x20Ready\x20to\x20take\x20things\x20to\x20the\x20next\x20level\x20and\x20unleash\x20the\x20full\x20potential\x20of\x20our\x20models\x20🚀\x0a\x0a\x20\x20\x20\x20Here’s\x20what’s\x20waiting\x20for\x20you:\x0a\x20\x20\x20\x20✨\x20More\x20messages\x20–\x20Stay\x20connected\x20with\x20higher\x20limits!\x0a\x20\x20\x20\x20✨\x20More\x20chats\x20–\x20Get\x20even\x20more\x20interactive\x20and\x20productive.\x0a\x20\x20\x20\x20✨\x20More\x20Image\x20Analysis\x20-\x20Unlock\x20more\x20Image\x20Analysis\x20per\x20Day.\x0a\x20\x20\x20\x20✨\x20Exclusive\x20features\x20–\x20Be\x20the\x20first\x20one\x20to\x20explore\x20new\x20fatures.\x0a\x0a\x20\x20\x20\x20Our\x20plans\x20start\x20at\x20just\x20','File\x20not\x20found:\x20','Upgrade\x20canceled!','warn','includes','\x20was\x20sending\x20a\x20file.\x20Please\x20investigate.\x0a\x0a*Error\x20Message:*\x20','Error\x20sending\x20image\x20to\x20','18\x2030\x20*\x20*\x20*','Activated\x20Date','Model\x20changed!\x20🔄\x0aNow\x20using\x20*Llama\x20Model*\x20🦙...','\x20pending\x20receipts\x20awaiting\x20review.\x20\x0aType\x20*RECEIPTSTOREFER*\x20to\x20proceed\x20with\x20the\x20review.','readFileSync','Asia/Colombo','No\x20datas\x20found\x20in\x20','append','price_LKR','API\x20keys\x20updated\x20successfully.','\x0a💰\x20*Price:*\x20','/all_users.txt','Error\x20resetting\x20daily\x20limits:','_images_receipt','✅\x20*Do\x20you\x20want\x20to\x20proceed\x20with\x20this\x20plan?*\x20\x20\x0aReply\x20with\x20*YES*\x20or\x20*NO*\x20(y/n)','keys',',\x20Filename:\x20','cwd','Upgrading\x20aborted!','directory','fill','finalize','mkdirSync','An\x20Error\x20occuered!','\x20to\x20','dayPeriod','💬\x20Starting\x20a\x20new\x20chat...','memoryUsage','text/plain','_voices','.\x20You\x20can\x20add\x20keys\x20later.','🎉\x20*Congratulations!*\x20\x20\x0a🚀\x20You’ve\x20been\x20upgraded\x20to\x20the\x20*','⚠️\x20The\x20current\x20model\x20*Llama*\x20supports\x20only\x201\x20image\x20per\x20chat.\x0a✨\x20Please\x20try\x20again\x20by\x20starting\x20a\x20new\x20chat\x20or\x20switch\x20to\x20the\x20*4o\x20Model*\x20for\x20more\x20flexibility!\x20🌟','6GmGRrG','ptt','usage','text',',\x20using:\x20','exception','👤\x20*User:*\x20','\x20while\x20the\x20ADMIN\x20','✅\x20We’ve\x20received\x20your\x20payment\x20proof!\x20Our\x20team\x20will\x20review\x20it\x20shortly.\x20\x0aYou’ll\x20receive\x20a\x20confirmation\x20within\x203\x20hours.\x20\x0a\x0aThank\x20you\x20for\x20your\x20patience!','node-schedule','img_path','*\x20(','week-plus','filter','⚠️\x20Bot\x20is\x20paused,\x20replying\x20only\x20for\x20ADMINS!','resize','Week\x20Premium\x20Plan','✅\x20Your\x20request\x20for\x20the\x20*','\x20Day(s)\x20','statSync','_htmls','Error\x20in\x20generate_response:','Img\x20Analysis','Sorry,\x20I\x20couldn\x27t\x20process\x20your\x20request.\x20Please\x20try\x20again\x20later.\x20If\x20the\x20issue\x20persists,\x20feel\x20free\x20to\x20report\x20it.','*\x20plan,\x20and\x20it’s\x20now\x20active!\x20\x20\x0a\x0a🌟\x20*What’s\x20Next?*\x20\x20\x0a-\x20💬\x20More\x20messages\x20to\x20stay\x20connected\x20effortlessly.\x20\x20\x0a-\x20💻\x20More\x20chats\x20to\x20boost\x20your\x20productivity.\x20\x20\x0a-\x20🖼️\x20Enhanced\x20features\x20to\x20elevate\x20your\x20experience.\x20\x20\x0a\x0a🎁\x20*Thank\x20you\x20for\x20upgrading!*\x20\x20\x0aWe’re\x20thrilled\x20to\x20have\x20you\x20onboard\x20this\x20journey\x20with\x20us.\x20Let’s\x20achieve\x20amazing\x20things\x20together!\x20🌟','\x20Commands*\x20✨\x0a\x0a1️⃣\x20*Start\x20a\x20New\x20Chat*\x20\x20\x0a\x20\x20\x20\x20\x20🟢\x20Command:\x20_NEWCHAT_\x20or\x20_N_\x0a\x0a2️⃣\x20*Check\x20Your\x20Usage*\x20\x20\x0a\x20\x20\x20\x20\x20📊\x20Command:\x20_USAGE_\x20or\x20_U_\x0a\x0a3️⃣\x20*Report\x20a\x20Bug*\x20\x20\x0a\x20\x20\x20\x20\x20🐞\x20Command:\x20_BUGREPORT_\x20or\x20_B_\x0a\x0a4️⃣\x20*Upgrade\x20Your\x20Plan*\x20\x20\x0a\x20\x20\x20\x20\x20🚀\x20Command:\x20_UPGRADE_\x20or\x20_Up_\x0a\x0a5️⃣\x20*View\x20All\x20Plans*\x20\x20\x0a\x20\x20\x20\x20\x20💳\x20Command:\x20_PLANS_\x20or\x20_P_\x0a\x20\x20\x20\x20\x20\x0a6️⃣\x20*Settings*\x20\x20\x0a\x20\x20\x20\x20\x20⚙️\x20Command:\x20_SETTINGS_\x20or\x20_S_','replace','repeat','!\x0aWelcome\x20to\x20*','🚨\x20*Bug\x20Report\x20Alert!*\x20🚨\x0a\x0a🛠️\x20*Reported\x20By:*\x20','🚀\x20*Sending\x20your\x20message...*','object','⚙️\x20*_ADMIN\x20COMMANDS_*\x0a\x0a\x20·\x20*REMAININGAPIS*\x20-\x20check\x20remaining\x20API\x20keys\x0a\x20·\x20*ADDAPI*\x20-\x20add\x20a\x20new\x20API\x20key\x0a\x20·\x20*SENDBUGREPORT*\x20-\x20get\x20bug\x20report\x0a\x20·\x20*STATS*\x20-\x20Check\x20last\x2050\x20Prompts\x0a\x20·\x20*USERS*\x20-\x20to\x20check\x20all\x20users\x0a\x20·\x20*USERREPORT*\x20-\x20Send\x20User\x20Report\x0a\x20·\x20*ADMINLIST*\x20-\x20Send\x20all\x20the\x20Admins\x0a\x20·\x20*PROMOTEUSER*\x20-\x20Upgrade\x20a\x20user\x0a\x20·\x20*PENDINGUPGRADINGUSERS*\x20-\x20User\x20list\x20who\x20initiated\x20Upgrade\x0a\x20·\x20*SENDTOALLUSERS*\x20-\x20Send\x20a\x20Message\x20to\x20All\x20users\x0a\x20·\x20*RECEIPTSTOREFER*\x20-\x20Receipt\x20to\x20be\x20refered\x20and\x20upgraded\x0a\x20·\x20*DELETEUSER*\x20-\x20Delete\x20a\x20user\x20from\x20database.\x0a\x20·\x20*UPLOAD*\x20-\x20Upload\x20the\x20ZIP\x20file\x20with\x20All\x20Documents.\x0a\x20·\x20*INPUTZIP*\x20-\x20Input\x20the\x20new\x20Files\x20zip\x20to\x20use\x20it.\x0a\x20·\x20*SENDTOUSER*\x20-\x20Send\x20a\x20message\x20to\x20a\x20particular\x20user.\x0a\x20·\x20*RESETDAILYLIMITSMANUALLY*\x20-\x20Reset\x20the\x20limits\x20manually.\x0a\x20·\x20*PAUSEBOT*\x20-\x20Pause\x20the\x20bot\x20functionality\x20for\x20all\x20except\x20Admins.\x0a\x20·\x20*STARTBOT*\x20-\x20Start\x20the\x20bot\x20functionality\x20for\x20all\x20again.\x20\x0a\x20·\x20*SERVERSTATS*\x20-\x20Check\x20server\x20stats\x20(CPU,\x20RAM,\x20STORAGE)\x20\x0a\x20·\x20*WAITLIST*\x20-\x20Users\x20who\x20entered\x20Waitlist\x20_(Testing\x20version)_','Error\x20occured\x20in\x20creating\x20All\x20Users\x20text\x20file:','Error\x20Occured\x20in\x20Approving\x20Bug\x20Report\x0aError\x20','⚠️\x20Reminder:\x20Your\x20plan\x20will\x20expire\x20in\x20less\x20than\x2024\x20hours.\x20Upgrade\x20now\x20to\x20avoid\x20service\x20interruption!','/gpt4o_api_keys.txt','⚠️\x20No\x20users\x20have\x20sent\x20receipts!','log','.zip','An\x20unexpected\x20error\x20occurred:','HTML\x20file\x20\x27','.\x20Please\x20Inversitgate\x0a\x0a*Error\x20Message:*\x20','5624640WjBXxV','messages','time','createWriteStream','Furthermore,\x20tryout\x20any\x20our\x20early\x20feature\x20as\x20a\x20PAID\x20customer\x20🚀','🔑\x20Please\x20enter\x20the\x20API\x20key:','size','scheduleJob','user_name','letter','1\x20Year','*\x20plan!\x20🚀','process','No\x20All\x20Users\x20text\x20file\x20found,\x20hence\x20created!','en-US','Files.zip','🎉\x20User\x20','\x20not\x20found.','chats','\x20MB','430080WxgbPV','Failed\x20to\x20save\x20media:','\x20has\x20been\x20notified\x20about\x20this.','🔹\x20*Price*:\x20','auto','❌\x20API\x20key\x20addition\x20has\x20been\x20aborted!','black','readdirSync','Bank:\x20Commercial\x20Bank\x0aAccount\x20Name:\x20M\x20N\x20F\x20ILMA\x0aAccount\x20Number:\x2086846841','\x20pre-users\x20found\x20in\x20your\x20new\x20files\x20zip!\x20📦','\x0a\x0aPlease\x20review\x20the\x20payment\x20as\x20soon\x20as\x20possible.\x20(Sent\x20to\x20All\x20Admins)','_images_bugreport','table','27yfoMql','hasMedia','apply','toBuffer','✅\x20Access\x20granted!\x20You\x20are\x20now\x20an\x20admin.\x20Welcome\x20aboard!\x20🎉\x0aSend\x20\x27ADMINCOMMANDS\x27\x20to\x20view\x20all\x20available\x20Admin\x20commands.','\x20encouted\x20the\x20issue!\x0a\x0a*Caught\x20Error:*\x20','999','return\x20(function()\x20','401','🚫\x20You\x27re\x20not\x20an\x20admin.\x20Please\x20LOGIN\x20and\x20try\x20again!','You\x20are\x20not\x20an\x20admin.\x20LOGIN\x20and\x20try.','close','chat','/groq_api_keys.txt','archiver','\x20removed\x20successfully!','folderSize','filename','zip','system','\x20has\x20been\x20successfully\x20upgraded\x20to\x20the\x20*','split','puppeteer','hasQuotedMsg','\x20found!\x20Returning\x20an\x20empty\x20object.','getQuotedMessage','\x20Chats\x0a\x20·\x20🖼️\x20','\x20MB\x20(','\x20\x20\x0a-\x20🖼️\x20*Image\x20Analyses:*\x20','\x27\x20does\x20not\x20exist.','caught\x20user\x20number:\x20\x27','ERROR','activation_date','Error\x20updating\x20API\x20keys\x20file:','IMAGEANALYSIS_PROGRAM','🚨\x20*Error\x20Alert!*\x20🚨\x0aAn\x20error\x20occured\x20while\x20encoding\x20image\x20to\x20base\x2064\x20version\x20on\x20','\x20seconds!)','AJO\x20AI','sendMessage','Accurate\x20Information\x20Results\x20Here.\x20Process\x20and\x20summarize\x20this\x20information\x20naturally:\x20','\x0a\x0a*Caught\x20Error:*\x20','Error\x20occurred:','_files','✅\x20You\x20have\x20successfully\x20logged\x20out!','\x20\x20\x0a-\x20💻\x20*Chats:*\x20','Error\x20sending\x20file:','Message\x20sent\x20to\x20All\x20users','...','message','length','*\x20✨\x0a\x0a\x20·\x20💬\x20','2-digit','🎉\x20You’ve\x20successfully\x20joined\x20the\x20waitlist!\x20🚀\x0aOnce\x20we\x20officially\x20launch,\x20you’ll\x20receive\x20exclusive\x20bonus\x20offers.\x20Stay\x20tuned!\x20😊','402\x20status\x20code','Error\x20updating\x20All\x20Users\x20text\x20file:','AI\x20response\x20was\x20empty\x20or\x20undefined.','⚠️\x20Please\x20enter\x20a\x20valid\x20plan!','⏳\x20Reminder:\x20Your\x20plan\x20will\x20expire\x20in\x20less\x20than\x201\x20hour.\x20Upgrade\x20now\x20to\x20continue\x20enjoying\x20premium\x20features!','day','\x0aPlan\x20to\x20be\x20upgraded:\x20*','\x20not\x20found\x20in\x20user_manager.','410026QusShA','Free','\x20encountered\x20an\x20issue\x20while\x20generating\x20a\x20response\x20from\x20the\x20AI.\x20Please\x20investigate.\x0a*Error\x20Message:*\x20','🚫\x20No\x20users\x20have\x20initiated\x20an\x20upgrade\x20at\x20the\x20moment!','Enter\x20the\x20plan\x20needs\x20to\x20be\x20Upgraded\x0a\x0a','❌\x20Oops!\x20I\x20was\x20unable\x20to\x20process\x20the\x20image.\x20Please\x20try\x20again\x20in\x20a\x20moment!\x20😔','rect','🔑\x20*Which\x20API\x20key\x20would\x20you\x20like\x20to\x20add?*\x0a','newPage','\x0a\x0a🔑\x20*Current\x20Plan:*\x20','Cleared\x20chat\x20history\x20for\x20user:','image/','Analyzing\x20Image...🔍','\x20Upgrade.\x0aWhen\x20user\x20sends\x20any\x20image\x20it\x20will\x20be\x20forwarded!','Error\x20handling\x20API\x20keys\x20for\x20','(((.+)+)+)+$','!\x20🎉\x0a\x0aIf\x20your\x20report\x20is\x20validated\x20as\x20a\x20genuine\x20issue,\x20you\x27ll\x20receive\x20*5\x20additional\x20messages\x20with\x20GPT-4o*\x20as\x20a\x20token\x20of\x20appreciation.\x20Stay\x20tuned\x20and\x20thank\x20you\x20for\x20helping\x20us\x20improve\x20*','Do\x20you\x20like\x20to\x20approve\x20this\x20user\x20(y/n)?','\x20and\x20you\x27re\x20Whatsapp\x20based\x20AI\x20capable\x20with\x20image\x20analysis\x20and\x20web\x20searching\x20and\x20capable\x20to\x20reply\x20to\x20whatsapp\x20voice\x20messages','No.','base64','\x20–\x20an\x20unbeatable\x20offer\x20for\x20unlimited\x20possibilities!\x20✨\x0a\x0a\x20\x20\x20\x20Reply\x20*UPGRADE*\x20or\x20*Up*\x20now\x20to\x20explore\x20all\x20the\x20options\x20and\x20find\x20the\x20perfect\x20plan\x20for\x20you.\x20Let’s\x20keep\x20the\x20conversation\x20going!\x20We’re\x20excited\x20to\x20support\x20you\x20on\x20your\x20journey!','<strong>$1</strong>','Sorry,\x20I\x20couldn\x27t\x20process\x20your\x20request.','\x20Messages\x20per\x20Day\x0a\x20·\x20💻\x20','User\x20',')\x20attempted\x20an\x20action.\x20Please\x20investigate!','File\x20does\x20not\x20exist:','*START*\x20-\x20Start\x20Message\x0a*NEWCHAT*\x20-\x20Start\x20a\x20New\x20Chat\x0a*BUGREPORT*\x20-\x20Report\x20any\x20bugs\x20you\x20faced\x0a*LOGIN*\x20-\x20Login\x20as\x20Admin\x0aLOGOUT\x20-\x20Logout','User\x20*','User\x20ID\x20','Error\x20saving\x20bug\x20report:','@s.whatsapp.net','prompt_tokens','6327792ZQHjTM','isDirectory','*\x20plan!','*\x20-\x20','\x0aPlan:\x20*','reply','mime-types','🚨\x20*Error\x20Alert!*\x20🚨\x0aAn\x20error\x20occured\x20in\x20the\x20function\x20_check\x20for\x20voice\x20messages_\x20on\x20','Media\x20sent\x20by\x20','yeah','/User\x20Receipts\x20Details.json','⏸️\x20Bot\x20is\x20already\x20Paused!\x0aSend\x20*STARTBOT*\x20to\x20start\x20the\x20Bot\x20again!','content','🚨\x20*Error\x20Alert!*\x20🚨\x0aAPI\x20KEYS\x20are\x20Depleted,\x20user\x20','unlinkSync','/voices/','*🔑\x20Remaining\x20API\x20Keys:*\x20\x0a\x0a','image_url','\x20Chats\x20per\x20Day\x0a\x20·\x20🖼️\x20','read','400\x20Too\x20many\x20images\x20provided.\x20\x20This\x20model\x20supports\x20up\x20to\x201\x20images','\x0a(This\x20message\x20has\x20sent\x20to\x20all\x20Admins)','Files','--no-sandbox','cancel','Error\x20in\x20handle_message:','pdfkit','DateTimeFormat','No\x20saved\x20Dictionary\x20named\x20','\x20\x20\x0a','Week\x20Plus\x20Plan','appendFileSync','/User_Files/','rmdirSync','💡\x20Ready\x20to\x20level\x20up?\x20Reply\x20*UPGRADE*\x20or\x20*UP*\x20to\x20get\x20started!','All\x20Users\x20text\x20file\x20updated\x20successfully.','isInteger','\x20keys\x20found\x20for\x20','assistant','Generated:\x20','1\x20Week','error','_images_bugreport/','❗\x20An\x20error\x20occurred\x20while\x20sending\x20messages.\x20Please\x20try\x20again\x20later.','initialize','💬\x20Please\x20type\x20the\x20message\x20need\x20to\x20be\x20sent:','Invalid\x20image\x20file\x20type:\x20','Username','minute','times','fromFilePath','=>\x20Tokens\x20used:','User\x20Plan','⚠️\x20*Please\x20enter\x20a\x20valid\x20number!*','🚨\x20*Error\x20Alert!*\x20🚨\x0aAn\x20error\x20occurred\x20in\x20the\x20function\x20_handleZipSavingAndExtracting_\x20on\x20','111','setDate','pointer','prototype','numeric','✅\x20API\x20key\x20added\x20successfully!','font','▶️\x20Bot\x20Started\x20successfully!','\x20Image\x20Analyses\x0a\x20·\x20🏷️\x20Price:\x20','⚠️\x20You\x20are\x20not\x20logged\x20in.\x20Please\x20send\x20\x27LOGIN\x27\x20to\x20log\x20in.','Upgrading\x20canceled!','⚠️\x20*Sending\x20aborted!*','An\x20Error\x20occured\x20while\x20sending\x20file.\x20Try\x20again\x20shortly!',')\x0a📅\x20*Reported\x20On:*\x20','1981460bTLfry','whisper-large-v3','writeFileSync','evaluate','trim','\x20Plans*\x20🌟\x0a\x0a','price_USD','user','Media\x20detected:\x20','plan','--disable-dev-shm-usage','promptTokens','*\x0aPrice:\x20*','utf8','⚠️\x20You\x20have\x20reached\x20your\x20Image\x20Analysis\x20limits\x20for\x20today.\x20\x0aTo\x20unlock\x20more,\x20try\x20*UPGRADE*\x20or\x20*Up*\x20your\x20plan\x20for\x20additional\x20Image\x20Analyses\x20per\x20day.','*📜\x20_Users\x20List:_*\x20\x0a\x0a','🎉\x20Congratulations!\x20You\x27ve\x20been\x20awarded\x20*5\x20additional\x20messages*\x20with\x20the\x204o\x20model\x20as\x20a\x20token\x20of\x20appreciation\x20for\x20reporting\x20a\x20bug.\x20Thank\x20you\x20for\x20helping\x20us\x20improve!','push','✨\x20*Your\x20Current\x20Plan:*\x20*','yup','completionTokens','_voices/','create','indexOf','📊\x20*User\x27s\x20Current\x20Plan:*\x20','*\x20\x20\x0a\x0aCurrent\x20Plan:\x20*','⚠️\x20Proof\x20of\x20payment\x20sent\x20by\x20','🔒\x20Please\x20enter\x20the\x20admin\x20password\x20to\x20proceed.',')\x0a📝\x20*Bug\x20Details:*\x20','year','getContactById','USD','isArray','data','❌\x20*Your\x20payment\x20receipt\x20has\x20been\x20rejected\x20by\x20our\x20system!*\x0aUnfortunately,\x20we\x20couldn\x27t\x20verify\x20your\x20payment\x20at\x20this\x20time.\x20If\x20you\x20believe\x20this\x20is\x20an\x20error,\x20please\x20contact\x20the\x20Admin\x20at\x20','\x20of\x20','*\x20\x20\x0a(Reply\x20\x27CM\x27\x20to\x20switch\x20the\x20model)\x20\x20\x0a\x0a📊\x20*Your\x20Usage\x20Today:*\x20\x20\x0a-\x20💬\x20*Messages:*\x20','🚨\x20*Error\x20Alert!*\x20🚨\x0aUser\x20ID\x20','plan_name','duration','endsWith','Message:\x0a','appendFile','end','shift','application/pdf','openai','📲\x20Enter\x20the\x20number:','\x20not\x20in\x20ALL\x20USERS\x20LIST','type','94757067788','./deep_infra_api_keys.txt','then','*_Last\x2050\x20chats\x20with\x20BOT_*\x0a\x0a','pipe','month','toISOString','\x0a\x20\x20\x20','*\x20🙌','.\x0a\x0aWe\x20appreciate\x20your\x20patience\x20and\x20understanding!','User\x20Data\x20Report','👑\x20Admin\x20',')>>>\x20User:\x20','downloadMedia','_images','easy_duration','3199','Month\x20Premium\x20Plan','🔹\x20*User\x20Number*:\x20','🚨\x20*Error\x20Alert!*\x20🚨\x0aAn\x20error\x20occured\x20while\x20sending\x20the\x20file\x20_','Dictionary\x20loaded\x20from\x20','/htmls/','429','🌟\x20*','slice','stringify','center','Error\x20','<br>','🎉\x20Your\x20Files\x20ZIP\x20is\x20ready!\x20Here\x20it\x20is.\x20📦','*👑\x20_Admins\x20List:_*\x20\x0a\x0a','An\x20error\x20occurred\x20while\x20generating\x20the\x20response.','trace','model','👤\x20*',')\x20has\x20initiated\x20the\x20','fillColor','toLowerCase','.\x0a\x0a*Caught\x20Error:*\x20','NONE','isFile','*🧾\x20_Waitlisted\x20Users:_*\x0a\x0a','idle','📊\x20\x20*Server\x20Stats*\x20\x20📊\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a🖥️\x20*RAM\x20Usage*:\x20','\x20successfully!','*🔄\x20Users\x20Who\x20Have\x20Initiated\x20Upgrade\x20Requests:*\x20\x0a\x0a','\x20tried\x20to\x20generate\x20response\x20before\x20previous\x20response\x20is\x20completed!','Error\x20while\x20processing\x20real-time\x20data:','toLocaleString','Error\x20sending\x20User\x20report\x20to\x20','🚨\x20*Error\x20Alert!*\x20🚨\x0a','🚨\x20*Error\x20Alert!*\x20🚨\x20\x0aThe\x20user\x20','*/60\x20*\x20*\x20*\x20*','!\x0aTime:\x20','Error\x20appending\x20bug\x20report:','2673160tibyAG','⚠️\x20Invalid\x20API\x20key!\x20Please\x20check\x20and\x20try\x20again.','All\x20scheduled\x20jobs\x20stopped.','createReadStream','Currently\x20other\x20files\x20types\x20not\x20supported','join','random','\x0a\x0a✅\x20*Status:*\x20Sent\x20to\x20All\x20Admins.','Folder\x20\x27','user_plan','\x0aYour\x20plan\x20has\x20expired.\x20Please\x20upgrade\x20to\x20continue\x20enjoying\x20premium\x20features.','from','body','Error:\x20','launch','✅\x20Message\x20sent\x20to\x20user','None','period','_htmls/','Error\x20in\x20generating\x20response,\x20Please\x20try\x20again\x20later.😔\x0aIf\x20you\x27d\x20like\x20to\x20report\x20this\x20issue,\x20send\x20*BUGREPORT*\x20or\x20*B*\x20and\x20we\x27ll\x20look\x20into\x20it!','Daily\x20limits\x20reseted\x20Automatically!\x0aTime:\x20'];_0x3fca=function(){return _0x43de8e;};return _0x3fca();}async function handleNewChat(_0x1e8db6){const _0x4f41e5=_0x208cf0;if(user_chat_history[_0x1e8db6])return delete user_chat_history[_0x1e8db6],console[_0x4f41e5(0xc0)](_0x4f41e5(0x12d),_0x1e8db6),send_message(_0x1e8db6,_0x4f41e5(0x22f)),await sleep(1.5),send_message(_0x1e8db6,'Hello!\x20How\x20can\x20I\x20assist\x20you\x20today?'),'';return send_message(_0x1e8db6,_0x4f41e5(0x2b3)),await sleep(0x1),send_message(_0x1e8db6,'Hello!\x20How\x20can\x20I\x20assist\x20you\x20today?'),'';}function handleBugReport(_0x2d683f){const _0x2f7316=_0x208cf0;return current_bug_reporting[_0x2f7316(0x19b)](_0x2d683f),'📝\x20Please\x20describe\x20the\x20issue\x20you\x20encountered.\x20You\x20can\x20also\x20include\x20an\x20image\x20and\x20mention\x20the\x20issue\x20in\x20the\x20caption.';}
+const qrcode = require('qrcode-terminal');
+const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
+const OpenAI = require("openai");
+const os = require('os');
+const fs = require('fs');
+const PDFDocument = require('pdfkit');
+const sharp = require('sharp');  // npm install sharp
+const puppeteer = require('puppeteer');
+const schedule = require('node-schedule');
+const archiver = require('archiver');
+const unzipper = require('unzipper');
+const mime = require('mime-types');
+const { send } = require('process');
+const path = require('path');
+
+
+// Prerequisites
+const ADMIN_PASSWORD = "078616"; // Replace with the actual admin password
+const transferAccountDetails = `Bank: Commercial Bank\nAccount Name: M N F ILMA\nAccount Number: 86846841`;
+let botAdminContactDetails = "ajoaibot@gmail.com";
+
+
+const BotName = "AJO AI";
+const mainDirName = "Files";
+const mainDir = `./${mainDirName}`;
+let login_ready_users = []; // Users ready to log in as admin 
+let authorized_users = ['94762057788','94757067788']; // Users who are already logged in as admins
+let current_bug_reporting = []; // Users currently reporting bugs
+let API_KEYS_DIC = {};
+let CURRENT_API_KEY = {};
+let API_KEYS_TEXT_FILES = {"gpt4o-mini":`${mainDir}/gpt4o_api_keys.txt`, "groq":`${mainDir}/groq_api_keys.txt`}; //'deep-infra':"./deep_infra_api_keys.txt"
+let OUR_MODEL_NAMES = ["gpt-4o-mini","llama-3.2-90b-vision-preview"]; // "llama-3.2-90b-vision-preview"
+let BASE_URL_NAMES = ["https://models.inference.ai.azure.com",'https://api.groq.com/openai/v1']; // https://api.groq.com/openai/v1, https://api.deepinfra.com/v1/openai
+let whisper_model_name = "whisper-large-v3";
+let ALL_USERS_LIST = []; // List of All Users
+let ALL_USERS_LIST_with_user_name = [];
+let upgradeUsersPendingToSendImages = [];
+let upgradeUsersPendingToSendImagesTimings = [];
+let adminHandlingReciptApproval = {};
+let upgrading_user_temp_admin = {};
+let upgrading_details_given_by_admin = {};
+let userUpgradingPrompts = {};
+let userIntiatedPlan = {};
+let user_payment_recieving_check = {};
+let admin_iniated_to_send_all_users = {};
+let admin_iniated_message = {};
+let ALL_CHAT_HISTORY = {};
+let adminInDeletingUser = {};
+let adminInAddingAPIKeys = {};
+let adminAddingAPIKeysType = {};
+let adminInSendingMessageToOneUser = {};
+let adminInSendingMessageToOneUserDetails = {};
+let users_who_asked_to_send_as_image = {};
+let isBotPaused = false;
+let adminInIputingZIP = {};
+
+const payment_receipt_details_storing_json_file_name = mainDir + '/User Receipts Details.json';
+const users_wait_list_at_training_period_json_file_name = mainDir + '/User WaitList.json';
+
+const allUserChatsDir = "./Files/chats"
+const bug_reporter_text_path = mainDir + "/bug_reports.txt"; // Path to save bug reports
+const DEEP_INFRA_API_keys_text_file = "./deep_infra_api_keys.txt";
+const AllUsers_text_file = mainDir + "/all_users.txt";
+const user_report_pdf_name = mainDir + "/User Report.pdf";
+const ALL_USERS_LIST_with_user_name_txt_file = mainDir + "/all_user_with_name.txt";
+let user_chat_history = {}; 
+let activeMessages = {}; 
+// File path to store the JSON
+const UserManagerfilePath = mainDir + '/user_manager.json';
+
+// Create primary folder
+if (!fs.existsSync(mainDir)) {
+    fs.mkdirSync(mainDir, { recursive: true });
+}
+if (!fs.existsSync(allUserChatsDir)) {
+    fs.mkdirSync(allUserChatsDir, { recursive: true });
+}
+
+function welcome_message(user_name) {
+    const welcomes_texts = [
+        `🌟 Hi ${user_name}!\nWelcome to *${BotName}*, your AI buddy on WhatsApp! Let’s make life smarter and more exciting! 🚀`,
+    ];
+
+    return welcomes_texts[Math.floor(Math.random() * welcomes_texts.length)];
+}
+
+
+
+///// STOPPING SCHEDULES //////////////////////////////////////////////////////////////////////////////
+process.on('SIGINT', () => {
+    console.log('Gracefully shutting down...');
+    schedule.gracefulShutdown().then(() => {
+        console.log('All scheduled jobs stopped.');
+        process.exit(0); // Exit process
+    });
+});
+
+process.on('SIGTERM', () => {
+    console.log('Gracefully shutting down...');
+    schedule.gracefulShutdown().then(() => {
+        console.log('All scheduled jobs stopped.');
+        process.exit(0);
+    });
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const API_KEYS_ID = Object.keys(API_KEYS_TEXT_FILES);
+API_KEYS_ID.forEach(apiId => {
+    try {
+        // Ensure the file exists, create an empty one if not
+        if (!fs.existsSync(API_KEYS_TEXT_FILES[apiId])) {
+            fs.writeFileSync(API_KEYS_TEXT_FILES[apiId], '');
+        }
+
+        const API_KEYS_TEMP_LIST_STR = fs.readFileSync(API_KEYS_TEXT_FILES[apiId], 'utf8');
+        API_KEYS_DIC[apiId] = API_KEYS_TEMP_LIST_STR.split('\n').filter(line => line.trim() !== '');
+
+        if (API_KEYS_DIC[apiId].length > 0) {
+            CURRENT_API_KEY[apiId] = API_KEYS_DIC[apiId][0];
+            console.log(`${API_KEYS_DIC[apiId].length} keys found for ${apiId}, using: ${CURRENT_API_KEY[apiId]}..`);
+        } else {
+            console.warn(`No API keys found for ${apiId}. You can add keys later.`);
+        }
+    } catch (error) {
+        console.error(`Error handling API keys for ${apiId}:`, error.message);
+    }
+});
+
+
+try {
+    const ALL_USERS_LIST_STR = fs.readFileSync(AllUsers_text_file, 'utf8');
+    ALL_USERS_LIST = ALL_USERS_LIST_STR.split('\n').filter(line => line.trim() !== '');
+        if (ALL_USERS_LIST.length > 0) {
+            console.log(`${ALL_USERS_LIST.length} pre users found.`);
+        }
+    const ALL_USERS_LIST_with_user_name_STR = fs.readFileSync(ALL_USERS_LIST_with_user_name_txt_file, 'utf8');
+    ALL_USERS_LIST_with_user_name = ALL_USERS_LIST_with_user_name_STR.split('\n').filter(line => line.trim() !== '');
+} catch (error) {
+    try {
+        fs.appendFileSync(AllUsers_text_file, "", 'utf8');
+        console.log("No All Users text file found, hence created!");
+    } catch (error) {
+        console.error("Error occured in creating All Users text file:", error);
+        process.exit(1); // Exit the process
+    }
+}
+
+for (const user_id_temp of ALL_USERS_LIST) {
+    activeMessages[user_id_temp] = 0;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+function startup_runners() {
+    const API_KEYS_ID = Object.keys(API_KEYS_TEXT_FILES);
+    API_KEYS_ID.forEach(apiId => {
+        try {
+            // Ensure the file exists, create an empty one if not
+            if (!fs.existsSync(API_KEYS_TEXT_FILES[apiId])) {
+                fs.writeFileSync(API_KEYS_TEXT_FILES[apiId], '');
+            }
+
+            const API_KEYS_TEMP_LIST_STR = fs.readFileSync(API_KEYS_TEXT_FILES[apiId], 'utf8');
+            API_KEYS_DIC[apiId] = API_KEYS_TEMP_LIST_STR.split('\n').filter(line => line.trim() !== '');
+
+            if (API_KEYS_DIC[apiId].length > 0) {
+                CURRENT_API_KEY[apiId] = API_KEYS_DIC[apiId][0];
+                console.log(`${API_KEYS_DIC[apiId].length} keys found for ${apiId}, using: ${CURRENT_API_KEY[apiId]}..`);
+            } else {
+                console.warn(`No API keys found for ${apiId}. You can add keys later.`);
+            }
+        } catch (error) {
+            console.error(`Error handling API keys for ${apiId}:`, error.message);
+        }
+    });
+
+
+    try {
+        const ALL_USERS_LIST_STR = fs.readFileSync(AllUsers_text_file, 'utf8');
+        ALL_USERS_LIST = ALL_USERS_LIST_STR.split('\n').filter(line => line.trim() !== '');
+            if (ALL_USERS_LIST.length > 0) {
+                console.log(`${ALL_USERS_LIST.length} pre users found.`);
+            }
+        const ALL_USERS_LIST_with_user_name_STR = fs.readFileSync(ALL_USERS_LIST_with_user_name_txt_file, 'utf8');
+        ALL_USERS_LIST_with_user_name = ALL_USERS_LIST_with_user_name_STR.split('\n').filter(line => line.trim() !== '');
+    } catch (error) {
+        try {
+            fs.appendFileSync(AllUsers_text_file, "", 'utf8');
+            console.log("No All Users text file found, hence created!");
+        } catch (error) {
+            console.error("Error occured in creating All Users text file:", error);
+            process.exit(1); // Exit the process
+        }
+    }
+
+    for (const user_id_temp of ALL_USERS_LIST) {
+        activeMessages[user_id_temp] = 0;
+    }
+
+    //// LOAD JSONS /////////////////////
+    let payment_recipt_sent_by_users = load_json_to_dic(payment_receipt_details_storing_json_file_name);
+    let users_wait_list_at_training_period = load_json_to_dic(users_wait_list_at_training_period_json_file_name);
+    /////////////////////////////////////
+
+    user_manager = load_user_manager(); 
+    chatHistory = createLimitedList();
+    return user_manager, chatHistory, payment_recipt_sent_by_users, users_wait_list_at_training_period
+}
+
+function updateApiTxt() {
+    try {
+        API_KEYS_ID.forEach(apiId => {
+            const content = API_KEYS_DIC[apiId].join('\n');
+            fs.writeFileSync(API_KEYS_TEXT_FILES[apiId], content, 'utf8');
+        })
+        console.log("API keys updated successfully.");
+    } catch (error) {
+        console.error("Error updating API keys file:", error);
+    }
+}
+
+function update_ALL_USERS_txt() {
+    try {
+        const content = ALL_USERS_LIST.join('\n');
+        fs.writeFileSync(AllUsers_text_file, content, 'utf8');
+        console.log("All Users text file updated successfully.");
+    } catch (error) {
+        console.error("Error updating All Users text file:", error);
+    }
+}
+
+function update_ALL_USERS_LIST_with_user_name_txt() {  //ALL_USERS_LIST_with_user_name
+    try {
+        const content = ALL_USERS_LIST_with_user_name.join('\n');
+        fs.writeFileSync(ALL_USERS_LIST_with_user_name_txt_file, content, 'utf8');
+        //console.log("All Users with names text file updated successfully.");
+    } catch (error) {
+        //console.error("Error updating All Users with names text file:", error);
+    }
+}
+/////////////
+
+/// PLANS //////////////////////////////////////////////////////////////////////////////////////////////////
+
+PLANS = {
+    "free-plan": {
+        "plan_name": 'Free Plan',
+        "messages": 10,
+        "chats": 50,
+        "image_analysis": 5,
+        "price_LKR": "Free",
+        "price_USD": "Free",
+        "duration": 365,
+        "easy_duration": "1 Year",
+        "is_paid": false,
+        "premiuim": false
+    },
+    "week-plus": {
+        "plan_name": 'Week Plus Plan',
+        "messages": 50,
+        "chats": 100,
+        "image_analysis": 20,
+        "price_LKR": "299",
+        "price_USD": "1",
+        "duration": 7,
+        "easy_duration": "1 Week",
+        "is_paid": true,
+        "premiuim": false
+    },
+    "month-plus": {
+        "plan_name": 'Month Plus Plan',
+        "messages": 50,
+        "chats": 100,
+        "image_analysis": 20,
+        "price_LKR": "999",
+        "price_USD": "3.5",
+        "duration": 30,
+        "easy_duration": "1 Month",
+        "is_paid": true,
+        "premiuim": false
+    },
+    "week-premium": {
+        "plan_name": 'Week Premium Plan',
+        "messages": 200,
+        "chats": 1000,
+        "image_analysis": 100,
+        "price_LKR": "899",
+        "price_USD": "3",
+        "duration": 7,
+        "easy_duration": "1 Week",
+        "is_paid": true,
+        "premiuim": true
+    },
+    "month-premium": {
+        "plan_name": 'Month Premium Plan',
+        "messages": 200,
+        "chats": 1000,
+        "image_analysis": 100,
+        "price_LKR": "3199",
+        "price_USD": "10",
+        "duration": 30,
+        "easy_duration": "1 Month",
+        "is_paid": true,
+        "premiuim": true
+    }
+}
+
+function give_currency_type(user_id) {
+    if (user_id.startsWith("94")) {
+        return "LKR"
+    } else {
+        return "USD"
+    }
+}
+
+function is_local_user(user_id) {
+    if (user_id.startsWith("94")) {
+        return true
+    } else {
+        return false
+    }
+}
+
+//////
+function upgrading_limit_reaching_text(user_id) {
+    const upgrading_limit_reaching__return_text = ` Ready to take things to the next level and unleash the full potential of our models 🚀
+
+    Here’s what’s waiting for you:
+    ✨ More messages – Stay connected with higher limits!
+    ✨ More chats – Get even more interactive and productive.
+    ✨ More Image Analysis - Unlock more Image Analysis per Day.
+    ✨ Exclusive features – Be the first one to explore new fatures.
+
+    Our plans start at just ${give_currency_type(user_id)} ${is_local_user(user_id) ? `${PLANS['week-plus']['price_LKR']}` : `${PLANS['week-plus']['price_USD']}`} – an unbeatable offer for unlimited possibilities! ✨
+
+    Reply *UPGRADE* or *Up* now to explore all the options and find the perfect plan for you. Let’s keep the conversation going! We’re excited to support you on your journey!`;
+    
+    return upgrading_limit_reaching__return_text;
+}
+
+//// PLAN Expiry Handling ///////////////////////////////////////////////////////////////////////////////////// 
+function isPlanExpired() {
+    const currentTime = new Date(getDateTime()); // Current time based on your `getDateTime` utility
+
+    for (const user_id in user_manager) {
+        const user = user_manager[user_id];
+        if (!user || user.user_plan === 'free-plan' || !user.activation_date) continue;
+
+        const activationDate = new Date(user.activation_date);
+        const duration = PLANS[user.user_plan]?.duration || 0;
+        const expiryDate = new Date(activationDate);
+        expiryDate.setDate(activationDate.getDate() + duration);
+
+        const timeDifference = expiryDate - currentTime;
+
+        if (timeDifference <= 0) {
+            // Notify the user about plan expiry
+            send_message(user_id, `🚨 Your plan has expired! You’ve been downgraded to the Free Plan. Upgrade again to continue enjoying premium features.`);
+            
+            // Downgrade the user's plan to "free-plan"
+            user_manager[user_id]['user_plan'] = 'free-plan';
+            user_manager[user_id]['messages'] = 0;
+            user_manager[user_id]['chats'] = 0;
+            user_manager[user_id]['image_analysis'] = 0;
+            user_manager[user_id]['activation_date'] = getDateTime(); // Reset activation date
+            user_manager[user_id]["notified_one_day_prior"] = false;
+            user_manager[user_id]["notified_one_hour_prior"] = false;
+            save_user_manager(user_manager);
+        }
+    }
+}
+
+function notifyBeforeExpiry() {
+    const currentTime = new Date(getDateTime()); // Current time based on your `getDateTime` utility
+
+    for (const user_id in user_manager) {
+        const user = user_manager[user_id];
+        if (!user || user.user_plan === 'free-plan' || !user.activation_date) continue;
+
+        const activationDate = new Date(user.activation_date);
+        const duration = PLANS[user.user_plan]?.duration || 0;
+        const expiryDate = new Date(activationDate);
+        expiryDate.setDate(activationDate.getDate() + duration);
+
+        const timeDifference = expiryDate - currentTime;
+
+        // Notify one day prior
+        if (timeDifference > 0 && timeDifference <= 24 * 60 * 60 * 1000 && !user.notified_one_day_prior) {
+            send_message(user_id, `⚠️ Reminder: Your plan will expire in less than 24 hours. Upgrade now to avoid service interruption!`);
+            user_manager[user_id].notified_one_day_prior = true;
+        }
+
+        // Notify one hour prior
+        if (timeDifference > 0 && timeDifference <= 60 * 60 * 1000 && !user.notified_one_hour_prior) {
+            send_message(user_id, `⏳ Reminder: Your plan will expire in less than 1 hour. Upgrade now to continue enjoying premium features!`);
+            user_manager[user_id].notified_one_hour_prior = true;
+        }
+
+        // Reset notifications if the plan is renewed
+        if (timeDifference <= 0) {
+            user_manager[user_id].notified_one_day_prior = false;
+            user_manager[user_id].notified_one_hour_prior = false;
+        }
+    }
+
+    save_user_manager(user_manager); // Save changes persistently
+}
+
+
+// Runs every 1 minute
+schedule.scheduleJob('*/5 * * * *', () => {
+    save_user_manager(user_manager);
+    isPlanExpired();
+    notifyBeforeExpiry();
+    saveAllChatsToFile(ALL_CHAT_HISTORY);
+    save_user_manager(user_manager);
+});
+
+// Runs every 1 hour
+schedule.scheduleJob('*/60 * * * *', () => {
+    check_for_pending_receipts();
+});
+
+// Schedule job to run at 12:00 AM every day on SriLankan Time
+schedule.scheduleJob('18 30 * * *', () => {
+    resetDailyLimits('auto');
+    save_user_manager(user_manager);
+});
+
+function check_for_pending_receipts() {
+    const users_id_list_temp = Object.keys(payment_recipt_sent_by_users);
+
+    if (users_id_list_temp.length !== 0) {
+        sendToAllAdmins(`⚠️ You have ${users_id_list_temp.length} pending receipts awaiting review. \nType *RECEIPTSTOREFER* to proceed with the review.`);
+    }
+}
+
+/// DATABASE //////////////////////////////////////////////////////////////////////////////////////////////////
+// Function to save the user_manager dictionary
+function save_user_manager(userManager) {
+    try {
+        fs.writeFileSync(UserManagerfilePath, JSON.stringify(userManager, null, 2), 'utf8');
+        //console.log("User manager saved");
+    } catch (error) {
+        console.error('Error saving user manager:', error);
+    }
+}
+
+// Function to load the user_manager dictionary
+function load_user_manager() {
+    try {
+        if (fs.existsSync(UserManagerfilePath)) {
+            const data = fs.readFileSync(UserManagerfilePath, 'utf8');
+            console.log('User manager loaded successfully!');
+            return JSON.parse(data);
+        } else {
+            console.log('No saved user manager found. Returning an empty object.');
+            return {};
+        }
+    } catch (error) {
+        console.error('No datas found in user manager', error);
+        return {};
+    }
+}
+
+
+
+function save_dic_to_json(dic_file_name,dic_file_path) {
+    try {
+        fs.writeFileSync(dic_file_path, JSON.stringify(dic_file_name, null, 2), 'utf8');
+        console.log(`${dic_file_name} saved to ${dic_file_path} successfully!`);
+    } catch (error) {
+        console.error(`Error saving ${dic_file_name} to ${dic_file_path}:`, error);
+    }
+}
+
+// Function to load the user_manager dictionary
+function load_json_to_dic(dic_file_path) {
+    try {
+        if (fs.existsSync(dic_file_path)) {
+            const data = fs.readFileSync(dic_file_path, 'utf8');
+            console.log(`Dictionary loaded from ${dic_file_path} successfully!`);
+            return JSON.parse(data);
+        } else {
+            console.log(`No saved Dictionary named ${dic_file_path} found! Returning an empty object.`);
+            return {};
+        }
+    } catch (error) {
+        console.error(`No datas found in ${dic_file_path}: `, error);
+        return {};
+    }
+}
+
+// Function to reset daily limits for all users
+function resetDailyLimits(whois) {
+    try {
+        // Loop through all users in the user_manager
+        for (const user_id in user_manager) {
+            const user = user_manager[user_id];
+            if (user) {
+                user.messages = 0; // Reset message count
+                user.chats = 0; // Reset chat count
+                user.image_analysis = 0; // Reset image analysis count
+            }
+        }
+
+        // Save the updated user manager to persist changes
+        save_user_manager(user_manager);
+        if (whois === 'auto') {
+            sendToAllAdmins(`Daily limits reseted Automatically!\nTime: ${getDateTime()}`);
+        } else {
+            sendToAllAdmins(`Daily limits reseted manually by the Admin ${whois}!\nTime: ${getDateTime()}`);
+        }
+    } catch (error) {
+        console.error("Error resetting daily limits:", error);
+    }
+}
+
+// Function to create a PDF page
+function createPDFPage(doc, data, pageNumber, pageWidth, pageHeight) {
+    // Title
+    doc.font("Helvetica-Bold").fontSize(16);
+    doc.text("User Data Report", (pageWidth / 2) - 70, 25);
+  
+    // Date and Time
+    const currentTime = new Date().toISOString().replace("T", " ").slice(0, 19);
+    doc.font("Helvetica").fontSize(8);
+    doc.text(`Generated: ${getDateTime()}`, pageWidth - 165, 10);
+  
+    // Page Number
+    doc.font("Helvetica").fontSize(8);
+    doc.text(`Page ${pageNumber}`, pageWidth - 570, pageHeight - 783);
+  
+    // Table Headers
+    const headers = [
+      "No.",
+      "Number",
+      "Username",
+      "User Plan",
+      "Messages",
+      "Chats",
+      "Img Analysis",
+      "Activated Date",
+    ];
+    const headerXPositions = [-25, 25, 105, 180, 245, 295, 355, 465];
+  
+    doc.font("Helvetica-Bold").fontSize(11);
+    let yPosition = 64; // Start height for headers
+    headers.forEach((header, index) => {
+      doc.text(header, headerXPositions[index], yPosition, { width: 120, align: "center" });
+    });
+  
+    // Table Rows
+    doc.font("Helvetica").fontSize(10);
+    yPosition += 23; // Adjust for table row space
+    const rowHeight = 17;
+    const startingRowNumber = 1 + (pageNumber - 1) * 40;
+  
+    let rowNumber = startingRowNumber;
+  
+    for (let idx = (pageNumber - 1) * 40; idx < Math.min(pageNumber * 40, Object.keys(data).length); idx++) {
+      const userId = Object.keys(data)[idx];
+      const userData = data[userId];
+
+      
+  
+      // Alternate row colors (light gray for even rows)
+      if (rowNumber % 2 === 1) {
+        doc.rect(20, yPosition - 4, pageWidth - 40, rowHeight).fill("#DDDDDD").fillColor("black");
+      }
+
+      // Alternate row colors (light gray for even rows)
+      if (userData['user_plan'] !== 'free-plan') {
+        doc.rect(20, yPosition - 4, pageWidth - 40, rowHeight).fill("#F1EACE").fillColor("black");
+      }
+
+      let user_name_display = userData.user_name;
+      if (userData.user_name.length>15) {
+        user_name_display = userData.user_name.slice(0, 15)+"..";
+      }
+  
+      const row = [
+        String(rowNumber),
+        userId,
+        user_name_display,
+        userData.user_plan,
+        String(userData.messages),
+        String(userData.chats),
+        String(userData.image_analysis),
+        String(userData.activation_date),
+      ];
+  
+      row.forEach((cell, index) => {
+        doc.text(cell, headerXPositions[index], yPosition, { width: 120, align: "center" });
+      });
+  
+      yPosition += rowHeight;
+      rowNumber += 1;
+    }
+  
+    // Reset fill color to black
+    doc.fillColor("black");
+  }
+  
+  // Create the PDF
+function createPDF(jsonData) {
+    const PDFfilePath = user_report_pdf_name;
+    const doc = new PDFDocument({ size: "letter", margin: 30 });
+    const writeStream = fs.createWriteStream(PDFfilePath);
+    doc.pipe(writeStream);
+  
+    const pageWidth = 612; // Width for Letter size in points
+    const pageHeight = 792; // Height for Letter size in points
+    const rowsPerPage = 40;
+    const totalPages = Math.ceil(Object.keys(jsonData).length / rowsPerPage);
+  
+    for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+      createPDFPage(doc, jsonData, pageNumber, pageWidth, pageHeight);
+      if (pageNumber < totalPages) {
+        doc.addPage();
+      }
+    }
+  
+    doc.end();
+    //console.log(`PDF created successfully: ${PDFfilePath}`);
+  }
+
+//// LOAD JSONS /////////////////////
+let payment_recipt_sent_by_users = load_json_to_dic(payment_receipt_details_storing_json_file_name);
+let users_wait_list_at_training_period = load_json_to_dic(users_wait_list_at_training_period_json_file_name);
+/////////////////////////////////////
+
+let user_manager = load_user_manager(); 
+
+function update_user_manager_dictionary(user_id, user_name) {
+    user_manager[user_id] = {
+        user_name: user_name,
+        user_plan: 'free-plan',
+        model: 0,
+        activation_date: getDateTime(),
+        messages: 0,
+        chats: 0,
+        image_analysis: 0,
+        notified_one_day_prior: false, // Initialize
+        notified_one_hour_prior: false // Initialize
+    };
+    save_user_manager(user_manager);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+let chatHistory = createLimitedList();
+
+////////////////////
+// WhatsApp Web.js setup
+const client = new Client({
+    authStrategy: new LocalAuth(),
+    puppeteer: {
+      args: ["--no-sandbox", "--disable-setuid-sandbox"], // Add no-sandbox flags
+    },
+  });
+
+client.on('qr', (qr) => {
+    qrcode.generate(qr, { small: true });
+});
+
+client.on('ready', () => {
+    console.log(`${BotName} is ready!`);
+});
+
+client.on('message', async (message) => {
+    const user_id = message.from.split('@')[0];
+    //return ""; // Remove first 2 slashes of this line if qutoed msg error continously occurs
+    try {
+        const aiResponse = await handle_message(message);
+
+        if (aiResponse) {
+            await message.reply(aiResponse);
+        } else if (aiResponse === "") {
+            // DO nothing
+        }
+        else {
+            console.warn("AI response was empty or undefined.");
+            await message.reply("Sorry, I couldn't process your request. Please try again later. If the issue persists, feel free to report it.");
+        }
+    } catch (error) {
+        console.error("Error with DeepInfra or WhatsApp API:", error);
+        await message.reply("Sorry, I couldn't process your request. Please try again later. If the issue persists, feel free to report it.");
+    }
+    activeMessages[user_id] -= 1;
+});
+
+client.initialize();
+
+async function sleep(seconds) {
+    return new Promise(resolve => setTimeout(resolve, seconds * 1000)); // Convert seconds to milliseconds
+  }
+
+function encodeImageToBase64_original(imagePath) {
+    const data = fs.readFileSync(imagePath);
+    return data.toString('base64');
+}
+
+// Function to encode and compress image as Base64
+async function encodeImageToBase64(imagePath, maxWidth = 500, maxHeight = 500, quality = 70) {
+    try {
+        const compressedImageBuffer = await sharp(imagePath)
+            .resize({
+                width: maxWidth,
+                height: maxHeight,
+                fit: "inside", // Maintain aspect ratio
+            })
+            .jpeg({ quality }) // Compress to JPEG
+            .toBuffer();
+
+        let base64String = compressedImageBuffer.toString("base64");
+
+        // Ensure correct padding for Base64
+        const remainder = base64String.length % 4;
+        if (remainder > 0) {
+            base64String += "=".repeat(4 - remainder);
+        }
+
+        return base64String;
+    } catch (error) {
+        sendToAllAdmins(`🚨 *Error Alert!* 🚨\nAn error occured while encoding image to base 64 version on ${getDateTime()}. Please Inversitgate\n\n*Error Message:* ${error}`)
+    }
+}
+
+async function check_for_voice_messages(user_id,user_name,user_message,message) {
+    if (message.hasMedia && (message.type === 'ptt')) {
+        try {
+            const media = await message.downloadMedia();
+            const path = `${mainDir}/voices/${user_id}_voices/${message.id.id}.${media.mimetype.split('/')[1].split(';')[0]}`;
+            let caption = message.body?.trim();
+            const dir = `${mainDir}/voices/${user_id}_voices`;
+            if (!fs.existsSync(dir)) {
+                fs.mkdirSync(dir, { recursive: true });
+            }
+            const buffer = Buffer.from(media.data, 'base64');
+            fs.writeFileSync(path, buffer);
+            return await getAudioText(path);   
+        } catch (error) {
+            sendToAllAdmins(`🚨 *Error Alert!* 🚨\nAn error occured in the function _check for voice messages_ on ${getDateTime()} while the user ${user_id} using it for analysing audio message. Please Inversitgate\n\n*Error Message:* ${error}`)
+        }   
+    } else {
+        return "NONE"
+    }
+}
+
+async function check_for_any_files(user_id, user_name, user_message, message) {
+    if (message.hasMedia && (message.type === 'document')) { // message._data.filename.endsWith('.zip')
+        try {
+            if (message._data.filename.endsWith('.zip') && adminInIputingZIP[user_id] === "1") {
+                return await handleZipSavingAndExtracting(user_id,message);
+            }
+            const media = await message.downloadMedia();
+            const path = `${mainDir}/User_Files/${user_id}_files/${message.id.id}_${message._data.filename}`;
+            console.log(`Media detected: ${message.hasMedia}, Type: ${message.type}, Filename: ${message.filename}`);
+
+            const dir = `${mainDir}/User_Files/${user_id}_files`;
+            if (!fs.existsSync(dir)) {
+                fs.mkdirSync(dir, { recursive: true });
+            }
+
+            const buffer = Buffer.from(media.data, 'base64');
+            fs.writeFileSync(path, buffer);
+            return "Currently other files types not supported";
+        } catch (error) {
+            sendToAllAdmins(`🚨 *Error Alert!* 🚨\nAn error occurred in the function _check_for_any_files_ on ${getDateTime()} while the user ${user_id} was sending a file. Please investigate.\n\n*Error Message:* ${error}`);
+            return "Currently other files types not supported"
+        }
+    } else {
+        return "NONE";
+    }
+}
+
+
+async function check_for_images(user_id,user_name,user_message,message) {
+    if (message.hasMedia && message.type === 'image') {
+        try {
+            
+            if (upgradeUsersPendingToSendImages.includes(user_id)) {
+                const media = await message.downloadMedia();
+                const path = `${mainDir}/images/${user_id}_images_receipt/${message.id.id}.${media.mimetype.split('/')[1]}`;
+                
+                // Ensure the directory exists
+                let caption = message.body?.trim();
+                const dir = `${mainDir}/images/${user_id}_images_receipt`;
+                if (!fs.existsSync(dir)) {
+                    fs.mkdirSync(dir, { recursive: true });
+                }
+            
+                // Write the media file
+                await sleep(0.5);
+                fs.writeFileSync(path, media.data, 'base64');
+                console.log(`Media sent by ${user_id} saved to ${path}`);
+                await sleep(0.5);
+                send_message(user_id, "✅ We’ve received your payment proof! Our team will review it shortly. \nYou’ll receive a confirmation within 3 hours. \n\nThank you for your patience!");
+                payment_recipt_sent_by_users[user_id] = {};
+                payment_recipt_sent_by_users[user_id]['plan'] = userIntiatedPlan[user_id];
+                payment_recipt_sent_by_users[user_id]['img_path'] = path;
+                payment_recipt_sent_by_users[user_id]['time'] = getDateTime();
+                upgradeUsersPendingToSendImages = upgradeUsersPendingToSendImages.filter(id => id !== user_id);
+                upgradeUsersPendingToSendImagesTimings = upgradeUsersPendingToSendImagesTimings.filter(id => id !== user_id);
+                save_dic_to_json(payment_recipt_sent_by_users,payment_receipt_details_storing_json_file_name);  // ${give_currency_type(user_id)} is_local_user(user_id) ? 'price_LKR' : 'price_USD'
+                for (const admin_id_temp of authorized_users) {
+                    await sleep(1);
+                    send_image(admin_id_temp, path, `⚠️ Proof of payment sent by ${user_id}\nPlan: *${PLANS[userIntiatedPlan[user_id]]['plan_name']}*\nPrice: *${give_currency_type(user_id)} ${PLANS[userIntiatedPlan[user_id]][is_local_user(user_id) ? 'price_LKR' : 'price_USD']}*\nSent On: ${getDateTime()}\n\nPlease review the payment as soon as possible. (Sent to All Admins)`);
+                    delete userIntiatedPlan[user_id];
+                }
+                return "RECEIPT"
+            } else if (current_bug_reporting.includes(user_id)) {
+                const media = await message.downloadMedia();
+                const path = `${mainDir}/images/${user_id}_images_bugreport/${message.id.id}.${media.mimetype.split('/')[1]}`;
+                
+                // Ensure the directory exists
+                let caption = message.body?.trim();
+                const dir = `${mainDir}/images/${user_id}_images_bugreport`;
+                if (!fs.existsSync(dir)) {
+                    fs.mkdirSync(dir, { recursive: true });
+                }
+            
+                // Write the media file
+                await sleep(0.5);
+                fs.writeFileSync(path, media.data, 'base64');
+                console.log(`Media sent by ${user_id} saved to ${path}`);
+                for (const admin_id_temp of authorized_users) {
+                    await sleep(0.5);
+                    if (caption) {
+                        send_image(
+                            admin_id_temp,
+                            path,
+                            `🚨 *Bug Report Alert!* 🚨\n\n🛠️ *Reported By:* ${user_id} (${user_name})\n📝 *Bug Details:* ${caption}\n📅 *Reported On:* ${getDateTime()}\n\n✅ *Status:* Sent to All Admins.`
+                        );                    
+                    } else {
+                            send_image(
+                                admin_id_temp,
+                                path,
+                                `🚨 *Bug Report Alert!* 🚨\n\n🛠️ *Reported By:* ${user_id} (${user_name})\n📅 *Reported On:* ${getDateTime()}\n\n✅ *Status:* Sent to All Admins.`
+                            );                    }
+                }
+                if (!caption) {
+                    return "Image Report"
+                } else {
+                    return caption
+                }
+            } else {
+                let user_plan_tariff = PLANS[user_manager[user_id]['user_plan']];
+                let user_stats = user_manager[user_id];
+                if (user_stats['image_analysis'] >= user_plan_tariff['image_analysis']) {
+                    send_message(user_id, `⚠️ You have reached your Image Analysis limits for today. \nTo unlock more, try *UPGRADE* or *Up* your plan for additional Image Analyses per day.`);
+                    await sleep(1);
+                    send_message(user_id,upgrading_limit_reaching_text(user_id));
+                    return "ERROR"
+                }
+
+                const media = await message.downloadMedia();
+                const path = `${mainDir}/images/${user_id}_images/${message.id.id}.${media.mimetype.split('/')[1]}`;
+                
+                // Ensure the directory exists
+                let caption = message.body?.trim();
+                const dir = `${mainDir}/images/${user_id}_images`;
+                if (!fs.existsSync(dir)) {
+                    fs.mkdirSync(dir, { recursive: true });
+                }
+            
+                // Write the media file
+                await sleep(0.5);
+                fs.writeFileSync(path, media.data, 'base64');
+                console.log(`Media sent by ${user_id} saved to ${path}`);
+                await sleep(0.5);
+
+                if (!user_chat_history[user_id]) {
+                    user_chat_history[user_id] = [];
+                }
+
+                
+                //send_message(user_id,"Image analysis not supported yet, Stay tuned for updates!")
+                //return "ERROR"
+                send_message(user_id,"Analyzing Image...🔍");
+                if (!caption) {
+                    caption = "Whats here?";
+                }
+                const base64Image = await encodeImageToBase64(path);
+                await sleep(0.5);
+                const my_img = `data:image/jpeg;base64,${base64Image}`;
+                user_chat_history[user_id].push({ role: "user", content: [{ type: "text", text: caption },{type: "image_url", image_url: {url: my_img,"detail": "low"}}] });
+                user_manager[user_id]['image_analysis'] += 1;
+                await sleep(0.5);
+                return "IMAGEANALYSIS_PROGRAM"
+                //send_message(user_id,"Image analysis not supported yet, Stay tuned for updates!")
+                
+            }
+            
+            
+        } catch (error) {
+            console.error('Failed to save media:', error);
+            send_message(user_id, "❌ Oops! I was unable to process the image. Please try again in a moment! 😔");
+            return "ERROR"
+        }
+        
+    } else {
+        return "NONE"
+    }
+}
+
+async function handle_message(message) {
+    try {
+        let user_message = message.body?.trim();
+        const user_id = message.from.split('@')[0];
+        const contact = await client.getContactById(message.from);
+        const user_name = contact.pushname || "Unknown User"; // Get the user's name or default to "Unknown User" if not available
+        let repliedMessageContent = "None";
+
+        if (isBotPaused) {
+            if (authorized_users.includes(user_id)) {
+                send_message(user_id,`⚠️ Bot is paused, replying only for ADMINS!`);
+                await sleep(1);
+            } else {
+                return "🛠️ Bot is currently under maintenance. Please try again in a few seconds. T hank you for your patience!"
+            }
+        }
+
+        if (!ALL_USERS_LIST.includes(user_id)) {
+            ALL_USERS_LIST.push(user_id);
+            activeMessages[user_id] = 0;
+            ALL_USERS_LIST_with_user_name.push(`${user_id} - ${user_name}`);
+            update_ALL_USERS_txt();
+            update_ALL_USERS_LIST_with_user_name_txt();
+            update_user_manager_dictionary(user_id,user_name);
+            send_message(user_id,welcome_message(user_name));
+            await sleep(1.5);
+            send_message(user_id,"👉 Type COMMANDS or C to discover all the cool things I can do. Let’s get started! 🚀")
+        }
+
+        if (users_who_asked_to_send_as_image[user_id]) {
+            if (['yes', 'yeah', 'yup', 'y', 'ye'].includes(user_message.toLowerCase())) {
+                try {
+                    const file_name = `${mainDir}/htmls/${user_id}_htmls/${users_who_asked_to_send_as_image[user_id].slice(0, 10)}.html`;
+                    const dir = `${mainDir}/htmls/${user_id}_htmls`;
+        
+                    if (!fs.existsSync(dir)) {
+                        fs.mkdirSync(dir, { recursive: true });
+                    }
+        
+                    let output_generated_1 = generateHtmlFromLatex(users_who_asked_to_send_as_image[user_id], file_name);
+                    await sleep(0.5);
+                    if (output_generated_1 === "ERROR") {
+                        return "Oops! An error occurred while generating your file. Please try again later.";
+                    }
+                    await send_file(user_id, file_name);
+                    return "";
+                } catch (error) {
+                    console.error("Error processing file:", error);
+                    return "😞 Oops! An error occurred while generating your file. Please try again later.";
+                } finally {
+                    delete users_who_asked_to_send_as_image[user_id];
+                }
+            } else {
+                delete users_who_asked_to_send_as_image[user_id];
+            }
+        }
+        
+
+
+        // Check if the message is a reply to an earlier message
+        if (message.hasQuotedMsg) {
+            try {
+                if (authorized_users.includes(user_id)) {
+                    const quotedMessage = await message.getQuotedMessage(); // Fetch the quoted message
+                    repliedMessageContent = quotedMessage.body; // Get the content of the quoted message
+                    if (repliedMessageContent.startsWith("⚠️ Proof of payment sent by")) {
+                        const userIdToBePromoted = repliedMessageContent.split("\n")[1];
+                        if (payment_recipt_sent_by_users[userIdToBePromoted]) {
+                            let text3 = `🎉 *User Promotion Details* 🎉\n\nUser: ${userIdToBePromoted}\nPlan to be upgraded: *${payment_recipt_sent_by_users[userIdToBePromoted]['plan']}*\nPrice: *${give_currency_type(user_id)} ${PLANS[payment_recipt_sent_by_users[userIdToBePromoted]['plan']][is_local_user(user_id) ? 'price_LKR' : 'price_USD']}*\nSent On: ${payment_recipt_sent_by_users[userIdToBePromoted]['time']}`;
+                            send_message(user_id, `${text3}\n\n🔑 *Current Plan:* ${user_manager[userIdToBePromoted]['user_plan']}`);
+                            await sleep(0.5);
+                            adminHandlingReciptApproval[user_id] = "11";
+                            if (!upgrading_details_given_by_admin[user_id]) {
+                                upgrading_details_given_by_admin[user_id] = [];
+                            }
+                            upgrading_details_given_by_admin[user_id].push(userIdToBePromoted);
+                            upgrading_details_given_by_admin[user_id].push(payment_recipt_sent_by_users[userIdToBePromoted]['plan']);
+                            return "Do you like to approve this user (y/n)?"
+                        } else {
+                            return `⚠️ This receipt has already been handled!`;
+                        }
+                    } else if (repliedMessageContent.startsWith("🚨 *Bug Report Alert!* 🚨")) {
+                        try {
+                            // Find the starting index of "Reported By:"
+                            let startIndex = repliedMessageContent.indexOf("Reported By:") + "Reported By:".length + 2; // +1 for the space after ":"
+
+                            // Extract the next 11 characters (the phone number)
+                            let user_number = repliedMessageContent.slice(startIndex, startIndex + 11);
+                            console.log(`caught user number: '${user_number}'`);
+                            if (['yes','yeah','yup','y','ye'].includes(user_message.toLowerCase())) {
+                                sendBugReportAppreciation(user_number);
+                                return `🎉 User ${user_number} has been awarded *5 additional messages* with the 4o model for their bug report! 🙌`;
+                            }
+                        } catch (error) {
+                            console.log(`Error ${error}`);
+                            return `Error Occured in Approving Bug Report\nError ${error}`
+                        }
+
+                    }
+                    
+                }
+            } catch (error) {
+                console.log(`An Error Occured with Quoted Message`);
+                return ""
+            }
+            //console.log(`User replied to an earlier message: ${repliedMessageContent}`);
+        }
+
+        let voice_verification = await check_for_voice_messages(user_id,user_name,user_message,message);
+        let file_verification = await check_for_any_files(user_id,user_name,user_message,message);
+        if (file_verification !== "NONE") {
+            return file_verification;
+        }
+        
+        if (voice_verification === "NONE") {
+
+        } else if (voice_verification === "ERROR") {
+            return ""
+        } else {
+            user_message =  voice_verification;
+        }
+
+        let images_verification = await check_for_images(user_id,user_name,user_message,message);
+        if (images_verification === "RECEIPT") {
+            return ""
+        } else if (images_verification === "ERROR") {
+            return ""
+        } else if (images_verification === "NONE") {
+
+        } else {
+            user_message = images_verification;
+        }
+        // Save last 50 chats here
+        chatHistory.append([getDateTime(),user_id,user_message]);
+
+        if (adminInDeletingUser[user_id]) {
+            if (user_message.length === 11 && user_message.startsWith("94")) {
+                if (ALL_USERS_LIST.includes(user_message)) {
+                    ALL_USERS_LIST = ALL_USERS_LIST.filter(id => id !== user_message);
+                    delete adminInDeletingUser[user_id];
+                    return `${user_message} removed successfully!`
+                } else {
+                    delete adminInDeletingUser[user_id];
+                    return `⚠️ Above user not found!`
+                }
+            } else {
+                delete adminInDeletingUser[user_id];
+                return "❌ Invalid Number!"
+            }
+        }
+
+        if (adminInSendingMessageToOneUser[user_id]) {
+            if (adminInSendingMessageToOneUser[user_id] === "1") {
+                if (ALL_USERS_LIST.includes(user_message)) {
+                    adminInSendingMessageToOneUser[user_id] = "11";
+                    adminInSendingMessageToOneUserDetails[user_id] = [];
+                    adminInSendingMessageToOneUserDetails[user_id].push(user_message);
+                    return `💬 Please type the message need to be sent:`;
+                } else {
+                    delete adminInSendingMessageToOneUser[user_id];
+                    return `⚠️ User number ${user_message} not in ALL USERS LIST`;
+                }
+            } else if (adminInSendingMessageToOneUser[user_id] === "11") {
+                if (user_message) {
+                    await sleep(0.5);
+                    adminInSendingMessageToOneUserDetails[user_id].push(user_message);
+                    send_message(user_id,`Message to be sent👇\n\n${user_message}`);
+                    await sleep(0.5);
+                    adminInSendingMessageToOneUser[user_id] = "111";
+                    return `Are you sure to send this to the user ${adminInSendingMessageToOneUserDetails[user_id][0]} (y/n)?`;
+                } else {
+                    return `⚠️ I received an empty message\nPlease type in the message again!`;
+                }
+            } else if (adminInSendingMessageToOneUser[user_id] === "111") {
+
+                if (user_message.toLowerCase() === "yes" || user_message.toLowerCase() === "y") {
+                    try {
+                        await sleep(0.5);
+                        send_message(adminInSendingMessageToOneUserDetails[user_id][0],adminInSendingMessageToOneUserDetails[user_id][1]);
+                        await sleep(1);
+                        send_message(user_id, `✅ Message sent to user`);
+                    } catch (error) {
+                        await sleep(1);
+                        sendToAllAdmins(`❌ An error occured while the admin ${user_id} tried to send message to the user ${adminInSendingMessageToOneUserDetails[user_id][0]}!`);
+                    }
+                }
+                delete adminInSendingMessageToOneUser[user_id];
+                delete adminInSendingMessageToOneUserDetails[user_id];
+                return ""
+            }
+        }
+
+        if (adminInAddingAPIKeys[user_id]) {
+            if (user_message.toLowerCase() === "cancel") {
+                delete adminInAddingAPIKeys[user_id];
+                return "❌ API key addition has been aborted!";
+            }
+            if (adminInAddingAPIKeys[user_id] === "1") {
+                if (Number.isInteger(Number(user_message))) {
+                    if (Number(user_message) <= API_KEYS_ID.length && Number(user_message) > 0) {
+                        let user_index = Number(user_message)-1;
+                        adminInAddingAPIKeys[user_id] = "11";
+                        adminAddingAPIKeysType[user_id] = API_KEYS_ID[user_index];
+                        return "🔑 Please enter the API key:";
+                    }
+                }
+            } else if (adminInAddingAPIKeys[user_id] === "11") {
+                if (user_message.length > 15) {
+                    if (API_KEYS_DIC[adminAddingAPIKeysType[user_id]].includes(user_message)) {
+                        delete adminInAddingAPIKeys[user_id];
+                        return "⚠️ API key already exists!";
+                    } else {
+                        delete adminInAddingAPIKeys[user_id];
+                        API_KEYS_DIC[adminAddingAPIKeysType[user_id]].push(user_message);
+                        CURRENT_API_KEY[adminAddingAPIKeysType[user_id]] = user_message;
+                        updateApiTxt()
+                        return "✅ API key added successfully!";
+                    }
+                } else {
+                    return "⚠️ Invalid API key! Please check and try again.";
+                }
+            }
+        }
+
+        
+
+
+
+        if (activeMessages[user_id] > 0) {
+            activeMessages[user_id] += 1;
+            sendToAllAdmins(`🚨 ${user_id} tried to generate response before previous response is completed!`);
+            return "⏳ Please wait until the previous response is completed.";
+        } else {
+            activeMessages[user_id] += 1;
+        }
+
+        
+
+        if (!user_message) {
+            sendToAllAdmins(`🚨 *Error Alert!* 🚨\n${user_id} received an empty message error!`)
+            return "";
+        }
+
+
+        if (adminHandlingReciptApproval[user_id]) {
+            const users_id_list_temp = Object.keys(payment_recipt_sent_by_users);
+            
+            if (adminHandlingReciptApproval[user_id] === "1") {
+                if (Number.isInteger(Number(user_message))) {
+                    if (Number(user_message) <= users_id_list_temp.length && Number(user_message) > 0) {
+                        let user_index = Number(user_message)-1;
+                        let caption2 = `👤 *User:* ${users_id_list_temp[user_index]}\n📋 *Plan:* ${payment_recipt_sent_by_users[users_id_list_temp[user_index]]['plan']}\n💰 *Price:* ${give_currency_type(user_id)} ${PLANS[payment_recipt_sent_by_users[users_id_list_temp[user_index]]['plan']][is_local_user(user_id) ? 'price_LKR' : 'price_USD']}\n📅 *Sent on:* ${payment_recipt_sent_by_users[users_id_list_temp[user_index]]['time']}`;
+                        send_image(user_id,payment_recipt_sent_by_users[users_id_list_temp[user_index]]['img_path'],caption2);
+                        await sleep(0.5);
+                        send_message(user_id, `📊 *User's Current Plan:* ${user_manager[users_id_list_temp[user_index]]['user_plan']}`);
+                        await sleep(0.5);
+                        adminHandlingReciptApproval[user_id] = "11";
+                        if (!upgrading_details_given_by_admin[user_id]) {
+                            upgrading_details_given_by_admin[user_id] = [];
+                        }
+                        upgrading_details_given_by_admin[user_id].push(users_id_list_temp[user_index]);
+                        
+                        upgrading_details_given_by_admin[user_id].push(payment_recipt_sent_by_users[users_id_list_temp[user_index]]['plan']);
+                        //console.log(adminHandlingReciptApproval[user_id]);
+                        return "Do you like to approve this user (y/n)?"
+                    } else {
+                        delete adminHandlingReciptApproval[user_id];
+                    }
+                } else {
+                    delete adminHandlingReciptApproval[user_id];
+                }
+            } else if (adminHandlingReciptApproval[user_id] === "11") {
+                if (user_message.toLowerCase() === "yes" || user_message.toLowerCase() === "y") {
+                    let upgrading_user_num = upgrading_details_given_by_admin[user_id][0];
+                    let upgrading_plan_name = upgrading_details_given_by_admin[user_id][1];        
+                    upgradingThePlan(upgrading_plan_name,upgrading_user_num);
+                    delete upgrading_user_temp_admin[user_id];
+                    delete upgrading_details_given_by_admin[user_id];
+                    delete payment_recipt_sent_by_users[upgrading_user_num];
+                    delete adminHandlingReciptApproval[user_id];
+                    save_dic_to_json(payment_recipt_sent_by_users,payment_receipt_details_storing_json_file_name);
+                    return `✅ User ${upgrading_user_num} has been successfully upgraded to *${PLANS[upgrading_plan_name]['plan_name']}* plan!`;
+                } else if (user_message.toLowerCase() === "no" || user_message.toLowerCase() === "n") {
+                    let upgrading_user_num = upgrading_details_given_by_admin[user_id][0];
+                    let msg2 = `❌ *Your payment receipt has been rejected by our system!*\nUnfortunately, we couldn't verify your payment at this time. If you believe this is an error, please contact the Admin at ${botAdminContactDetails}.\n\nWe appreciate your patience and understanding!`;
+                    delete upgrading_user_temp_admin[user_id];
+                    delete upgrading_details_given_by_admin[user_id];
+                    delete payment_recipt_sent_by_users[upgrading_user_num];
+                    delete adminHandlingReciptApproval[user_id];
+                    send_message(upgrading_user_num,msg2);
+                    save_dic_to_json(payment_recipt_sent_by_users,payment_receipt_details_storing_json_file_name);
+                    return `❌ *Receipt was rejected!*\nThe user ${upgrading_user_num} has been notified about this.`;
+                } else {
+                    delete adminHandlingReciptApproval[user_id];
+                }
+            }
+        }
+
+
+        if (admin_iniated_to_send_all_users[user_id]) {
+            if (admin_iniated_to_send_all_users[user_id] === "1") {
+                admin_iniated_to_send_all_users[user_id] = "11";
+                admin_iniated_message[user_id] = user_message
+                let return_text5 = `📢 *_SEND MESSAGE TO ALL USERS_*\n\nUsers count: ${ALL_USERS_LIST.length}\n\n`;
+                return_text5 += `Message:\n${admin_iniated_message[user_id]}\n\nAre you sure you want to send this message to all users? (y/n)\n(Note: This could take up to ${(ALL_USERS_LIST.length) * 0.5} seconds!)`;
+                return return_text5;
+            } else if (admin_iniated_to_send_all_users[user_id] === "11") {
+                delete admin_iniated_to_send_all_users[user_id];
+                if (user_message.toLowerCase() === "yes" || user_message.toLowerCase() === "y") {
+                    send_message(user_id, `🚀 *Sending your message...*`);
+                    let grab_text =  send_a_message_to_all_users(user_id,admin_iniated_message[user_id]);
+                    delete admin_iniated_message[user_id];
+                    return grab_text
+                } else {
+                    delete admin_iniated_message[user_id];
+                    return "⚠️ *Sending aborted!*";
+                }
+            }   
+        }
+
+        if (userUpgradingPrompts[user_id]) {
+            if (userUpgradingPrompts[user_id] === "1") {
+
+                // TESTING VERSION CODES
+                if (['yes','yeah','yup','y','ye'].includes(user_message.toLowerCase())) {
+                    if (users_wait_list_at_training_period[user_id]) {
+                        return "You’ve already joined the waitlist!!\nOnce we officially launch, you’ll receive exclusive bonus offers. Stay tuned! 😊";
+                    }
+                    users_wait_list_at_training_period[user_id] = [user_name,getDateTime()];
+                    delete userUpgradingPrompts[user_id];
+                    save_dic_to_json(users_wait_list_at_training_period,users_wait_list_at_training_period_json_file_name);
+                    sendToAllAdmins(`User ${user_id} have joined the waitlist 🎉\nWaitlist users count: *${Object.keys(users_wait_list_at_training_period).length}*`);
+                    return "🎉 You’ve successfully joined the waitlist! 🚀\nOnce we officially launch, you’ll receive exclusive bonus offers. Stay tuned! 😊";
+                }                
+
+                if (PLANS[user_message]) {
+                    userIntiatedPlan[user_id] = user_message; 
+                    userUpgradingPrompts[user_id] = "11";
+                    let return_text3 = `You Choosed: \n *${PLANS[user_message]['plan_name']} ✨*\n\n · 💬 ${PLANS[user_message]['messages']} Messages\n · 💻 ${PLANS[user_message]['chats']} Chats\n · 🖼️ ${PLANS[user_message]['image_analysis']} Image Analyses\n · 🏷️ Price: ${give_currency_type(user_id)} ${PLANS[user_message][is_local_user(user_id) ? 'price_LKR' : 'price_USD']}\n · 🕒 Duration: ${PLANS[user_message]['easy_duration']}`;
+                    send_message(user_id,return_text3);
+                    await sleep(1);
+                    return `✅ *Do you want to proceed with this plan?*  
+Reply with *YES* or *NO* (y/n)`
+                } else if (['1','2','3','4'].includes(user_message)) {
+                    const keys = Object.keys(PLANS);
+                    let plan_name_temp = keys[parseInt(user_message)];
+                    userIntiatedPlan[user_id] = plan_name_temp;
+                    userUpgradingPrompts[user_id] = "11";
+                    let return_text3 = `You Choosed: \n *${PLANS[plan_name_temp]['plan_name']}* ✨\n\n · 💬 ${PLANS[plan_name_temp]['messages']} Messages\n · 💻 ${PLANS[plan_name_temp]['chats']} Chats\n · 🖼️ ${PLANS[plan_name_temp]['image_analysis']} Image Analyses\n · 🏷️ Price: ${give_currency_type(user_id)} ${PLANS[plan_name_temp][is_local_user(user_id) ? 'price_LKR' : 'price_USD']}\n · 🕒 Duration: ${PLANS[plan_name_temp]['easy_duration']}`;
+                    send_message(user_id,return_text3);
+                    await sleep(1);
+                    return `✅ *Do you want to proceed with this plan?*  
+Reply with *YES* or *NO* (y/n)`
+                } else {
+                    delete userUpgradingPrompts[user_id];
+                }
+            } else if (userUpgradingPrompts[user_id] === "11") {
+                delete userUpgradingPrompts[user_id];
+                if ((user_message.toLowerCase() === "yes" || user_message.toLowerCase() === "y")) {
+                    user_payment_recieving_check[user_id] = true;
+                    upgradeUsersPendingToSendImages.push(user_id);
+                    upgradeUsersPendingToSendImagesTimings.push(getDateTime());
+                    sendToAllAdmins(`User *${user_id}* (${user_name}) has initiated the ${PLANS[userIntiatedPlan[user_id]]['plan_name']} Upgrade.\nWhen user sends any image it will be forwarded!`);
+                    return `✅ Your request for the *${PLANS[userIntiatedPlan[user_id]]['plan_name']}* has been received.\nPlease transfer the payment to the follwing account.\n\n${transferAccountDetails}\nAmount: ${give_currency_type(user_id)} ${PLANS[userIntiatedPlan[user_id]][is_local_user(user_id) ? 'price_LKR' : 'price_USD']}\n\n💳 Please send your payment proof as an image to proceed.`
+                } else {
+                    return "Upgrade canceled!"
+                }
+            }
+        }
+
+        if (upgrading_user_temp_admin[user_id]) {
+            if (user_message.toLowerCase() === "cancel") {
+                delete upgrading_user_temp_admin[user_id];
+                console.log("Cancelling promoting...");
+                return "Upgrading aborted!"
+            }
+            if (upgrading_user_temp_admin[user_id] === "1") {
+                if (user_message.length === 11 && user_message.startsWith("94")) {
+                    upgrading_details_given_by_admin[user_id] = [];
+                    upgrading_details_given_by_admin[user_id].push(user_message);
+                    upgrading_user_temp_admin[user_id] = "11";
+                    let return_text = "Enter the plan needs to be Upgraded\n\n";
+                    send_message(user_id, `👤 *User found with the following existing plans:* \n${await send_usage(user_message, "USER")}`);
+                    Object.keys(PLANS).forEach((key, index) => {
+                        return_text += `${index + 1}. ${PLANS[key]['plan_name']}\n`;
+                      });
+                    await sleep(0.5);
+                    return return_text
+                } else {
+                    return "⚠️ *Please enter a valid number!*";
+                }
+            } else if (upgrading_user_temp_admin[user_id] === "11") {
+                        if (PLANS[user_message]) {
+                            upgrading_details_given_by_admin[user_id].push(user_message);
+                            let return_text2 = `🔹 *User Number*: ${upgrading_details_given_by_admin[user_id][0]}\n`;
+                            return_text2 += `🔹 *Plan to be Upgraded*: ${upgrading_details_given_by_admin[user_id][1]}\n`;
+                            return_text2 += `🔹 *Price*: ${give_currency_type(user_id)} ${PLANS[upgrading_details_given_by_admin[user_id][1]][is_local_user(user_id) ? 'price_LKR' : 'price_USD']}\n`;
+                            return_text2 += `\nAre you sure you want to upgrade? (y/n)`;                            
+                            upgrading_user_temp_admin[user_id] = "111";
+                            return return_text2
+                        } else if (['1','2','3','4','5'].includes(user_message)) {
+                            const keys = Object.keys(PLANS);
+                            let plan_name_temp = keys[parseInt(user_message)-1];
+                            upgrading_details_given_by_admin[user_id].push(plan_name_temp);
+                            let return_text2 = `🔹 *User Number*: ${upgrading_details_given_by_admin[user_id][0]}\n`;
+                            return_text2 += `🔹 *Plan to be Upgraded*: ${upgrading_details_given_by_admin[user_id][1]}\n`;
+                            return_text2 += `🔹 *Price*: ${give_currency_type(user_id)} ${PLANS[upgrading_details_given_by_admin[user_id][1]][is_local_user(user_id) ? 'price_LKR' : 'price_USD']}\n`;
+                            return_text2 += `\nAre you sure you want to upgrade? (y/n)`; 
+                            upgrading_user_temp_admin[user_id] = "111";
+                            return return_text2
+                        } else {
+                            return "⚠️ Please enter a valid plan!";
+                        }
+                        } else if (upgrading_user_temp_admin[user_id] === "111") {
+                            try {
+                                if (user_message.toLowerCase() === "yes" || user_message.toLowerCase() === "y") {
+                                    let upgrading_user_num = upgrading_details_given_by_admin[user_id][0];
+                                    let upgrading_plan_name = upgrading_details_given_by_admin[user_id][1];
+                            
+                                    // Check if user exists and upgrading plan is valid
+                                    if (!user_manager[upgrading_user_num]) {
+                                        throw new Error(`User with ID ${upgrading_user_num} not found.`);
+                                    }
+                                    upgradingThePlan(upgrading_plan_name,upgrading_user_num);
+                                    delete upgrading_user_temp_admin[user_id];
+                                    delete upgrading_details_given_by_admin[user_id];
+                                    return `User ${upgrading_user_num} has been successfully upgraded to the *${PLANS[upgrading_plan_name]['plan_name']}* plan! 🚀`;
+                                } else {
+                                    delete upgrading_user_temp_admin[user_id];
+                                    return "Upgrading canceled!";
+                                }
+                            } catch (error) {
+                                console.error("Error occurred:", error.message);
+                                return `An error occurred: ${error.message}`;
+                            }
+                            
+                        }
+        }
+
+        if (login_ready_users.includes(user_id)) {
+            if (user_message === ADMIN_PASSWORD) {
+                authorized_users.push(user_id);
+                login_ready_users = login_ready_users.filter(id => id !== user_id);
+                return "✅ Access granted! You are now an admin. Welcome aboard! 🎉\nSend 'ADMINCOMMANDS' to view all available Admin commands.";
+            } else {
+
+
+                login_ready_users = login_ready_users.filter(id => id !== user_id);
+                return "Wrong password!";
+            }
+        }
+
+        if (current_bug_reporting.includes(user_id)) {
+            const timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Colombo" });
+            const report = `${timestamp} - ${user_id}:\n${user_message}\n\n`;
+
+            try {
+                await appendBugReport(bug_reporter_text_path, report);
+                current_bug_reporting = current_bug_reporting.filter(id => id !== user_id);
+                if (!message.hasMedia){
+                    sendToAllAdmins(`🚨 *Bug Report Alert!* 🚨\n\n🛠️ *Reported By:* ${user_id} (${user_name})\n📝 *Bug Details:* ${user_message}\n📅 *Reported On:* ${getDateTime()}\n\n✅ *Status:* Sent to All Admins.`);
+                }
+                return `✅ Thank you for your bug report, ${user_name}! 🎉\n\nIf your report is validated as a genuine issue, you'll receive *5 additional messages with GPT-4o* as a token of appreciation. Stay tuned and thank you for helping us improve *${BotName}* 🙌`;
+            } catch (error) {
+                console.error("Error saving bug report:", error);
+                sendToAllAdmins(`🚨 *Error Alert!* User ${user_id} faced an issue while submitting a bug report.`);
+                return "❌ Oops! Something went wrong while saving your bug report. 😔 Please try again later or contact support if the issue persists.";
+            }
+        }
+
+        //let commandsPrint = `*NEWCHAT* or *N* - Start a New Chat\n*USAGE* or *U* - Check your Usage\n*BUGREPORT* - Report any bugs you faced`;
+        let commandsPrint = `✨ *${BotName} Commands* ✨
+
+1️⃣ *Start a New Chat*  
+     🟢 Command: _NEWCHAT_ or _N_
+
+2️⃣ *Check Your Usage*  
+     📊 Command: _USAGE_ or _U_
+
+3️⃣ *Report a Bug*  
+     🐞 Command: _BUGREPORT_ or _B_
+
+4️⃣ *Upgrade Your Plan*  
+     🚀 Command: _UPGRADE_ or _Up_
+
+5️⃣ *View All Plans*  
+     💳 Command: _PLANS_ or _P_
+     
+6️⃣ *Settings*  
+     ⚙️ Command: _SETTINGS_ or _S_`;
+
+
+        // Command handling logic
+        const commands = {
+            START: () => "Hello, How can I help you today?\nSend COMMANDS or HELP to get all commands you can try!",
+            COMMANDS: () => commandsPrint,
+            C: () => commandsPrint,
+            c: () => commandsPrint,
+            HELP: () => `*START* - Start Message\n*NEWCHAT* - Start a New Chat\n*BUGREPORT* - Report any bugs you faced\n*LOGIN* - Login as Admin\nLOGOUT - Logout`,
+            LOGIN: () => handleLogin(user_id),
+            LOGOUT: () => handleLogout(user_id),
+            NEWCHAT: () => handleNewChat(user_id),
+            N: () => handleNewChat(user_id),
+            n: () => handleNewChat(user_id),
+            BUGREPORT: () => handleBugReport(user_id),
+            B: () => handleBugReport(user_id),
+            b: () => handleBugReport(user_id),
+            ADMINCOMMANDS: () => handleAdminCommands(user_id),
+            REMAININGAPIS: () => handleREMAININGAPIS(user_id),
+            SENDBUGREPORT: () => handleSEND_BUGREPORT(user_id,message),
+            USAGE: () => send_usage(user_id,user_name),
+            U: () => send_usage(user_id,user_name),
+            u: () => send_usage(user_id,user_name),
+            CM: () => change_model(user_id),
+            Cm: () => change_model(user_id),
+            cM: () => change_model(user_id),
+            cm: () => change_model(user_id),
+            STATS: () => send_chat_history_to_admin(user_id),
+            USERS: () => sendAllUsersListToAdmin(user_id),
+            USERREPORT: () => sendUserReportToAdmin(user_id,message),
+            PROMOTEUSER: () => promoteUserByAdmin(user_id),
+            UPGRADE: () => handleUserUpgrade(user_id),
+            UP: () => handleUserUpgrade(user_id),
+            Up: () => handleUserUpgrade(user_id),
+            uP: () => handleUserUpgrade(user_id),
+            up: () => handleUserUpgrade(user_id),
+            PLANS: () => handlePlanDetails(user_id),
+            P: () => handlePlanDetails(user_id),
+            p: () => handlePlanDetails(user_id),
+            PENDINGUPGRADINGUSERS: () => handlePENDINGUPGRADINGUSERS(user_id),
+            UPLOAD: () => handleFILESUPLOAD(user_id),
+            ADMINLIST: () => sendAdminsListToAdmin(user_id),
+            SENDTOALLUSERS: () => handleSENDTOALLUSERS(user_id),
+            RECEIPTSTOREFER:() => handleRECEIPTSTOREFER(user_id),
+            INPUTZIP:() => handleINPUTZIP(user_id),
+            ADDAPI:() => handleNewADDAPI(user_id),
+            WAITLIST:() => handleWAITLIST(user_id),
+            SEETINGS:() => handleSETTINGS(user_id,user_name),
+            S:() => handleSETTINGS(user_id,user_name),
+            s:() => handleSETTINGS(user_id,user_name),
+            DELETEUSER:() => handleDELETEUSER(user_id,user_name),
+            SENDTOUSER:() => handleSENDTOUSER(user_id),
+            RESETDAILYLIMITSMANUALLY:() => handleRESETDAILYLIMITSMANUALLY(user_id),
+            PAUSEBOT:() => handlePAUSEBOT(user_id),
+            STARTBOT:() => handleSTARTBOT(user_id), //
+            SERVERSTATS:() => handleSERVERSTATS(user_id),
+        };
+
+        if (commands[user_message]) {
+            return commands[user_message]();
+        }
+
+        // Call AI response for other messages
+        let user_plan_tariff = PLANS[user_manager[user_id]['user_plan']];
+        let user_stats = user_manager[user_id];
+        if (user_stats['model'] === 0) {
+            if (user_stats['messages'] >= user_plan_tariff['messages']){
+                save_user_manager(user_manager);
+                if (user_stats['chats'] < user_plan_tariff['chats']) {
+                    send_message(user_id,"You have reached your limits for 4o-model!\nYou will be getting responses from our next Llama model...")
+                    user_stats['model'] = 1;
+                    await sleep(0.5);
+                    if (user_stats['user_plan'] === 'free-plan') {
+                        await sleep(0.5);
+                        send_message(user_id,upgrading_limit_reaching_text(user_id));
+                    }
+                    if (user_message !== "IMAGEANALYSIS_PROGRAM") {
+                    user_stats['chats'] += 1;}
+                    await sleep(0.5);
+                } else {
+                    return "⚠️ All your plans have been used up! 😕\nIf you'd like to continue enjoying our services, simply send *UPGRADE* or *Up* to explore new plan options. 🚀";
+                }
+            } else {
+                if (user_message !== "IMAGEANALYSIS_PROGRAM") {
+                user_stats['messages'] += 1;}
+            }
+        } else if (user_stats['model'] === 1) {
+            if (user_stats['chats'] >= user_plan_tariff['chats']){
+                save_user_manager(user_manager);
+                if (user_stats['messages'] < user_plan_tariff['messages']) {
+                    send_message(user_id,"You have reached your limits for Llama model!\nYou will be getting responses from our next Llama model...")
+                    user_stats['model'] = 0;
+                    await sleep(0.5);
+                    if (user_message !== "IMAGEANALYSIS_PROGRAM") {
+                    user_stats['messages'] += 1;}
+                } else {
+                    return "⚠️ All your plans have been used up! 😕\nIf you'd like to continue enjoying our services, simply send *UPGRADE* or *Up* to explore new plan options. 🚀";
+                }
+            } else {
+                if (user_message !== "IMAGEANALYSIS_PROGRAM") {
+                user_stats['chats'] += 1;}
+            }
+        }
+
+        let ai_generated_response = await generate_response(user_id, user_message);
+        if (containsLatex(ai_generated_response)) {
+            send_message(user_id,ai_generated_response);
+            await sleep(1.5);
+            send_message(user_id,`🔬 Equations detected!\nNeed as image?`);
+            users_who_asked_to_send_as_image[user_id] = ai_generated_response;
+            return ""
+        } else {
+            return ai_generated_response;
+        }
+    } catch (error) {
+        console.error("Error in handle_message:", error);
+        sendToAllAdmins(`🚨 *Error Alert!* An issue occurred in the "handle message" function while user ${user_id} (${user_name}) attempted an action. Please investigate!`);
+        return "An unexpected error occurred. Please try again later. 😔\nIf you'd like to report this issue, send *BUGREPORT* or *B* and we'll look into it!";
+    }
+}
+
+
+async function getAudioText(audioFilePath) {
+    try {
+        const openai = new OpenAI({
+            baseURL: BASE_URL_NAMES[1],
+            apiKey: CURRENT_API_KEY[API_KEYS_ID[1]]
+        });
+        const translation = await openai.audio.translations.create({
+            file: fs.createReadStream(audioFilePath),
+            model: whisper_model_name,
+        });
+        return "User's Transcribed Audio: "+translation['text']
+    } catch (error) {
+        // Handle API key rotation for specific errors
+        if (error.message.includes("402 status code") || error.message.includes("401") || error.message.includes("429")) {
+            // Rotate API key
+            if (API_KEYS_DIC[API_KEYS_ID[1]].includes(CURRENT_API_KEY[API_KEYS_ID[1]])) {
+                const index = API_KEYS_DIC[API_KEYS_ID[1]].indexOf(CURRENT_API_KEY[API_KEYS_ID[1]]);
+                API_KEYS_DIC[API_KEYS_ID[1]].splice(index, 1);
+            }
+            //updateApiTxt()
+            if (API_KEYS_DIC[API_KEYS_ID[1]].length > 0) {
+                CURRENT_API_KEY[API_KEYS_ID[1]] = API_KEYS_DIC[API_KEYS_ID[1]][0];
+                console.log(`Rotating to the next API key. Remaining keys: ${API_KEYS_DIC[API_KEYS_ID[1]].length}`);
+                sendToAllAdmins(`Rotating to the next API key. Remaining keys: ${API_KEYS_DIC[API_KEYS_ID[1]].length}\n\n*Caught Error:* ${error.message}`);
+                return await getAudioText(audioFilePath); // Retry with a new key
+            } else {
+                sendToAllAdmins(`🚨 *Error Alert!* 🚨\nAPI KEYS are Depleted, user ${user_id} encouted the issue!\n\n*Caught Error:* ${error.message}`);
+                send_message(user_id,"Error in Audio analyzing, Please try again later.😔\nIf you'd like to report this issue, send *BUGREPORT* or *B* and we'll look into it!");
+                return "ERROR"
+            }
+        } else {
+            console.error("Error in generate_response:", error);
+        }
+        sendToAllAdmins(`🚨 *Error Alert!* 🚨 \nThe user ${user_id} encountered an issue analyzing Audio. Please investigate.\n*Error Message:* ${error}`);
+        send_message(user_id,"Error in Audio analyzing, Please try again later.😔\nIf you'd like to report this issue, send *BUGREPORT* or *B* and we'll look into it!");
+        return "ERROR"
+    }
+}
+
+function generateHtmlFromLatex(latexContent, file_name) {
+  try {
+    // Process the LaTeX content to convert headings and bold text
+    const processedContent = latexContent
+      // Convert headings (e.g., ## Heading -> <h2>)
+      .replace(/(#{1,6})\s*(.+)/g, (match, hashes, text) => {
+        const headingLevel = hashes.length; // Heading level based on number of hashes
+        return `<h${headingLevel}>${text}</h${headingLevel}>`;
+      })
+      // Convert **text** to <strong>text</strong>
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      // Replace line breaks (\n) with <br> tags
+      .replace(/\n\n/g, "<br>");
+
+    // Define the HTML content
+    const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>AJO AI LaTeX Viewer</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js"></script>
+      <style>
+        body {
+          font-family: ui-sans-serif, -apple-system, system-ui, 'Segoe UI', 'Helvetica', 'Apple Color Emoji', 'Arial', sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+          line-height: 1.6;
+          margin: 20px;
+          color: #333;
+        }
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          background-color: #f9f9f9;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+          color: #0056b3;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        h2, h3, h4, h5, h6 {
+          color: #333;
+          margin-top: 20px;
+        }
+        .processed-content {
+          margin-top: 20px;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: #fff;
+        }
+        pre {
+          padding: 10px;
+          background-color: #f4f4f4;
+          border-left: 4px solid #0056b3;
+          overflow-x: auto;
+        }
+        strong {
+          color: #1f4f79;
+        }
+        .footer {
+          text-align: center;
+          margin-top: 30px;
+          font-size: 0.9em;
+          color: #777;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>AJO AI LaTeX Viewer</h1>
+        <div class="processed-content">
+          ${processedContent}
+        </div>
+      </div>
+      <div class="footer">Powered by AJO AI</div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: "\\\\(", right: "\\\\)", display: false },
+              { left: "\\\\[", right: "\\\\]", display: true }
+            ]
+          });
+        });
+      </script>
+    </body>
+    </html>
+    `;
+
+    // Write the HTML content to an output.html file
+    fs.writeFileSync(file_name, htmlContent);
+
+    console.log(`HTML file '${file_name}' has been created.`);
+    return "DONE";
+  } catch (error) {
+    console.error("An error occurred:", error.message);
+    return "ERROR";
+  }
+}
+
+
+function containsLatex(input_text) {
+    const latexPattern = /\\(begin|end|[a-zA-Z]+\*?)|\\[()[\]]|\\[a-zA-Z]+/;
+    return latexPattern.test(input_text);
+}
+
+function sendBugReportAppreciation(user_id) {
+    if (user_manager[user_id]) {
+        user_manager[user_id]['messages'] -= 5;
+        save_user_manager(user_manager); // Ensure changes are saved
+        send_message(
+            user_id,
+            "🎉 Congratulations! You've been awarded *5 additional messages* with the 4o model as a token of appreciation for reporting a bug. Thank you for helping us improve!"
+        );
+    } else {
+        sendToAllAdmins(`🚨 *Error Alert!* 🚨\nUser ID ${user_id} not found in user_manager while Trying to give appreciations for bug reporting!`);
+        console.error(`User ID ${user_id} not found in user_manager.`);
+    }
+}
+
+function handleSETTINGS(user_id,user_name) {
+    let comms = `Currently under developing, you'll receive it soon via next updates!`;
+    comms += ``;
+    return comms
+}
+
+function upgradingThePlan(upgrading_plan_name,upgrading_user_num) {
+    user_manager[upgrading_user_num]['user_plan'] = upgrading_plan_name;
+    user_manager[upgrading_user_num]['activation_date'] = getDateTime(); 
+    user_manager[upgrading_user_num]['messages'] = 0; 
+    user_manager[upgrading_user_num]['chats'] = 0; 
+    user_manager[upgrading_user_num]['image_analysis'] = 0; 
+    send_message(upgrading_user_num, `🎉 *Congratulations!*  
+🚀 You’ve been upgraded to the *${PLANS[upgrading_plan_name]['plan_name']}* plan, and it’s now active!  
+
+🌟 *What’s Next?*  
+- 💬 More messages to stay connected effortlessly.  
+- 💻 More chats to boost your productivity.  
+- 🖼️ Enhanced features to elevate your experience.  
+
+🎁 *Thank you for upgrading!*  
+We’re thrilled to have you onboard this journey with us. Let’s achieve amazing things together! 🌟`);
+            save_user_manager(user_manager);
+}
+
+async function handlePlanDetails(user_id) {
+    let plans_display_message = `🌟 *${BotName} Plans* 🌟\n\n`;
+    Object.keys(PLANS).forEach((key, index) => {
+        plans_display_message += `*${PLANS[key]['plan_name']}*\n · 💬 ${PLANS[key]['messages']} Messages per Day\n · 💻 ${PLANS[key]['chats']} Chats per Day\n · 🖼️ ${PLANS[key]['image_analysis']} Image Analyses per Day\n · 🏷️ Price: ${give_currency_type(user_id)} ${PLANS[key][is_local_user(user_id) ? 'price_LKR' : 'price_USD']}\n · 🕒 Duration: ${PLANS[key]['easy_duration']}\n\n`;
+      });
+    plans_display_message += `Furthermore, tryout any our early feature as a PAID customer 🚀`;
+    send_message(user_id,plans_display_message);
+    await sleep(2);
+    return "💡 Ready to level up? Reply *UPGRADE* or *UP* to get started!"
+}
+
+async function handleUserUpgrade(user_id) {
+    // TESTING VERSION CODES
+    send_message(user_id,`🎉 We’re currently in the testing phase, and our model will be finalized and officially released on *4th February*. 
+We truly appreciate your interest in upgrading your plan! 😊 Would you like to join the *Waitlist* to be among the first to claim our biggest launch offer? 🚀`)
+    userUpgradingPrompts[user_id] = "1";
+    return ""
+    
+    let return_text = "";
+    Object.keys(PLANS).forEach((key, index) => {
+        if (index !== 0){
+            return_text += `${index}. ${PLANS[key]['plan_name']} (${give_currency_type(user_id)} ${PLANS[key][is_local_user(user_id) ? 'price_LKR' : 'price_USD']})\n`;
+        }
+      });
+    send_message(user_id,"Thank you for choosing to upgrade 🎉");
+    await sleep(0.5);
+    send_message(user_id, `✨ *Your Current Plan:* *${PLANS[user_manager[user_id]['user_plan']]['plan_name']}*  
+
+📋 *Choose a Plan to Upgrade:*  
+${return_text}  
+💬 Just reply with the *number* of the plan you'd like to choose.`);    
+        return ""
+}
+
+async function change_model(user_id) {
+    if (user_manager[user_id]['model']===0) {
+        user_manager[user_id]['model'] = 1;
+        save_user_manager(user_manager);
+        return `Model changed! 🔄\nNow using *Llama Model* 🦙...`;
+    } else {
+        user_manager[user_id]['model'] = 0;
+        save_user_manager(user_manager);
+        return `Model changed! 🔄\nNow using *4o Model* 🌟...`;
+    }
+}
+
+async function send_usage(user_id, user_name) {
+    save_user_manager(user_manager);
+    isPlanExpired();
+    notifyBeforeExpiry();
+    let user_stats = user_manager[user_id];
+    if (!user_stats) {
+        update_user_manager_dictionary(user_id,user_name);
+        await sleep(1);
+    }
+    //console.log(user_id);
+    let model_temp_name = user_stats['model'] === 0 ? "4o-model" : "llama-model";
+    let user_plan_tariff = PLANS[user_stats['user_plan']];
+
+    // Start preparing the usage message
+let statsMessage = `👤 *${user_name}*  
+Number: *${user_id}*  
+
+Current Plan: *${PLANS[user_stats['user_plan']]['plan_name']}*  
+Model in Use: *${model_temp_name}*  
+(Reply 'CM' to switch the model)  
+
+📊 *Your Usage Today:*  
+- 💬 *Messages:* ${user_stats['messages']} of ${user_plan_tariff['messages']}  
+- 💻 *Chats:* ${user_stats['chats']} of ${user_plan_tariff['chats']}  
+- 🖼️ *Image Analyses:* ${user_stats['image_analysis']} of ${user_plan_tariff['image_analysis']}  
+`;
+    // Calculate and display remaining time if the user is not on a free plan
+    if (user_stats['user_plan'] !== 'free-plan') {
+        const activationDate = new Date(user_stats['activation_date']);
+        const duration = user_plan_tariff.duration;
+        const expiryDate = new Date(activationDate);
+        expiryDate.setDate(activationDate.getDate() + duration);
+
+        const currentTime = new Date(getDateTime());
+        const timeDifference = expiryDate - currentTime;
+
+        if (timeDifference > 0) {
+            const remainingDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const remainingHours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const remainingMinutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+            statsMessage += `\nRemaining Time: ${remainingDays} Day(s) ${remainingHours} Hour(s) ${remainingMinutes} Minute(s)`;
+        } else {
+            statsMessage += `\nYour plan has expired. Please upgrade to continue enjoying premium features.`;
+        }
+    }
+
+    return statsMessage;
+}
+
+
+function handleDELETEUSER(user_id,user_name) {
+    if (authorized_users.includes(user_id)) {
+        adminInDeletingUser[user_id] = "1";
+        return "Enter the number you want to delete:"
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+
+function handleRESETDAILYLIMITSMANUALLY(user_id) {
+    if (authorized_users.includes(user_id)) {
+        resetDailyLimits(user_id);
+        return ""
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+function handleINPUTZIP(user_id) {
+    if (authorized_users.includes(user_id)) {
+        adminInIputingZIP[user_id] = "1";
+        return "Please send me the Files ZIP...";
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+async function handleZipSavingAndExtracting(user_id,message) {
+    try {
+        delete adminInIputingZIP[user_id];
+        const media = await message.downloadMedia();
+        const path = "Files.zip";
+        const buffer = Buffer.from(media.data, 'base64');
+        fs.writeFileSync(path, buffer);
+        send_message(user_id, "ZIP File saved successfully!\nExtracting...");
+        deleteFolder("Files");
+        await sleep(1);
+        extractZip(path);
+        await sleep(5);
+        user_manager, chatHistory, payment_recipt_sent_by_users, users_wait_list_at_training_period = startup_runners();
+        await sleep(1);
+        return `✅ All fixed! \n${ALL_USERS_LIST.length} pre-users found in your new files zip! 📦`;
+    } catch (error) {
+        sendToAllAdmins(`🚨 *Error Alert!* 🚨\nAn error occurred in the function _handleZipSavingAndExtracting_ on ${getDateTime()} while the ADMIN ${user_id} was sending a the files.zip. Please investigate.\n\n*Error Message:* ${error}`);
+        return "An Error occuered!"
+    }
+}
+
+function extractZip(zipFilePath) {
+    const currentDirectory = process.cwd();
+    fs.createReadStream(zipFilePath)
+      .pipe(unzipper.Extract({ path: currentDirectory }))
+      .on('close', () => console.log(`Extraction complete: '${zipFilePath}' to '${currentDirectory}'`))
+      .on('error', (error) => console.error(`Error: ${error.message}`));
+  }
+
+function deleteFolder(folderPath) {
+    if (fs.existsSync(folderPath)) {
+      fs.readdirSync(folderPath).forEach((file) => {
+        const currentPath = path.join(folderPath, file);
+        if (fs.lstatSync(currentPath).isDirectory()) {
+          deleteFolder(currentPath); // Recursively delete contents
+        } else {
+          fs.unlinkSync(currentPath); // Delete file
+        }
+      });
+      fs.rmdirSync(folderPath); // Delete the empty folder
+      console.log(`Folder '${folderPath}' has been deleted.`);
+    } else {
+      console.log(`Folder '${folderPath}' does not exist.`);
+    }
+  }
+
+// Function to zip a folder
+async function zipFolder(sourceFolder, zipFilePath) {
+  const output = fs.createWriteStream(zipFilePath);
+  const archive = archiver('zip', {
+    zlib: { level: 9 } // Compression level
+  });
+
+  // Handle archive events
+  output.on('close', () => {
+    console.log(`Zip file created: ${zipFilePath}, ${archive.pointer()} total bytes`);
+  });
+
+  archive.on('error', (err) => {
+    throw err;
+  });
+
+  archive.pipe(output); // Pipe the archive data to the output file
+  archive.directory(sourceFolder, true); // Include the folder itself in the zip
+  archive.finalize(); // Finalize the archive
+}
+
+async function send_file(user_id, zip_path) {
+    try {
+        // Ensure the file exists
+        if (!fs.existsSync(zip_path)) {
+            console.error('File does not exist:', zip_path);
+            return;
+        }
+
+        // Create a MessageMedia instance from the file path
+        
+        const media = MessageMedia.fromFilePath(zip_path);
+
+        // Send the media to the specified user
+        await client.sendMessage(user_id + "@s.whatsapp.net", media);
+    } catch (error) {
+        sendToAllAdmins(`🚨 *Error Alert!* 🚨\nAn error occured while sending the file _${zip_path}_ to ${user_id}.\n\n*Caught Error:* ${error.message}`);
+        send_message(user_id, "❌ Oops! An Error occured while sending the file!. Please try again in a moment! 😔");
+    }
+}
+
+async function handleFILESUPLOAD(user_id) {
+    if (authorized_users.includes(user_id)) {
+        send_message(user_id, "⏳ Please wait, I'm generating the Files ZIP!");
+        await sleep(1);
+        let zip_path = `${mainDirName}.zip`;
+        await zipFolder(mainDirName, zip_path);
+        await sleep(1);
+        send_file(user_id, zip_path);
+        sendToAllAdmins(`👑 Admin ${user_id} has requested the Files ZIP`);
+        return "🎉 Your Files ZIP is ready! Here it is. 📦";
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+function handleSENDTOUSER(user_id) {
+    if (authorized_users.includes(user_id)) {
+        adminInSendingMessageToOneUser[user_id] = "1";
+        return `📲 Enter the number:`;
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+function handlePAUSEBOT(user_id) {
+    if (authorized_users.includes(user_id)) {
+        if (isBotPaused === false) {
+            isBotPaused = true;
+            return "⏸️ Bot paused successfully! All Users are on pause, *except Admins*!";
+        } else {
+            return "⏸️ Bot is already Paused!\nSend *STARTBOT* to start the Bot again!";
+        }
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+function handleSTARTBOT(user_id) {
+    if (authorized_users.includes(user_id)) {
+        if (isBotPaused === true) {
+            isBotPaused = false;
+            return "▶️ Bot Started successfully!";
+        } else {
+            return "▶️ Bot is already running!\nSend *PAUSEBOT* to pause the Bot!";
+        }
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+function createLimitedList(maxSize = 50) {
+    const list = [];
+    return {
+        // Function to append a single sublist or another list of sublists
+        append(value) {
+            if (Array.isArray(value[0])) {
+                // If the value is an array of sublists, iterate through it
+                for (const item of value) {
+                    if (list.length >= maxSize) {
+                        list.shift(); // Remove the oldest entry if the list exceeds max size
+                    }
+                    list.push(item);
+                }
+            } else {
+                // If the value is a single sublist, add it directly
+                if (list.length >= maxSize) {
+                    list.shift(); // Remove the oldest entry if the list exceeds max size
+                }
+                list.push(value);
+            }
+        },
+
+        // Function to read the current list
+        read() {
+            return [...list]; // Return a copy of the list
+        }
+    };
+}
+
+function getDateTime() {
+    const now = new Date();
+    const options = {
+        timeZone: 'Asia/Colombo',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+    };
+    const formatter = new Intl.DateTimeFormat('en-US', options);
+    const parts = formatter.formatToParts(now);
+
+    let dateParts = { year: '', month: '', day: '', hour: '', minute: '', second: '', period: '' };
+
+    parts.forEach(({ type, value }) => {
+        switch (type) {
+            case 'year':
+                dateParts.year = value;
+                break;
+            case 'month':
+                dateParts.month = value;
+                break;
+            case 'day':
+                dateParts.day = value;
+                break;
+            case 'hour':
+                dateParts.hour = value;
+                break;
+            case 'minute':
+                dateParts.minute = value;
+                break;
+            case 'second':
+                dateParts.second = value;
+                break;
+            case 'dayPeriod':
+                dateParts.period = value;
+                break;
+            default:
+                break;
+        }
+    });
+
+    return `${dateParts.year}-${dateParts.month}-${dateParts.day} ${dateParts.hour}:${dateParts.minute}:${dateParts.second} ${dateParts.period}`;
+}
+
+// send_chat_history_to_admin
+// send_chat_history_to_admin
+async function send_chat_history_to_admin(user_id) {
+    if (authorized_users.includes(user_id)) {
+        let var1 = `*_Last 50 chats with BOT_*\n\n`;
+        let lss = chatHistory.read(); // Read the chat history list
+        let count_amount = lss.length; // Get the current count of items
+
+        for (let i = 0; i < count_amount; i++) { // Start from index 0
+            const entry = lss[i]; // Get the current entry
+
+            if (entry && entry.length >= 3) { // Ensure the entry is valid and has enough data
+                let user_mess = entry[2].replace(/\n/g, ' ');
+                if (user_mess.length > 20) {
+                    user_mess = user_mess.substring(0, 20) + "..."; // Truncate long messages
+                }
+                var1 += `${i + 1}. ${entry[0]}, ${entry[1]}\n   ${user_mess}\n`;
+            }
+        }
+        return var1;
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+async function handlePENDINGUPGRADINGUSERS(user_id) {
+    if (authorized_users.includes(user_id)) {
+        if (upgradeUsersPendingToSendImages.length === 0) {
+            return "🚫 No users have initiated an upgrade at the moment!";
+        }
+        let return_text4 = "*🔄 Users Who Have Initiated Upgrade Requests:* \n\n";
+        for (let i = 0; i < upgradeUsersPendingToSendImages.length; i++) { // Start from index 0
+            return_text4 += `${i + 1}) ${upgradeUsersPendingToSendImages[i]} (${upgradeUsersPendingToSendImagesTimings[i]})\n`;
+        }
+        return return_text4
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+async function sendToAllAdmins(message_text) {
+    message_text += `\n(This message has sent to all Admins)`;
+    for (const admin_id_temp of authorized_users) {
+        send_message(admin_id_temp, message_text);
+        await sleep(1);
+    }
+}
+
+async function sendUserReportToAdmin(user_id,message) {
+    if (authorized_users.includes(user_id)) { //user_report_pdf_name
+        save_user_manager(user_manager);
+        send_message(user_id, "⏳ Please wait, I'm generating!");
+        createPDF(user_manager);
+        await sleep(1);
+        createPDF(user_manager);
+        await sleep(1);
+        const media = new MessageMedia('application/pdf', fs.readFileSync(user_report_pdf_name).toString('base64'), path.basename(user_report_pdf_name));
+            try {
+                await client.sendMessage(message.from, media);
+                console.log(`User report sent to ADMIN - ${user_id} successfully!`);
+                return ""
+            } catch (err) {
+                console.error(`Error sending User report to ${user_id}:`, err);
+                return "An Error occured while sending file. Try again shortly!"
+            }
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+
+    
+async function sendAllUsersListToAdmin(user_id) {
+    if (authorized_users.includes(user_id)) {
+        let var2 = `*📜 _Users List:_* \n\n`;
+        
+        for (let i = 0; i < ALL_USERS_LIST_with_user_name.length; i++) { // Start from index 0
+            var2 += `${i + 1}. ${ALL_USERS_LIST_with_user_name[i]}\n`; 
+        }
+        return var2
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+} 
+
+
+async function handleWAITLIST(user_id) {
+    if (authorized_users.includes(user_id)) {
+        let return_text6 = "*🧾 _Waitlisted Users:_*\n\n";
+        const users_id_list_temp = Object.keys(users_wait_list_at_training_period);
+        if (users_id_list_temp.length === 0) {
+            return "⚠️ No users have joined waitlist yet!";
+        }
+        for (let i = 0; i < users_id_list_temp.length; i++) {
+            let temp_user_name = users_wait_list_at_training_period[users_id_list_temp[i]][0];
+            let temp_time = users_wait_list_at_training_period[users_id_list_temp[i]][1];
+            return_text6 += `${i + 1}. ${temp_user_name} (${users_id_list_temp[i]})\nIniated at: ${temp_time}\n`;
+        }
+        return return_text6
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+} 
+
+
+// Function to calculate folder size
+function getFolderSize(folderPath) {
+    let totalSize = 0;
+    const files = fs.readdirSync(folderPath);
+
+    files.forEach(file => {
+        const filePath = path.join(folderPath, file);
+        const stats = fs.statSync(filePath);
+        if (stats.isFile()) {
+            totalSize += stats.size;
+        } else if (stats.isDirectory()) {
+            totalSize += getFolderSize(filePath);
+        }
+    });
+
+    return totalSize;
+}
+
+// Function to get CPU usage percentage
+function getCpuUsage() {
+    const cpus = os.cpus();
+    let totalIdle = 0, totalTick = 0;
+
+    cpus.forEach(cpu => {
+        for (type in cpu.times) {
+            totalTick += cpu.times[type];
+        }     
+        totalIdle += cpu.times.idle;
+    });
+
+    const idle = totalIdle / cpus.length;
+    const total = totalTick / cpus.length;
+
+    return ((1 - idle / total) * 100).toFixed(2); // CPU usage percentage
+}
+
+// Main stats function
+function getServerStats() {
+    // RAM usage
+    const totalMem = os.totalmem();
+    const freeMem = os.freemem();
+    const usedMem = totalMem - freeMem;
+    const usedMemPercentage = ((usedMem / totalMem) * 100).toFixed(2);
+
+    // Folder size
+    const folderPath = './Files';  // Update to your main directory path
+    const folderSize = getFolderSize(folderPath) / (1024 * 1024);  // Size in MB
+
+    // CPU usage
+    const cpuUsage = getCpuUsage();
+
+    // Return stats
+    return {
+        memoryUsage: `${(usedMem / (1024 * 1024)).toFixed(2)} MB (${usedMemPercentage}%)`,
+        folderSize: `${folderSize.toFixed(2)} MB`,
+        cpuUsage: `${cpuUsage}%`
+    };
+}
+
+function handleSERVERSTATS(user_id) {
+    if (authorized_users.includes(user_id)) {
+        const stats = getServerStats();
+        return `📊  *Server Stats*  📊
+        \n🖥️ *RAM Usage*: ${stats.memoryUsage}\n📂 *Files Directory Size*: ${stats.folderSize}\n💻 *CPU Usage*: ${stats.cpuUsage}`;
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+}
+
+
+async function sendAdminsListToAdmin(user_id) {
+    if (authorized_users.includes(user_id)) {
+        let var2 = `*👑 _Admins List:_* \n\n`;
+        
+        for (let i = 0; i < authorized_users.length; i++) { // Start from index 0
+            var2 += `${i + 1}. ${authorized_users[i]}\n`;
+            
+        }
+        return var2
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+} 
+
+async function handleSENDTOALLUSERS(user_id) {
+    if (authorized_users.includes(user_id)) {
+        admin_iniated_to_send_all_users[user_id] = "1";
+        return "Please type in the message you want to send..."
+    } else {
+        return "🚫 You're not an admin. Please LOGIN and try again!";
+    }
+} 
+
+async function send_a_message_to_all_users(user_id,message_text2) {
+    try {
+        if (authorized_users.includes(user_id)) {
+            for (const user_id_temp of ALL_USERS_LIST) {
+                try {
+                    await send_message(user_id_temp, message_text2);
+                } catch (error) {
+                    send_message(user_id, `❌ Failed to send message to user ${user_id_temp}: ${error.message}`);
+                    console.error(`Failed to send message to user ${user_id_temp}:`, error.message);
+                }
+                await sleep(0.5);
+            }
+            return "Message sent to All users";
+        } else {
+            return "🚫 You're not an admin. Please LOGIN and try again!";
+        }
+    } catch (mainError) {
+        console.error("An unexpected error occurred:", mainError.message);
+        return "❗ An error occurred while sending messages. Please try again later.";
+    }
+}
+
+async function handleNewADDAPI(user_id) {
+    if (authorized_users.includes(user_id)) {
+        let commands3 = `🔑 *Which API key would you like to add?*\n`;
+        Object.keys(API_KEYS_TEXT_FILES).forEach((key, index) => {
+            commands3 += `${index+1}. ${key}\n`;
+        });
+        commands3 += `Enter the number...`;
+        adminInAddingAPIKeys[user_id] = "1";
+        return commands3;
+    } else {
+        return "You are not an admin. LOGIN and try.";
+    }
+}
+
+
+async function handleREMAININGAPIS(user_id, user_input) {
+        if (authorized_users.includes(user_id)) {
+            let commands2 = "*🔑 Remaining API Keys:* \n\n";
+            console.log(API_KEYS_ID);
+            API_KEYS_ID.forEach(apiId => {
+                commands2 += `*${apiId}* - ${API_KEYS_DIC[apiId].length} keys are remaining\n`;
+            });
+            return commands2.slice(0, -1);
+        } else {
+            return "You are not an admin. LOGIN and try.";
+        }
+    }
+
+async function handleSEND_BUGREPORT(user_id,message) {
+        if (authorized_users.includes(user_id)) {
+            const media = new MessageMedia('text/plain', fs.readFileSync(bug_reporter_text_path).toString('base64'), path.basename(bug_reporter_text_path));
+            try {
+                await client.sendMessage(message.from, media);
+                console.log(`Log file sent to ADMIN - ${user_id} successfully!`);
+                return ""
+            } catch (err) {
+                console.error('Error sending file:', err);
+                return "An Error occured while sending file. Try again shortly!"
+            }
+        } else {
+            return "You are not an admin. LOGIN and try.";
+        }
+    }
+
+async function handleRECEIPTSTOREFER(user_id) {
+        if (authorized_users.includes(user_id)) {
+            let return_text6 = "*🧾 _Users' Receipt Details:_*\n\n";
+            const users_id_list_temp = Object.keys(payment_recipt_sent_by_users);
+
+            if (users_id_list_temp.length === 0) {
+                return "⚠️ No users have sent receipts!";
+            }
+
+            for (let i = 0; i < users_id_list_temp.length; i++) {
+                return_text6 += `${i + 1}. *Sent On:* ${payment_recipt_sent_by_users[users_id_list_temp[i]]['time']}\n`;
+                return_text6 += `   *User:* ${users_id_list_temp[i]}\n   *Plan:* ${payment_recipt_sent_by_users[users_id_list_temp[i]]['plan']}\n\n`;
+            }
+            adminHandlingReciptApproval[user_id] = "1";
+            return return_text6.slice(0, -2)
+        } else {
+            return "You are not an admin. LOGIN and try.";
+        }
+    }
+
+async function handleAdminCommands(user_id) {
+    // Check if the user input is "ADMINCOMMANDS"
+
+        // Verify if the user is authorized
+        if (authorized_users.includes(user_id)) {
+            const commands = `⚙️ *_ADMIN COMMANDS_*\n
+ · *REMAININGAPIS* - check remaining API keys
+ · *ADDAPI* - add a new API key
+ · *SENDBUGREPORT* - get bug report
+ · *STATS* - Check last 50 Prompts
+ · *USERS* - to check all users
+ · *USERREPORT* - Send User Report
+ · *ADMINLIST* - Send all the Admins
+ · *PROMOTEUSER* - Upgrade a user
+ · *PENDINGUPGRADINGUSERS* - User list who initiated Upgrade
+ · *SENDTOALLUSERS* - Send a Message to All users
+ · *RECEIPTSTOREFER* - Receipt to be refered and upgraded
+ · *DELETEUSER* - Delete a user from database.
+ · *UPLOAD* - Upload the ZIP file with All Documents.
+ · *INPUTZIP* - Input the new Files zip to use it.
+ · *SENDTOUSER* - Send a message to a particular user.
+ · *RESETDAILYLIMITSMANUALLY* - Reset the limits manually.
+ · *PAUSEBOT* - Pause the bot functionality for all except Admins.
+ · *STARTBOT* - Start the bot functionality for all again. 
+ · *SERVERSTATS* - Check server stats (CPU, RAM, STORAGE) 
+ · *WAITLIST* - Users who entered Waitlist _(Testing version)_`;
+            return commands;
+        } else {
+            return "You are not an admin. LOGIN and try.";
+        }
+    }
+
+
+async function promoteUserByAdmin(user_id) {
+        if (authorized_users.includes(user_id)) {
+            upgrading_user_temp_admin[user_id] = "1";
+            send_message(user_id, "You can send 'cancel' at any time to stop the upgrade process.");
+            return "📲 Please enter the phone number of the user you want to upgrade.";
+        } else {
+            return "You are not an admin. LOGIN and try.";
+        }
+    }
+
+
+async function scrapePage(url) {
+        const browser = await puppeteer.launch({
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage", // Reduces memory usage in Docker environments
+      "--disable-gpu", // Disable GPU acceleration (useful for CI/CD)
+    ],
+    headless: true,
+  });  // Launch in headless mode  // Launch in headless mode
+        const page = await browser.newPage();
+        await page.goto(url);
+    
+        // Extract content
+        const text = await page.evaluate(() => {
+            return document.body.innerText;  // Extracts visible text from the <body> tag
+        });
+    
+        await browser.close();
+        return text.slice(200, 2500);  // Return text from 200th to 2500th character
+    }
+    
+    function checkMessageContent(user_id) {
+        return !user_chat_history[user_id].some(
+            (message) => Array.isArray(message.content) && message.content.some(item => typeof item === 'object')
+        );
+    }
+    
+
+async function generate_response(user_id, user_message) {
+    try {
+        if (!user_chat_history[user_id]) {
+            user_chat_history[user_id] = [];
+        }
+
+        // Append the user's message to the chat history
+        if (user_message !== "IMAGEANALYSIS_PROGRAM") {
+            user_chat_history[user_id].push({ role: "user", content: user_message });
+        }
+
+        //console.log(`BaseURL: ${BASE_URL_NAMES[user_manager[user_id]['model']]}\nAPI: ${CURRENT_API_KEY[API_KEYS_ID[user_manager[user_id]['model']]]}\nMOdelName: ${OUR_MODEL_NAMES[user_manager[user_id]['model']]}`)
+
+        // Prepare OpenAI instance
+        const openai = new OpenAI({
+            baseURL: BASE_URL_NAMES[user_manager[user_id]['model']],
+            apiKey: CURRENT_API_KEY[API_KEYS_ID[user_manager[user_id]['model']]],
+        });
+
+        // Include the system message and last 7 messages in the request
+        const last_7_messages = user_chat_history[user_id].slice(-7);
+
+        //console.log(last_7_messages)
+
+        if (checkMessageContent(user_id) ) {
+            last_7_messages.unshift({
+                role: "system",
+                content: `Your name is ${BotName} and you're Whatsapp based AI capable with image analysis and web searching and capable to reply to whatsapp voice messages`
+            });
+            last_7_messages.unshift({
+                role: "system",
+                content: "You're a friendly assitant"
+            });
+            last_7_messages.unshift({
+                role: "system",
+                content: `Current Date: ${getDateTime()}.If I ask about something related to *current* or *real-time* or *if you dont know current details about the topic* or *do you think its need to be searched to provide better results user expects*, and if it requires searching, ONLY THEN respond with this format: 'https://www.google.com/search?q=..'. Don't provide any additional when there's need a google search. I will then provide the results for you to summarize or process further.`
+            });
+        }
+
+        //console.log(messages);
+        //console.log(">",last_7_messages);
+        // Request completion from the API
+        const completion = await openai.chat.completions.create({
+            messages: last_7_messages,
+            model: OUR_MODEL_NAMES[user_manager[user_id]['model']],
+        });
+        //console.log("AI:", completion.choices[0].message.content); // Log the actual response content
+        let responseContent = completion.choices[0].message.content || "Sorry, I couldn't process your request.";
+        
+        const tokensUsed = {
+            promptTokens: completion.usage.prompt_tokens,
+            completionTokens: completion.usage.completion_tokens,
+        };
+
+        console.log(
+            user_id,
+            "=>",
+            `${user_message.slice(0, 20).replace(/\n/g, ' ')}...`,
+            "=> Tokens used:",
+            tokensUsed.promptTokens,
+            tokensUsed.completionTokens
+        );
+
+        // Check for real-time search URL in the response
+        const extracted_url = responseContent.match(/(https:\/\/www\.google\.com\/[^\s]+)/g)?.[0];
+        if (extracted_url) {
+            await send_message(user_id, "🌐 Searching on Web...")
+            try {
+                const pageContent = await scrapePage(extracted_url);
+
+                // Sanitize the scraped content
+                const sanitizedContent = sanitizeContent(pageContent);
+
+                // If valid content is obtained, recursively call generate_response
+                if (sanitizedContent) {
+                    responseContent = await generate_response(user_id, "Accurate Information Results Here. Process and summarize this information naturally: "+sanitizedContent);
+                } else {
+                    responseContent = "Unable to process real-time data. Please try again later.";
+                }
+            } catch (error) {
+                console.error("Error while processing real-time data:", error);
+                responseContent = "Unable to fetch real-time data. Please try again later.";
+            }
+        }
+
+        // Append the assistant's response to the chat history
+        user_chat_history[user_id].push({ role: "assistant", content: responseContent });
+
+        // Save All Chats
+        if (!ALL_CHAT_HISTORY[user_id]) {
+            ALL_CHAT_HISTORY[user_id] = [];
+        }
+        ALL_CHAT_HISTORY[user_id].push(`(${getDateTime()})>>> User: ${user_message}\n\n`);
+        ALL_CHAT_HISTORY[user_id].push(`(${getDateTime()})>>> Assistant: ${responseContent}\n\n`);
+        return responseContent;
+    } catch (error) {
+
+        // Handle API key rotation for specific errors
+        if (error.message.includes("402 status code") || error.message.includes("401") || error.message.includes("429")) {
+            // Rotate API key
+            if (API_KEYS_DIC[API_KEYS_ID[user_manager[user_id]['model']]].includes(CURRENT_API_KEY[API_KEYS_ID[user_manager[user_id]['model']]])) {
+                const index = API_KEYS_DIC[API_KEYS_ID[user_manager[user_id]['model']]].indexOf(CURRENT_API_KEY[API_KEYS_ID[user_manager[user_id]['model']]]);
+                API_KEYS_DIC[API_KEYS_ID[user_manager[user_id]['model']]].splice(index, 1);
+            }
+            //updateApiTxt()
+            if (API_KEYS_DIC[API_KEYS_ID[user_manager[user_id]['model']]].length > 0) {
+                CURRENT_API_KEY[API_KEYS_ID[user_manager[user_id]['model']]] = API_KEYS_DIC[API_KEYS_ID[user_manager[user_id]['model']]][0];
+                console.log(`Rotating to the next API key. Remaining keys: ${API_KEYS_DIC[API_KEYS_ID[user_manager[user_id]['model']]].length}`);
+                sendToAllAdmins(`Rotating to the next API key. Remaining keys: ${API_KEYS_DIC[API_KEYS_ID[user_manager[user_id]['model']]].length}\n\n*Caught Error:* ${error.message}`);
+                return await generate_response(user_id, user_message); // Retry with a new key
+            } else {
+                sendToAllAdmins(`🚨 *Error Alert!* 🚨\nAPI KEYS are Depleted, user ${user_id} encouted the issue!\n\n*Caught Error:* ${error.message}`);
+                return "Error in generating response, Please try again later.😔\nIf you'd like to report this issue, send *BUGREPORT* or *B* and we'll look into it!";
+            }
+        } else if (error.message.includes("400 Too many images provided.  This model supports up to 1 images")) {
+            user_manager[user_id]['image_analysis'] -= 1;
+            return `⚠️ The current model *Llama* supports only 1 image per chat.\n✨ Please try again by starting a new chat or switch to the *4o Model* for more flexibility! 🌟`;
+        } else {
+            console.error("Error in generate_response:", error);
+        }
+        sendToAllAdmins(`🚨 *Error Alert!* 🚨 \nThe user ${user_id} encountered an issue while generating a response from the AI. Please investigate.\n*Error Message:* ${error}`);
+        return "An error occurred while generating the response.";
+    }
+}
+
+// Function to save chat history
+function saveAllChatsToFile(chatHistory) {
+    for (const user_id in chatHistory) {
+        const fileName = `${allUserChatsDir}/${user_id}_chats.txt`;
+        const chatContent = chatHistory[user_id].join('');
+        
+        // Append to the file if it exists, otherwise create a new file
+        fs.appendFile(fileName, chatContent, (err) => {
+            if (err) {
+                console.error(`Failed to save chat for ${user_id}:`, err);
+            } else {
+                delete chatHistory[user_id];
+                //console.log(`Chat history for ${user_id} saved to ${fileName}`);
+            }
+        });
+    }
+}
+    
+// Helper function to sanitize content
+function sanitizeContent(content) {
+    if (typeof content !== 'string' || !content.trim()) {
+        return null;
+    }
+    // Remove unnecessary characters and limit content length
+    return content.replace(/[^a-zA-Z0-9 .,!?]/g, '').trim().slice(0, 2000); // Limit to 2000 characters
+}
+
+
+async function send_message(user_id, message) {
+    try {
+        // Sends a message to the user identified by user_id
+        await client.sendMessage(user_id + "@s.whatsapp.net", message);
+        //console.log(`Message sent to ${user_id}: ${message}`);
+    } catch (error) {
+        // sendToAllAdmins(`🚨 *Error Alert!* An error occured in the _send_message_ function while trying to send to ${user_id}!`);
+        console.error(`Error sending message to ${user_id}:`, error);
+    }
+}
+
+
+
+async function send_image(user_id, imgPath, caption = '') {
+    try {
+        // Ensure the file exists
+        if (!fs.existsSync(imgPath)) {
+            throw new Error(`File not found: ${imgPath}`);
+        }
+
+        // Determine MIME type based on file extension
+        const mimeType = mime.lookup(imgPath);
+        if (!mimeType || !mimeType.c('image/')) {
+            throw new Error(`Invalid image file type: ${imgPath}`);
+        }
+
+        // Read and encode the image as base64
+        const imageBase64 = fs.readFileSync(imgPath).toString('base64');
+
+        // Create a MessageMedia object
+        const media = new MessageMedia(mimeType, imageBase64, path.basename(imgPath));``
+
+        // Send the image with a caption
+        await client.sendMessage(user_id + '@s.whatsapp.net', media, { caption });
+        //console.log(`Image sent to ${user_id} with caption: "${caption}"`);
+    } catch (error) {
+        console.error(`Error sending image to ${user_id}:`, error);
+    }
+}
+
+
+
+async function appendBugReport(BugReportTempfilePath, report) {
+    try {
+        fs.appendFileSync(BugReportTempfilePath, report, 'utf8');
+        //console.log("Bug report saved.");
+    } catch (error) {
+        console.error("Error appending bug report:", error);
+        throw error;
+    }
+}
+
+function handleLogin(user_id) {
+    if (authorized_users.includes(user_id)) {
+        return "🔑 You are already authenticated as an admin! \nSend 'ADMINCOMMANDS' to view all admin commands.";
+    } else {
+        login_ready_users.push(user_id);
+        return "🔒 Please enter the admin password to proceed.";
+    }
+}
+
+function handleLogout(user_id) {
+    if (authorized_users.includes(user_id)) {
+        authorized_users = authorized_users.filter(id => id !== user_id);
+        return "✅ You have successfully logged out!";
+    } else {
+        return "⚠️ You are not logged in. Please send 'LOGIN' to log in.";
+    }
+}
+
+
+async function handleNewChat(user_id) {
+    if (user_chat_history[user_id]) {
+        delete user_chat_history[user_id];
+        console.log("Cleared chat history for user:", user_id);
+        send_message(user_id,"🧹 Clearing old chats and starting a new chat...");
+        await sleep(1.5);
+        send_message(user_id,"Hello! How can I assist you today?");
+        return "";
+    }
+    send_message(user_id,"💬 Starting a new chat...");
+    await sleep(1);
+    send_message(user_id,"Hello! How can I assist you today?");
+    return "";
+}
+
+function handleBugReport(user_id) {
+    current_bug_reporting.push(user_id);
+    return "📝 Please describe the issue you encountered. You can also include an image and mention the issue in the caption.";
+}
