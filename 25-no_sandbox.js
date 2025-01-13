@@ -14,6 +14,7 @@ const { send } = require('process');
 const path = require('path');
 
 
+
 // Prerequisites
 const ADMIN_PASSWORD = "078616"; // Replace with the actual admin password
 const transferAccountDetails = `Bank: Commercial Bank\nAccount Name: M N F ILMA\nAccount Number: 86846841`;
