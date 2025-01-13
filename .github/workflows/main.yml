@@ -30,4 +30,4 @@ jobs:
           
       - name: Run the Node.js script
         run: |
-          node ajov24-no_sandbox.js --no-sandbox
+          node 25-no_sandbox.js --no-sandbox
