@@ -7,8 +7,8 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
-    timeout-minutes: 4320  # Timeout after 72 hours (4320 minutes)
+    runs-on: ubuntu-latest  # or your chosen runner (self-hosted, windows-latest, etc.)
+    timeout-minutes: 2880   # Timeout after 2 days (2880 minutes)
     
     steps:
       - name: Checkout repository
