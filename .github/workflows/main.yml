@@ -17,18 +17,11 @@ jobs:
       - name: Update apt-get and install main dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgbm-dev libcairo2 libgtk-3-0 libx11-6 libxcomposite1 libxcursor1 \
-          libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates \
-          fonts-liberation wget
           
-      - name: Install libasound2t64 separately
+      - name: Install Python Packages
         run: |
-          sudo apt-get install -y libasound2t64
-          
-      - name: Install Node.js dependencies
-        run: |
-          npm install
+          pip install -r requirements.txt
           
       - name: Run the Node.js script
         run: |
-          node 25-no_sandbox.js --no-sandbox
+          python run.py
