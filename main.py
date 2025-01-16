@@ -10,6 +10,10 @@ import asyncio
 import aiohttp
 import os
 from pathlib import Path
+import http.client
+import json
+import yt_dlp
+from yt_dlp.utils import DownloadError
 
 # Your API details
 api_id = '22106990'       # Replace with your API ID
@@ -48,7 +52,7 @@ def format_time_taken(seconds):
     return time_str
 
 async def upload_temp_folder_videos_to_saved_messages(file_path,update: Update, context: CallbackContext):
-    status_message = await update.message.reply_text(f"Uploading ...")
+    status_message = await update.message.reply_text(f"Uploading...")
 
     start_time = time.time()
     async def upload_to_saved_messages(file_path):
@@ -111,92 +115,97 @@ async def download_me(video_url, update: Update, context: CallbackContext):
     # Run the download in the background
     asyncio.create_task(background_download(update, context, status_msg, user_folder, video_url))
 
-
-
 async def background_download(update: Update, context: CallbackContext, status_msg, user_folder: Path, file_url: str) -> None:
     """Performs the download in the background and updates the user about the progress."""
-    # File size limit in bytes (4GB)
-    MAX_FILE_SIZE = 4 * 1024 * 1024 * 1024
-
     try:
-        # Send a HEAD request to get file metadata
-        async with aiohttp.ClientSession() as session:
-            async with session.head(file_url) as head_resp:
-                if head_resp.status!= 200:
-                    await status_msg.edit_text(f"Failed to access file. Status code: {head_resp.status}")
-                    return
-
-                # Extract file name from Content-Disposition header
-                content_disposition = head_resp.headers.get('Content-Disposition')
-                if content_disposition and 'filename=' in content_disposition:
-                    file_name = content_disposition.split('filename=')[-1].strip('"').strip("'")
-                else:
-                    # Fallback to extracting from the URL
-                    file_name = file_url.split('/')[-1] or "unknown_file"
-
-                # Check file size before downloading
-                content_length = head_resp.headers.get('Content-Length')
-                if content_length and int(content_length) > MAX_FILE_SIZE:
-                    await status_msg.edit_text(f"File is too large to download (limit: {MAX_FILE_SIZE / (1024 ** 3)}GB).")
-                    return
-
-            # Proceed with the download
-            file_path = user_folder / file_name
+        if 'youtube' in file_url or 'youtu.be' in file_url:
+            ydl_opts = {
+                'outtmpl': f'{user_folder}/%(title)s.%(ext)s',
+            }
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                info = ydl.extract_info(file_url, download=False)
+                filename = ydl.prepare_filename(info)
+                await status_msg.edit_text(f"Downloading... {info['title']}")
+                ydl.download([file_url])
+                await upload_temp_folder_videos_to_saved_messages(filename,update,context)
+        else:
             async with aiohttp.ClientSession() as session:
-                async with session.get(file_url) as resp:
-                    if resp.status!= 200:
-                        await status_msg.edit_text(f"Failed to download file. Status code: {resp.status}")
+                async with session.head(file_url) as head_resp:
+                    if head_resp.status!= 200:
+                        await status_msg.edit_text(f"Failed to access file. Status code: {head_resp.status}")
                         return
 
-                    with open(file_path, 'wb') as file:
-                        downloaded = 0
-                        content_length = int(content_length) if content_length else None
-                        last_reported_percentage = 0
-                        last_update_time = asyncio.get_running_loop().time()
-                        xc = True
+                    # Extract file name from Content-Disposition header
+                    content_disposition = head_resp.headers.get('Content-Disposition')
+                    if content_disposition and 'filename=' in content_disposition:
+                        file_name = content_disposition.split('filename=')[-1].strip('"').strip("'")
+                    else:
+                        # Fallback to extracting from the URL
+                        file_name = file_url.split('/')[-1] or "unknown_file"
 
-                        # Download in chunks
-                        async for chunk in resp.content.iter_chunked(8192):
-                            file.write(chunk)
-                            downloaded += len(chunk)
+                    # Check file size before downloading
+                    content_length = head_resp.headers.get('Content-Length')
+                    if content_length and int(content_length) > 4 * 1024 * 1024 * 1024:
+                        await status_msg.edit_text(f"File is too large to download (limit: 4GB).")
+                        return
 
-                            # Report download progress every 2 seconds
-                            current_time = asyncio.get_running_loop().time()
-                            if content_length and current_time - last_update_time >= 0.5:
-                                percentage = (downloaded / content_length) * 100
-                                bar_length = 15  # Length of the progress bar 
-                                filled_length = int(bar_length * downloaded // content_length)
-                                bar = '■' * filled_length + '□' * (bar_length - filled_length)
-                                try:
-                                    await status_msg.edit_text(
-                                        f"Downaloding...\n⬇️ |{bar}| {percentage:.2f}% ({format_size(content_length)})"
-                                    )
-                                except:
-                                    pass
-                                last_update_time = current_time
-                            else:
-                                if xc:
-                                    if content_length:
-                                        await status_msg.edit_text(f"Downloading...")
-                                    else:
-                                        await status_msg.edit_text(f"Downloading... (Unknown File Size)")
-                                    xc = False
+                # Proceed with the download
+                file_path = user_folder / file_name
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(file_url) as resp:
+                        if resp.status!= 200:
+                            await status_msg.edit_text(f"Failed to download file. Status code: {resp.status}")
+                            return
 
+                        with open(file_path, 'wb') as file:
+                            downloaded = 0
+                            content_length = int(content_length) if content_length else None
+                            last_reported_percentage = 0
+                            last_update_time = asyncio.get_running_loop().time()
+                            xc = True
+
+                            # Download in chunks
+                            async for chunk in resp.content.iter_chunked(8192):
+                                file.write(chunk)
+                                downloaded += len(chunk)
+
+                                # Report download progress every 2 seconds
+                                current_time = asyncio.get_running_loop().time()
+                                if content_length and current_time - last_update_time >= 0.5:
+                                    percentage = (downloaded / content_length) * 100
+                                    bar_length = 15  # Length of the progress bar 
+                                    filled_length = int(bar_length * downloaded // content_length)
+                                    bar = '■' * filled_length + '□' * (bar_length - filled_length)
+                                    try:
+                                        await status_msg.edit_text(
+                                            f"Downaloding...\n⬇️ |{bar}| {percentage:.2f}% ({format_size(content_length)})"
+                                        )
+                                    except:
+                                        pass
+                                    last_update_time = current_time
+                                else:
+                                    if xc:
+                                        if content_length:
+                                            await status_msg.edit_text(f"Downloading...")
+                                        else:
+                                            await status_msg.edit_text(f"Downloading... (Unknown File Size)")
+                                        xc = False
 
             # Notify user of successful download
             await status_msg.edit_text(f"✅ Download completed! 🎉 Size: {format_size(os.path.getsize(file_path))}")
             await upload_temp_folder_videos_to_saved_messages(file_path,update,context)
+    except yt_dlp.DownloadError as e:
+        await status_msg.edit_text(f"Download failed: {str(e)}")
     except aiohttp.ClientError as e:
         await status_msg.edit_text(f"Download failed: {str(e)}")
     except Exception as e:
         await status_msg.edit_text(f"An error occurred: {str(e)}")
 
-
 async def start(update: Update, context: CallbackContext) -> None:
     await update.message.reply_text("👋 Hi! Please send me the video file link to download. 📥")
 
 def main():
-    API_TOKEN = "7593791618:AAHu7cvvTH-q1jPatPv5KtUQy0O8Fpv34Yc"
+    API_TOKEN = "7710008103:AAGGL4V1HKtk2jvcWzAfbRpo5hxq2P8Bpog"
     application = Application.builder().token(API_TOKEN).build()
     application.add_handler(CommandHandler("start", start))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
@@ -214,7 +223,6 @@ async def handle_message(user_id,user_message,update: Update, context: CallbackC
         return await download_me(user_message,update,context)
     else:
         return False
-
 
 if __name__ == '__main__':
     print("IzzyBot running...")
