@@ -3,3 +3,4 @@ requests
 tqdm
 telethon
 aiohttp
+yt-dlp
