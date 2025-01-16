@@ -205,7 +205,7 @@ async def start(update: Update, context: CallbackContext) -> None:
     await update.message.reply_text("👋 Hi! Please send me the video file link to download. 📥")
 
 def main():
-    API_TOKEN = "7710008103:AAGGL4V1HKtk2jvcWzAfbRpo5hxq2P8Bpog"
+    API_TOKEN = "7593791618:AAHu7cvvTH-q1jPatPv5KtUQy0O8Fpv34Yc"
     application = Application.builder().token(API_TOKEN).build()
     application.add_handler(CommandHandler("start", start))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
